@@ -1,0 +1,52 @@
+@menu-background-color: @text-color-light;
+@menu-margin-side: 2rem;
+
+#menu {
+	display: inline-block;
+	width: 20%;
+	border-width: 1px;
+	border-style: solid;
+	border-color: @color-2;
+	margin-left: @menu-margin-side;
+	margin-right: @menu-margin-side;
+	color: @color-2;
+	background-color: lighten(@menu-background-color, 5%);
+	font-size: 1.1rem;
+	.menu-item, .sub-item {
+		border-style: solid;
+		border-width: 0px;
+		border-color: @color-2;
+		border-bottom-width: 1px;
+		a {
+			cursor: pointer;
+			box-sizing: border-box;
+			padding: 0.6rem;
+
+			&:hover {
+				color: @text-color-light;
+				background: linear-gradient(180deg, lighten(@color-2, 5%), lighten(@color-2, 10%));
+			}
+		}
+		.selected {
+			background: linear-gradient(180deg, darken(@color-2, 5%), @color-2);
+			color: @text-color-light;
+		}
+	}
+
+	.menu-item:last-child, {
+		border-style: none;
+		a {
+			border-style: none;
+		}
+	}
+
+	.sub-item {
+		
+		font-size: 1.0rem;
+		a {
+			padding-left: 1.2rem;
+			padding-top: 0.3rem;
+			padding-bottom: 0.3rem;
+		}
+	}
+}

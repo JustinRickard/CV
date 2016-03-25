@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title data-bind="text: StaticText.Current.Banner_Logo"></title>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.2.1/lodash.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+		<script type="text/javascript" src="scripts/Login.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Muli">
+	</head>
+	<body>
+		<div id="banner">
+			<div class="logo" data-bind="text: StaticText.Current.Banner_Logo"></div>
+			<div class="slogan">
+				<div class="slogan-item slogan-1" data-bind="text: StaticText.Current.Banner_Slogan1"></div>
+				<div class="slogan-item slogan-2" data-bind="text: StaticText.Current.Banner_Slogan2"></div>
+				<div class="slogan-item slogan-3" data-bind="text: StaticText.Current.Banner_Slogan3"></div>
+			</div>
+		</div>
+		<div id="login-main">
+			<div id="login-box">
+				<div id="login-box-1" class="float-left">
+					<form action="login" method="post">
+						<h1 id="login-title" data-bind="text: StaticText.Current.Login_Title"></h1>
+						<div class="input-container"><input type="text" placeholder="username" /></div>
+						<div class="input-container"><input type="password" placeholder="password" /></div>
+						<div class="input-container"><button type="submit" data-bind="text: StaticText.Current.Login_LoginButton"></button></div>
+					</form>
+				</div>
+				<div id="login-box-2">
+					<h1 id="register-title" data-bind="text: StaticText.Current.Login_Register_Title"></h1>
+					<form action="register" method="post">
+						<div class="input-container"><button type="submit" data-bind="text: StaticText.Current.Login_Register_Title"></button></div>
+					</form>
+
+					<h3 id="register-forgotten-password" data-bind="text: StaticText.Current.Login_ForgottenPassword_Title"></h1>
+					<form action="forgottenPassord" method="post">
+						<div class="input-container">
+							<button type="submit" data-bind="text: StaticText.Current.Login_ForgottenPassword_Button"></button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			© Copyright Justin Rickard 2016
+		</div>
+	</body>
+</html>

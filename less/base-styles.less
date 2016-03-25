@@ -1,0 +1,33 @@
+/* Colours */
+@color-1: #1E353D;  /*  Dark blue */
+@color-2: #C43604;  /*  Orange */
+@color-3: #A4D411;  /*  Lime */
+@text-color-dark: #252529;
+@text-color-light: white;
+
+
+html, body {
+	font-family: 'Muli', sans-serif;
+	color: @text-color-dark;
+	padding: 0;
+	margin: 0;
+}
+
+h1,h2,h3,h4,h5,h6,p,label, input {
+	color: @text-color-dark;
+}
+
+input {
+	display: inline-block;
+}
+
+button {
+    border-style: none;
+    background-color: @color-2;
+    text-align: center;
+    color: @text-color-light;
+	&:hover {
+		cursor: pointer;
+		background-color: lighten(@color-2, 10%)
+	};
+}

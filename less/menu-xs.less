@@ -1,0 +1,18 @@
+@menu-background-color: @color-3;
+
+#menu {
+	background-color: @menu-background-color;
+	max-width: 15rem;
+	.menu-item {
+		border-color: @color-1;
+		border-style: solid;
+		border-width: 0;
+		border-bottom-width: 1px;
+		padding: 0.4rem;
+
+		&:hover {
+			color: @text-color-light;
+			background-color: lighten(@menu-background-color, 10%);
+		}
+	}
+}
