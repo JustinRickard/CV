@@ -920,6 +920,18 @@ var Utilities = (function () {
     Utilities.prototype.CreateOption = function (o) {
         return new QuestionOption(o.ID, o.DisplayOrder, o.Text, o.Value, o.IsSelected);
     };
+    // Data manipulation
+    Utilities.prototype.DateToString = function (date) {
+        var day = this.To2Figures(date.getDate().toString());
+        var month = this.To2Figures(date.getMonth().toString());
+        return date.getFullYear() + "," + month + "," + day;
+    };
+    Utilities.prototype.To2Figures = function (numberAsString) {
+        if (numberAsString.length === 1) {
+            numberAsString = "0" + numberAsString;
+        }
+        return numberAsString;
+    };
     return Utilities;
 })();
 

@@ -118,7 +118,7 @@ class Utilities {
 	public To2Figures (numberAsString: string): string {
 		if (numberAsString.length === 1)
 		{
-			numberAsString = "0" + day;
+			numberAsString = "0" + numberAsString;
 		}
 		return numberAsString;
 	}
