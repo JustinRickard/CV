@@ -2,15 +2,23 @@
 
 # Set up variables
 workingDirectory=~/websites
-mkdir -p $workingDirectory
+githubUrl=https://github.com/JustinRickard/CV.git
 
-# Update Ubuntu
+# Set up working directory
+mkdir -p $workingDirectory; cd $workingDirectory;
+
+# Update Ubuntu  (use sudo if doing manually. scripts should be run as sudo)
 apt-get update
 apt-get upgrade
-apt-get install nodejs npm gulp gulp-less gulp-tsc
+# A system reboot should be done here via EC2 menu.
+
+# (use sudo if doing manually)
+apt-get install git nodejs npm nginx
+npm install -g requirejs gulp gulp-less gulp-tsc --save-dev
+sudo ln -s /usr/bin/nodejs /usr/bin/node
 
 # Copy source code to local machine
-git clone https://github.com/JustinRickard/CV.git
+git clone $githubUrl
 
 # Build the output files with Gulp
 cd $workingDirectory/CV
