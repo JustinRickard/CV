@@ -22,6 +22,7 @@ git clone $githubUrl
 
 # Copy external source code
 git clone https://github.com/jgallen23/routie.git
+git clone https://github.com/DefinitelyTyped/DefinitelyTyped.git
 
 # Build the output files with Gulp
 cd $workingDirectory/CV
