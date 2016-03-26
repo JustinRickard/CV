@@ -1,6 +1,6 @@
 /// <reference path="UiText.ts" />
-/// <reference path="../../external/DefinitelyTyped/jquery/jquery.d.ts" />
-/// <reference path="../../external/DefinitelyTyped/knockout/knockout.d.ts" />
+/// <reference path="../../../../DefinitelyTyped/jquery/jquery.d.ts" />
+/// <reference path="../../../../DefinitelyTyped/knockout/knockout.d.ts" />
 
 var StaticText: UiText;
 

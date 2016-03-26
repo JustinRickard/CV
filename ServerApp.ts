@@ -1,4 +1,4 @@
-/// <reference path="scripts/external/DefinitelyTyped/requirejs/require.d.ts" />
+/// <reference path="../DefinitelyTyped/requirejs/require.d.ts" />
 
 
 var express: any = require('express');

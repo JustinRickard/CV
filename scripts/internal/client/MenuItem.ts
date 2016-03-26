@@ -1,8 +1,8 @@
 /// <reference path="Enums.ts" />
 /// <reference path="AppModel.ts" />
 /// <reference path="Router.ts" />
-/// <reference path="../../external/DefinitelyTyped/lodash/lodash.d.ts" />
-/// <reference path="../../external/DefinitelyTyped/knockout/knockout.d.ts" />
+/// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../../DefinitelyTyped/knockout/knockout.d.ts" />
 
 interface IMenuItem {
 	UiText: string;

@@ -1,4 +1,4 @@
-/// <reference path="../scripts/external/DefinitelyTyped/requirejs/require.d.ts" />
+// TODO: Move out to a HTML file
 
 var Home_Html: string = '\
 <div id="home" data-bind="visible: Model.CurrentPage()===1">	\

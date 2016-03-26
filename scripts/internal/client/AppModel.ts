@@ -14,7 +14,7 @@
 /// <reference path="../../../partials/career.ts" />
 /// <reference path="../../../partials/programming_csharp.ts" />
 /// <reference path="../../../partials/programming_typescript.ts" />
-/// <reference path="../../external/DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 
 interface IAppModel {
 	Api: IApi;

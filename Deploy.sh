@@ -20,6 +20,9 @@ sudo ln -s /usr/bin/nodejs /usr/bin/node
 # Copy source code to local machine
 git clone $githubUrl
 
+# Copy external source code
+git clone https://github.com/jgallen23/routie.git
+
 # Build the output files with Gulp
 cd $workingDirectory/CV
 gulp

@@ -21,6 +21,6 @@ class Date {
 	    asset: IAsset
 	) {
 		this.startDate = startDate;
-		this.endDate = 
+		
 	}
 }

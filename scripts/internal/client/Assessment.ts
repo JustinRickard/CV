@@ -1,7 +1,7 @@
 /// <reference path="CaseStudy.ts" />
 /// <reference path="Enums.ts" />
 /// <reference path="Utilities.ts" />
-/// <reference path="../../external/DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 
 interface IAssessment {
 	ID: number;

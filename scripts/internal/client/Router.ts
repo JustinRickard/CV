@@ -1,5 +1,5 @@
-/// <reference path="../../external/DefinitelyTyped/routie/routie.d.ts" />
-// <reference path="AppModel.ts" />
+/// <reference path="../../../../DefinitelyTyped/routie/routie.d.ts" />
+// <reference path="AppModel.ts" />s
 // <reference path="Enums.ts" />
 
 declare var Model: AppModel;

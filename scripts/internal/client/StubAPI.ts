@@ -2,7 +2,7 @@
 /// <reference path="Utilities.ts" />
 /// <reference path="ErrorHandler.ts" />
 /// <reference path="API.ts" />
-/// <reference path="../../external/DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 
 // Stub API to return dummy data
 class StubApi {

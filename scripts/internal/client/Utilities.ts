@@ -8,8 +8,8 @@
 /// <reference path="Option.ts" />
 /// <reference path="ErrorHandler.ts" />
 /// <reference path="Enums.ts" />
-/// <reference path="../../external/DefinitelyTyped/jquery/jquery.d.ts" />
-/// <reference path="../../external/DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../../DefinitelyTyped/jquery/jquery.d.ts" />
+/// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 
 class Utilities {
 

@@ -1,7 +1,7 @@
 /// <reference path="AppModel.ts" />
 /// <reference path="Utilities.ts" />
 /// <reference path="ErrorHandler.ts" />
-/// <reference path="../../external/DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 
 interface IApi {
 	ErrorHandler: IErrorHandler;
