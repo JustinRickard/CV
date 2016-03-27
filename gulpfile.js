@@ -45,7 +45,7 @@ gulp.task('less', function () {
 });
 
 gulp.task('routie', function () {
-    gulp.src('./scripts/external/routie/lib/routie.js')
+    gulp.src('../routie/lib/routie.js')
     .pipe(gulp.dest('./public/scripts/external'));
 });
 

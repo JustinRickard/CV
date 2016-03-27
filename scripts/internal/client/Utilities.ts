@@ -8,6 +8,12 @@
 /// <reference path="Option.ts" />
 /// <reference path="ErrorHandler.ts" />
 /// <reference path="Enums.ts" />
+/// <reference path="timeline/TimelineSlide.ts" />
+/// <reference path="timeline/TimelineDate.ts" />
+/// <reference path="timeline/TimelineEra.ts" />
+/// <reference path="timeline/TimelineEvent.ts" />
+/// <reference path="timeline/TimelineMedia.ts" />
+/// <reference path="timeline/TimelineText.ts" />
 /// <reference path="../../../../DefinitelyTyped/jquery/jquery.d.ts" />
 /// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 
@@ -76,7 +82,17 @@ class Utilities {
 
 	// CREATE METHODS (FROM INTERFACE)
 	public CreateJob(j: IJob): Job {
-		return new Job(j.Company, j.Start, j.End, j.IsCurrent);
+		return new Job(j.Company, j.Description, j.Start, j.End, j.IsCurrent, j.ImageUrl);
+	}
+
+	public CreateTimelineSlide(j: IJob, utils: Utilities): TimelineSlide {
+		var timelineText = new TimelineText(j.Company, j.Description);
+		var timelineMedia = new TimelineMedia(j.ImageUrl, "");
+		return new TimelineSlide(j.Start, j.End, timelineText, timelineMedia, utils);
+	}
+
+	public CreateTimelineEra(e: ITimelineEra) {
+		return new TimelineEra(e.start_date, e.end_date, e.text);
 	}
 
 	public CreateUser(u: IUser): User {
@@ -121,5 +137,10 @@ class Utilities {
 			numberAsString = "0" + numberAsString;
 		}
 		return numberAsString;
+	}
+
+	public GetTimelineDate(date: Date): TimelineDate {
+		if (!date) return null;
+		return new TimelineDate(date.getFullYear(), date.getMonth());
 	}
 }

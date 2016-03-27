@@ -9,18 +9,23 @@
 /// <reference path="ErrorHandler.ts" />
 /// <reference path="MenuItem.ts" />
 /// <reference path="UiText.ts" />
+/// <reference path="timeline/Timeline.ts" />
+/// <reference path="timeline/TimelineSlide.ts" />
+/// <reference path="timeline/TimelineEra.ts" />
 /// <reference path="../../../partials/home.ts" />
 /// <reference path="../../../partials/about.ts" />
 /// <reference path="../../../partials/career.ts" />
 /// <reference path="../../../partials/programming_csharp.ts" />
 /// <reference path="../../../partials/programming_typescript.ts" />
 /// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../../DefinitelyTyped/timelinejs/timelinejs.d.ts" />
 
 interface IAppModel {
 	Api: IApi;
 	User: IUser;
 	Users: IUser[];
 	Jobs: IJob[];
+	TimelineEras: ITimelineEra[];
 	Assessments: IAssessment[];
 	ChatPosts: IChatPost[];
 	MessageStatus: MessageDisplayStatus;
@@ -32,6 +37,7 @@ interface IAppModel {
 
 declare var StaticText: UiText;
 declare var UrlRouter: Router;
+declare var TL: any;  // TimelineJS
 
 class AppModel {
 
@@ -39,6 +45,7 @@ class AppModel {
 	User: User;
 	Users: User[];
 	Jobs: Job[];
+	TimelineEras: TimelineEra[];
 	Assessments: Assessment[];
 	ChatPosts: ChatPost[];
 	CurrentAssessment: Assessment;
@@ -46,9 +53,10 @@ class AppModel {
 	CurrentMessage: string;
 	CultureCode: CultureCode;
 	MenuItems: MenuItem[];
+	Timeline: Timeline;
 	CurrentPage: KnockoutObservable<Page>;
 
-	constructor (api: IApi, user: IUser, users: IUser[], jobs: IJob[], 
+	constructor (api: IApi, user: IUser, users: IUser[], jobs: IJob[], eras: ITimelineEra[],
 		assessments: IAssessment[], chatPosts: IChatPost[],
 		messageStatus: MessageDisplayStatus, currentMessage: string,
 		logger: ILogger, errorHandler: IErrorHandler) {
@@ -61,6 +69,7 @@ class AppModel {
 		this.SetUsers(users, utils);
 		this.SetAssessments(assessments, utils);
 		this.SetChatPosts(chatPosts, utils);
+		this.SetTimeline(jobs, eras, utils)
 		this.MessageStatus = messageStatus;
 		this.CurrentMessage = currentMessage;
 		this.SetMenuItems();
@@ -100,18 +109,20 @@ class AppModel {
 			}
 		});
 
+		var mainPageId = "page-content-container";
+
 		this.CurrentPage(page);
-		this.InsertTemplate(page);
+		this.InsertTemplate(page, mainPageId);
 		if (!pageLoad) {
-			var element = document.getElementById("page-content-container");
+			var element = document.getElementById(mainPageId);
 			ko.cleanNode(element);
-			ko.applyBindings(StaticText, document.getElementById("page-content-container"));
+			ko.applyBindings(StaticText, document.getElementById(mainPageId));
 		} 
 	}
 
 	// PRIVATE METHODS
-	private InsertTemplate(page: Page): void {
-		var container = $("#page-content-container");
+	private InsertTemplate(page: Page, mainPageId: string): void {
+		var container = $("#" + mainPageId);
 
 		switch (page)
 		{
@@ -123,6 +134,7 @@ class AppModel {
 				break;
 			case Page.Career:
 				container.html(Career_Html);
+				var timeline = new TL.Timeline(mainPageId, this.Timeline);
 				break;
 			case Page.Programming_CSharp:
 				container.html(CSharp_Html);
@@ -195,5 +207,15 @@ class AppModel {
 		this.Jobs = new Array<Job>();
 		jobs.forEach((x) => this.Jobs.push(utils.CreateJob(x)));
 		this.SortJobs();
+	}
+
+	private SetTimeline (jobs: IJob[], eras: ITimelineEra[], utils: Utilities) {
+		var timelineSlides = new Array<TimelineSlide> ();
+		jobs.forEach((x) => timelineSlides.push(utils.CreateTimelineSlide(x, utils)));
+
+		var timelineEras = new Array<TimelineEra> ();
+		eras.forEach((x) => timelineEras.push(utils.CreateTimelineEra(x)));
+
+		this.Timeline = new Timeline(timelineSlides, timelineEras);
 	}
 }
