@@ -105,7 +105,7 @@ class StubApi {
 		var fidessa2_imageUrl = "images/fidessa.jpg";
 
 		var accesso_start = new Date(2013, 5, 1);
-		var accesso_headline = "Fidessa";
+		var accesso_headline = "Accesso";
 		var accesso_title = "Software Developer";
 		var accesso_imageUrl = "images/accesso.png";
 
