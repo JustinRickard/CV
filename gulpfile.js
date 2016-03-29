@@ -64,6 +64,7 @@ gulp.task('default',
         'client_ts',
         'server_ts',
         'server_app_ts',
-        'client_ts_login'
+        'client_ts_login',
+        'routie'
     ]
 );
