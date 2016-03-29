@@ -147,7 +147,7 @@ class StubApi {
 		var fin_start = this.Utils.GetTimelineDate(financial_start);
 		var financial_end   = new Date(2013, 6, 1, 9, 0, 0, 0);
 		var fin_end = this.Utils.GetTimelineDate(financial_end);
-		var fin_text = new TimelineText("Financial Software","Over 4 years as an implementation engineer.");
+		var fin_text = new TimelineText("Software Implementation","Over 4 years as an implementation engineer.");
 		var financial = new TimelineEra(fin_start, fin_end, fin_text);
 		// Development
 		var developer_start = new Date(2013, 6, 1, 9, 0, 0, 0);
