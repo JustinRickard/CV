@@ -9,7 +9,7 @@ workingDirectory=~/websites
 githubUrl=https://github.com/JustinRickard/CV.git
 
 # Stop web application process
-pm2 stop
+pm2 stop ServerApp
 
 # Update the source code
 cd $workingDirectory/CV
@@ -19,4 +19,4 @@ git pull
 gulp
 
 # Start web application process
-pm2 start
+pm2 start ServerApp.js
