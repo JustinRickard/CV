@@ -1,3 +1,5 @@
 public/scripts/*
 public/css/*
+partials/generated/*
+node_modules/*
 ServerApp.js
