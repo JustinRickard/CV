@@ -5,7 +5,7 @@
 /// <reference path="../../../../DefinitelyTyped/knockout/knockout.d.ts" />
 
 interface IMenuItem {
-	UiText: string;
+	Text: string;
 	Page: Page;
 	SubItems: IMenuItem[];
 	Level: MenuItemLevel;
@@ -17,7 +17,7 @@ declare var UrlRouter: Router;
 
 class MenuItem implements IMenuItem {
 
-	UiText: string;
+	Text: string;
 	Page: Page;
 	SubItems: MenuItem[];
 	Level: MenuItemLevel;
@@ -25,7 +25,7 @@ class MenuItem implements IMenuItem {
 	Expanded: KnockoutObservable<boolean>;
 
 	constructor (uiText: string, page: Page, level: MenuItemLevel, subItems: MenuItem[]) {
-		this.UiText = uiText;
+		this.Text = uiText;
 		this.Page = page;
 		this.SubItems = subItems;
 		this.Level = level;

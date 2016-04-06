@@ -36,11 +36,11 @@
 		<div id="main-container">
 			<div id="menu" data-bind="foreach: Model.MenuItems">
 				<div class="menu-item">
-					<a data-bind="text: UiText, click: Select, css: { selected: Selected }"></a>
+					<a data-bind="text: Text, click: Select, css: { selected: Selected }"></a>
 					<!-- ko if: SubItems && SubItems.length > 0 -->
 					<div class="sub-item-container" data-bind="visible: Expanded">
 						<div class="sub-item" data-bind="foreach: SubItems">
-							<a data-bind="text: UiText, click: Select, css: { selected: Selected }"></a>
+							<a data-bind="text: Text, click: Select, css: { selected: Selected }"></a>
 						</div>
 					</div>
 					<!-- /ko -->

@@ -12,11 +12,11 @@
 /// <reference path="timeline/Timeline.ts" />
 /// <reference path="timeline/TimelineSlide.ts" />
 /// <reference path="timeline/TimelineEra.ts" />
-/// <reference path="../../../partials/home.ts" />
-/// <reference path="../../../partials/about.ts" />
-/// <reference path="../../../partials/career.ts" />
-/// <reference path="../../../partials/programming_csharp.ts" />
-/// <reference path="../../../partials/programming_typescript.ts" />
+/// <reference path="../../../partials/generated/home.ts" />
+/// <reference path="../../../partials/generated/about.ts" />
+/// <reference path="../../../partials/generated/career.ts" />
+/// <reference path="../../../partials/generated/programming_csharp.ts" />
+/// <reference path="../../../partials/generated/programming_typescript.ts" />
 /// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 /// <reference path="../../../../DefinitelyTyped/timelinejs/timelinejs.d.ts" />
 
@@ -127,20 +127,20 @@ class AppModel {
 		switch (page)
 		{
 			case Page.Home:
-				container.html(Home_Html);
+				container.html(home_html);
 				break;
 			case Page.About:
-				container.html(About_Html);
+				container.html(about_html);
 				break;
 			case Page.Career:
-				container.html(Career_Html);
-				var timeline = new TL.Timeline(mainPageId, this.Timeline);
+				container.html(career_html);
+				var timeline = new TL.Timeline('timeline', this.Timeline);
 				break;
 			case Page.Programming_CSharp:
-				container.html(CSharp_Html);
+				container.html(programming_csharp_html);
 				break;
 			case Page.Programming_Typescript:
-				container.html(Typescript_Html);
+				container.html(programming_typescript_html);
 				break;
 		}	
 		

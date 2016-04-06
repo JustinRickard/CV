@@ -65,22 +65,6 @@ gulp.task('routie', function () {
     .pipe(gulp.dest('./public/scripts/external'));
 });
 
-/* Foreach html file:
-    1. Get name (strip off suffix)
-    2. Turn .ts file into .html file
-
-BACKUP of working
-gulp.task('partials', function () {
-    gulp.src('partials/about.html')
-    .pipe(insert.wrap('var About_Html: string = \'', '\n\';'))
-    .pipe(change(performChange))
-    .pipe(rename("about.ts"))
-    .pipe(gulp.dest('./partials/generated'));
-});
-*/
-
-
-
 gulp.task('partials', function () {
     console.log("Generating partial views for pages:")
 
@@ -110,11 +94,11 @@ gulp.task('watch', function () {
 gulp.task('default', 
     [
         'less',
+        'partials',
         'client_ts',
         'server_ts',
         'server_app_ts',
         'client_ts_login',
-        'routie',
-        'partials'
+        'routie'
     ]
 );
