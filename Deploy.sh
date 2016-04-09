@@ -18,7 +18,7 @@ apt-get upgrade
 
 # (use sudo if doing manually)
 apt-get install git nodejs npm nginx
-npm install -g requirejs gulp gulp-less gulp-tsc gulp-insert gulp-rename gulp-change gulp-foreach gulp-filelist gulp-path gulp-tap pm2 --save-dev
+npm install -g requirejs express express-session cookie-parser cookie-session gulp gulp-less gulp-tsc gulp-insert gulp-rename gulp-change gulp-foreach gulp-filelist gulp-path gulp-tap pm2 body-parser --save-dev
 sudo ln -s /usr/bin/nodejs /usr/bin/node
 
 # Copy source code to local machine

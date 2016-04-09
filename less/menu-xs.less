@@ -1,8 +1,10 @@
 @menu-background-color: @color-3;
 
 #menu {
+	position: fixed;
+	top: 4rem;
+	width: 100%;
 	background-color: @menu-background-color;
-	max-width: 15rem;
 	.menu-item {
 		border-color: @color-1;
 		border-style: solid;
@@ -15,4 +17,11 @@
 			background-color: lighten(@menu-background-color, 10%);
 		}
 	}
+}
+
+#menu-icon {
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+	width: 2rem;
 }

@@ -33,23 +33,23 @@
 			</div>
 		</div>
 
-		<div id="main-container">
-			<div id="menu" data-bind="foreach: Model.MenuItems">
-				<div class="menu-item">
-					<a data-bind="text: Text, click: Select, css: { selected: Selected }"></a>
-					<!-- ko if: SubItems && SubItems.length > 0 -->
-					<div class="sub-item-container" data-bind="visible: Expanded">
-						<div class="sub-item" data-bind="foreach: SubItems">
-							<a data-bind="text: Text, click: Select, css: { selected: Selected }"></a>
-						</div>
+		<img id="menu-icon" alt="menu" src="images/menu.png" /">
+
+
+		<div id="menu" data-bind="foreach: Model.MenuItems">
+			<div class="menu-item">
+				<a data-bind="text: Text, click: Select, css: { selected: Selected }"></a>
+				<!-- ko if: SubItems && SubItems.length > 0 -->
+				<div class="sub-item-container" data-bind="visible: Expanded">
+					<div class="sub-item" data-bind="foreach: SubItems">
+						<a data-bind="text: Text, click: Select, css: { selected: Selected }"></a>
 					</div>
-					<!-- /ko -->
 				</div>
+				<!-- /ko -->
 			</div>
-
-			<div id="page-content-container">
-			</div>
-
+		</div>
+		<div id="main-container">
+			<div id="page-content-container"></div>
 		</div>
 		<div id="footer">
 			© Copyright Justin Rickard 2016

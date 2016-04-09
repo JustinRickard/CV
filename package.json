@@ -8,8 +8,13 @@
   },
   "author": "Justin Rickard",
   "license": "BSD-2-Clause",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/JustinRickard/CV.git"
+  },
   "dependencies": {
-    "express": "~4.13.4"
+    "express":"*",
+    "cookie-parser":"*"
   },
   "devDependencies": {
     "gulp-install": "~0.6.0",
