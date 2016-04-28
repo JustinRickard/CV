@@ -33,10 +33,10 @@
 			</div>
 		</div>
 
-		<img id="menu-icon" alt="menu" src="images/menu.png" /">
+		<img id="menu-icon" alt="menu" src="images/menu.png" data-bind="click: Model.ToggleMenu" />
 
 
-		<div id="menu" data-bind="foreach: Model.MenuItems">
+		<div id="menu" data-bind="foreach: Model.MenuItems, visible: Model.MenuVisible">
 			<div class="menu-item">
 				<a data-bind="text: Text, click: Select, css: { selected: Selected }"></a>
 				<!-- ko if: SubItems && SubItems.length > 0 -->
@@ -49,7 +49,7 @@
 			</div>
 		</div>
 		<div id="main-container">
-			<div id="page-content-container"></div>
+			<div id="page-content-container" data-bind="visible: Model.PageContentVisible"></div>
 		</div>
 		<div id="footer">
 			© Copyright Justin Rickard 2016

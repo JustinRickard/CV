@@ -38,6 +38,7 @@ interface IAppModel {
 declare var StaticText: UiText;
 declare var UrlRouter: Router;
 declare var TL: any;  // TimelineJS
+declare var Model: AppModel;
 
 class AppModel {
 
@@ -55,6 +56,9 @@ class AppModel {
 	MenuItems: MenuItem[];
 	Timeline: Timeline;
 	CurrentPage: KnockoutObservable<Page>;
+	MenuVisible: KnockoutObservable<Boolean>;
+	// PageContentVisible: KnockoutComputed<Boolean>;
+	PageContentVisible: KnockoutObservable<Boolean>;
 
 	constructor (api: IApi, user: IUser, users: IUser[], jobs: IJob[], eras: ITimelineEra[],
 		assessments: IAssessment[], chatPosts: IChatPost[],
@@ -74,10 +78,18 @@ class AppModel {
 		this.CurrentMessage = currentMessage;
 		this.SetMenuItems();
 		this.CurrentPage = ko.observable<Page>(Page.Home);
+		this.MenuVisible = ko.observable<Boolean>(false);
+		// this.PageContentVisible = ko.computed(() => !this.MenuVisible) ;
+		this.PageContentVisible = ko.observable<Boolean>(true);
 		this.SetPage(Page.Home, true);
 	}
 
 	// PUBLIC METHODS
+
+	public ToggleMenu() {
+		Model.MenuVisible(!Model.MenuVisible());
+		Model.PageContentVisible(!Model.MenuVisible())
+	}
 
 	public StartAssessment (assessmentId: number): void {
 		// Ensure no other assessments are in progress.
@@ -109,6 +121,9 @@ class AppModel {
 			}
 		});
 
+		this.PageContentVisible(true);
+		this.MenuVisible(false);
+
 		var mainPageId = "page-content-container";
 
 		this.CurrentPage(page);
@@ -117,7 +132,7 @@ class AppModel {
 			var element = document.getElementById(mainPageId);
 			ko.cleanNode(element);
 			ko.applyBindings(StaticText, document.getElementById(mainPageId));
-		} 
+		}
 	}
 
 	// PRIVATE METHODS

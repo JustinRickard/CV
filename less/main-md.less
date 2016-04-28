@@ -1,4 +1,6 @@
 @min-height: 20rem;
+@left-margin: 6rem;
+@margin-correction: 8rem;
 
 #main-container {
 	width: 100%;
@@ -7,7 +9,10 @@
 }
 
 #page-content-container {
-	width: 70%;
+	margin-top: @banner-height;
+	margin-bottom: @footer-height;
+	width: calc(100% - @margin-correction);
+    margin-left: @left-margin;
     display: inline-block;
     vertical-align: top;
     min-height: @min-height;
