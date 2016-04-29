@@ -4,7 +4,7 @@
 # Author  : Justin Rickard
 # Changes : Add script to deploy updates to the app
 
-# JR: Test automatic deployment works
+# JR: Nothing change to test auto deployment
 
 # Set up variables
 workingDirectory=~/websites/CV
