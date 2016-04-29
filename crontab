@@ -1,0 +1,1 @@
+*/5 * * * * ~/websites/CV/DeployUpdate.sh > ~/logs/crontab/CV_Deploy.txt
