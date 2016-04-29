@@ -10,7 +10,7 @@ githubUrl=https://github.com/JustinRickard/CV.git
 
 cd $workingDirectory
 
-# Check if source code up-to-date
+# Check if source code up-to-date 
 result=$(git fetch --dry-run 2>&1)
 if [[ $result == *"master"* ]]
 then
