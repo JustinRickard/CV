@@ -7,11 +7,12 @@
 # JR: Test automatic deployment works
 
 # Set up variables
-workingDirectory=~/websites
+workingDirectory=~/websites/CV
 githubUrl=https://github.com/JustinRickard/CV.git
 
-# Check if up-to-date
+cd $workingDirectory/CV
 
+# Check if up-to-date
 result=$(git fetch --dry-run 2>&1)
 if [[ $result == *"master"* ]]
 then
@@ -25,7 +26,6 @@ fi
 pm2 stop ServerApp
 
 # Update the source code
-cd $workingDirectory/CV
 git pull
 
 # Build the output files
