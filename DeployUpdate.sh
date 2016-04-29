@@ -8,6 +8,10 @@
 workingDirectory=~/websites
 githubUrl=https://github.com/JustinRickard/CV.git
 
+# Check if up-to-date
+#result=`git status -u no`
+
+
 # Stop web application process
 pm2 stop ServerApp
 
