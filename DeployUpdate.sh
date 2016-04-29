@@ -4,6 +4,8 @@
 # Author  : Justin Rickard
 # Changes : Add script to deploy updates to the app
 
+# JR: Test automatic deployment works
+
 # Set up variables
 workingDirectory=~/websites
 githubUrl=https://github.com/JustinRickard/CV.git
