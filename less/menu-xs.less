@@ -1,4 +1,4 @@
-@menu-background-color: @color-3;
+@menu-background-color: @text-color-light;
 
 #menu {
 	position: fixed;
@@ -6,6 +6,7 @@
 	width: 100%;
 	background-color: @menu-background-color;
 	.menu-item {
+		color: @color-2;
 		border-color: @color-1;
 		border-style: solid;
 		border-width: 0;
@@ -13,8 +14,11 @@
 		padding: 0.4rem;
 
 		&:hover {
-			color: @text-color-light;
-			background-color: lighten(@menu-background-color, 10%);
+			color: lighten(@color-2, 10%);
+			background-color: darken(@menu-background-color, 10%);
+		}
+		a {
+			padding: 1.0rem;
 		}
 	}
 }
@@ -24,4 +28,5 @@
 	top: 1rem;
 	right: 1rem;
 	width: 2rem;
+	content:url("../images/menu-white.png");
 }
