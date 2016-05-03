@@ -11,19 +11,20 @@ githubUrl=https://github.com/JustinRickard/CV.git
 cd $workingDirectory 
 
 # Check if source code up-to-date 
-if [[ $1 != "force" ]] then
-	echo "Looking for updates from source control";
-	result=$(git fetch --dry-run 2>&1)
-	if [[ $result == *"master"* ]]
-	then
-		echo "Changes detected. A redeployment will take place.";
-	else
-	  echo "No changes";
-	  exit;
-	fi
-else
-	echo "Not looking for updates in source control";
-fi
+#if [[ $1 != "force" ]]
+#	then
+#		echo "Looking for updates from source control";
+#		result=$(git fetch --dry-run 2>&1)
+#	if [[ $result == *"master"* ]]
+#	then
+#		echo "Changes detected. A redeployment will take place.";
+#	else
+#	  echo "No changes";
+#	  exit;
+#	fi
+#else
+#	echo "Not looking for updates in source control";
+#fi
 
 # Stop web application process
 pm2 stop ServerApp
