@@ -8,16 +8,21 @@
 workingDirectory=~/websites/CV
 githubUrl=https://github.com/JustinRickard/CV.git
 
-cd $workingDirectory
+cd $workingDirectory 
 
 # Check if source code up-to-date 
-result=$(git fetch --dry-run 2>&1)
-if [[ $result == *"master"* ]]
-then
-	echo "Changes detected. A redeployment will take place.";
+if [[ $1 != "force" ]] then
+	echo "Looking for updates from source control";
+	result=$(git fetch --dry-run 2>&1)
+	if [[ $result == *"master"* ]]
+	then
+		echo "Changes detected. A redeployment will take place.";
+	else
+	  echo "No changes";
+	  exit;
+	fi
 else
-  echo "No changes";
-  exit;
+	echo "Not looking for updates in source control";
 fi
 
 # Stop web application process
