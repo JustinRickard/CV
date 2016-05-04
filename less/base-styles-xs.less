@@ -1,14 +1,24 @@
-@input-height: 1.8rem;
-@input-padding: 0.4rem;
+@input-vertical-margin: 0.5rem;
+@input-height: 2.5rem;
+@input-vertical-padding: 0.4rem;
+@input-horizontal-padding: 1.2rem;
 @button-height: 2.7rem;
-
 button {
     width: 100%;
     height: @button-height;
-    padding: @input-padding;
+    padding: @input-vertical-padding @input-horizontal-padding @input-vertical-padding @input-horizontal-padding;
+    margin-top: @input-vertical-margin;
 }
 
 input {
 	height: @input-height;
-	padding: @input-padding;
+	padding: @input-vertical-padding @input-horizontal-padding @input-vertical-padding @input-horizontal-padding;
+	margin-top: @input-vertical-margin;
+	border-radius: @input-height;
+	border-style: solid;
+    border-color: @color-1;
+}
+
+h1 {
+	font-size: 1.5rem;
 }
