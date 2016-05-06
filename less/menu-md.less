@@ -2,26 +2,13 @@
 @menu-margin-side: 0rem;
 
 #menu {
-	position: fixed;
 	top: 10rem;
 	left: 1rem;
-	display: inline-block;
-	width: 20%;
-	border-width: 1px;
-	border-style: solid;
-	border-color: @color-2;
-	margin-left: @menu-margin-side;
-	margin-right: @menu-margin-side;
-	color: @color-2;
-	background-color: lighten(@menu-background-color, 5%);
-	font-size: 1.1rem;
+	max-width: 15rem;
+	margin-bottom: 5rem;
 	.menu-item, .sub-item {
-		border-style: solid;
-		border-width: 0px;
-		border-color: @color-2;
-		border-bottom-width: 1px;
 		a {
-			padding: 0.6rem;
+			padding: 0.4rem;
 
 			&:hover {
 				color: @text-color-light;
@@ -33,27 +20,10 @@
 			color: @text-color-light;
 		}
 	}
-
-	.menu-item:last-child, {
-		border-style: none;
-		a {
-			border-style: none;
-		}
-	}
-
-	.sub-item {
-		
-		font-size: 1.0rem;
-		a {
-			padding-left: 1.2rem;
-			padding-top: 0.3rem;
-			padding-bottom: 0.3rem;
-		}
-	}
 }
 
 #menu-icon {
-	position: fixed;
+	position: absolute;
 	top: 6rem;
 	left: 1rem;
 	width: 3rem;

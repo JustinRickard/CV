@@ -32,5 +32,6 @@ enum Page {
 	About = 2,
 	Career = 3,
 	Programming_CSharp = 4,
-	Programming_Typescript = 5
+	Programming_Typescript = 5,
+	Logout = 6
 }

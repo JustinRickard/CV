@@ -180,7 +180,9 @@ class AppModel {
 		programmingItems.push(new MenuItem(StaticText.Current.Menu_Programming_CSharp, Page.Programming_CSharp, MenuItemLevel.Two, null));
 		programmingItems.push(new MenuItem(StaticText.Current.Menu_Programming_Typescript, Page.Programming_Typescript, MenuItemLevel.Two, null));
 		menuItems.push(new MenuItem(StaticText.Current.Menu_Programming, null, MenuItemLevel.One, programmingItems));
-		
+
+
+		menuItems.push(new MenuItem(StaticText.Current.Menu_Logout, Page.Logout, MenuItemLevel.One, null));
 
 		this.MenuItems = menuItems;
 	}

@@ -38,7 +38,7 @@ class en_gb implements IUiText {
 	ProgrammingCSharp_Paragraph1: string = "TODO: C# intro"
 
 	ProgrammingTypescript_Title: string = "TODO: Typescript";
-	ProgrammingTypescript_Paragraph1: string = "TODO: C# intro"
+	ProgrammingTypescript_Paragraph1: string = "TODO: TypeScript intro"
 
 	Assessments_Title: string = "Assessments";
 	Assessments_Paragraph1: string = "TODO: Assessment intro";
@@ -53,4 +53,5 @@ class en_gb implements IUiText {
 	Menu_Programming: string = "Programming";
 	Menu_Programming_CSharp: string = "C#";
 	Menu_Programming_Typescript: string = "Typescript";
+	Menu_Logout: string = "Log out"
 }

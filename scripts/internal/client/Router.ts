@@ -43,6 +43,9 @@ class Router {
 			case Page.Programming_Typescript:
 				routie('/programming_typescript');
 				break;
+			case Page.Logout:
+				window.location.href = '/logout';
+				break;
 			default:
 				routie('/');
 				break;

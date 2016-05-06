@@ -52,6 +52,7 @@ interface IUiText {
 	Menu_Programming: string;
 	Menu_Programming_CSharp: string;
 	Menu_Programming_Typescript: string;
+	Menu_Logout: string;
 }
 
 class UiText {
