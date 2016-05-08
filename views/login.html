@@ -23,26 +23,27 @@
 		</div>
 		<div id="login-main">
 			<div id="login-box">
-				<div id="login-box-1" class="float-left">
+				<div id="login-box-1" class="float-left login-box-item">
 					<form action="login" method="post">
 						<h1 id="login-title" data-bind="text: StaticText.Current.Login_Title"></h1>
 						<div class="input-container"><input id="username" name="username" type="text" placeholder="username" /></div>
 						<div class="input-container"><input id="password" name="password" type="password" placeholder="password" /></div>
 						<div class="input-container"><button id="login-button" type="submit" data-bind="text: StaticText.Current.Login_LoginButton"></button></div>
 					</form>
-				</div>
-				<div id="login-box-2">
-					<h1 id="register-title" data-bind="text: StaticText.Current.Login_Register_Title"></h1>
-					<form action="register" method="post">
-						<div class="input-container"><button type="submit" data-bind="text: StaticText.Current.Login_Register_Title"></button></div>
-					</form>
-
-					<h3 id="register-forgotten-password" data-bind="text: StaticText.Current.Login_ForgottenPassword_Title"></h1>
+					<h3 id="forgotten-password" data-bind="text: StaticText.Current.Login_ForgottenPassword_Title"></h3>
 					<form action="forgottenPassord" method="post">
 						<div class="input-container">
 							<button type="submit" data-bind="text: StaticText.Current.Login_ForgottenPassword_Button"></button>
 						</div>
 					</form>
+				</div>
+				<div id="login-box-2" class="login-box-item">
+					<h1 id="register-title" data-bind="text: StaticText.Current.Login_Register_Title"></h1>
+					<form action="register" method="post">
+						<div class="input-container"><button type="submit" data-bind="text: StaticText.Current.Login_Register_Button"></button></div>
+					</form>
+
+					
 				</div>
 			</div>
 		</div>

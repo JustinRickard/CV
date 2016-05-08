@@ -1,14 +1,23 @@
+@vertical-padding-login-main: 3rem;
+
 #login-main {
-	padding-top: 3rem;
+	padding-top: @vertical-padding-login-main;
+	padding-bottom: @vertical-padding-login-main;
 	background-image: 		url("../images/login_sm.jpg");
     min-height:				30rem;
 }
 
 #login-box {
 	padding: 2rem;
-	width: 40rem;
 	min-height: 20rem;
 	border-radius: 0.2rem;
+	max-width: 30rem;
+}
+
+.login-box-item {
+	padding: 1.5rem;
+	padding-top: 0rem;
+	border-radius: @border-radius-small;
 }
 
 input {

@@ -1,4 +1,6 @@
-#login-title, #register-title, #register-forgotten-password {
+@border-radius-small: 0.5rem;  /* Should not have to add this here, should be able to put it in base-styles-xs however this errors (not defined varible even if it is) */
+
+#login-title, #register-title, #forgotten-password {
     color: @color-1;
 }
 
@@ -13,6 +15,11 @@
 	background-color: white;
 }
 
+.login-box-item {
+	padding: 0.5rem;
+	border-radius: @border-radius-small;
+}
+
 #register-forgotten-password, #login-box-2 {
 	margin-top: 2.2rem;
 }
@@ -24,4 +31,8 @@ input {
 
 #login-button {
 	margin-top: 1.0rem;
+}
+
+button {
+	margin-bottom: 1.5rem;
 }
