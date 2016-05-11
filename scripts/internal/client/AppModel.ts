@@ -165,7 +165,7 @@ class AppModel {
 		if (menuItem.Page === page) {
 			menuItem.Selected(true);
 		} else {
-			menuItem.Selected(false);
+			menuItem.Selected(false);		
 		}
 	}
 
