@@ -28,6 +28,45 @@ class en_gb implements IUiText {
 	Career_Title: string = "My Career";
 	Career_Paragraph1: string = "TODO: Career intro";
 
+	Principles_DRY_Title: string = "Don't repeat yourself";
+	Principles_DRY_Paragraph1: string = "TODO: Don't repeat yourself";
+
+	Principles_Automation_Title: string = "Automation";
+	Principles_Automation_Paragraph1: string = "TODO: Automation";
+
+	Principles_CD_Title: string = "Continuous delivery";
+	Principles_CD_Paragraph1: string = "TODO: Continuous delivery";
+
+	Principles_Encapsulation_Title: string = "Encapsulation";
+	Principles_Encapsulation_Paragraph1: string = "TODO: Encapsulation";
+
+	Principles_Inheritance_Title: string = "Inheritance";
+	Principles_Inheritance_Paragraph1: string = "TODO: Inheritance";
+
+	Principles_Composition_Title: string = "Interface composition";
+	Principles_Composition_Paragraph1: string = "TODO: Interface composition";
+
+	Principles_Abstraction_Title: string = "Abstraction";
+	Principles_Abstraction_Paragraph1: string = "TODO: Abstraction";
+
+	Principles_Polymorphism_Title: string =  "Polymorphism";
+	Principles_Polymorphism_Paragraph1: string = "TODO: Polymorphism";
+
+	Principles_SR_Title: string = "Single responsibility principle";
+	Principles_SR_Paragraph1: string = "TODO: Single responsibility principle";
+
+	Principles_OC_Title: string = "Open closed principle";
+	Principles_OC_Paragraph1: string = "TODO: Open closed principle";
+
+	Principles_Liskov_Title: string = "Liskov's law";
+	Principles_Liskov_Paragraph1: string = "TODO: Liskov";
+
+	Principles_IS_Title: string = "Interface segregation principle";
+	Principles_IS_Paragraph1: string = "TODO: Interface segregation";
+
+	Principles_DI_Title: string = "Dependency inversion";
+	Principles_DI_Paragraph1: string = "TODO: Dependency inversion";
+
 	Technologies_CSharp_Title: string = "C#";
 	Technologies_CSharp_Paragraph1: string = "TODO: C# intro"
 
@@ -44,6 +83,7 @@ class en_gb implements IUiText {
 	Menu_Home: string = "Home";
 	Menu_About: string = "About me";
 	Menu_Career: string = "My Career";
+	Menu_Principles: string = "Principles";
 	Menu_Technologies: string = "Technologies";
 	Menu_Technologies_CSharp: string = "C#";
 	Menu_Technologies_Typescript: string = "Typescript";

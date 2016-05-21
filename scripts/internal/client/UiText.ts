@@ -27,11 +27,50 @@ interface IUiText {
 	Career_Title: string;
 	Career_Paragraph1: string;
 
-	Technologies_CSharp_Title: string;
-	Technologies_CSharp_Paragraph1: string;
+	Principles_DRY_Title: string;
+	Principles_DRY_Paragraph1: string;
+
+	Principles_Automation_Title: string;
+	Principles_Automation_Paragraph1: string;
+
+	Principles_CD_Title: string;
+	Principles_CD_Paragraph1: string;	
+
+	Principles_Encapsulation_Title: string;
+	Principles_Encapsulation_Paragraph1: string;
+
+	Principles_Inheritance_Title: string;
+	Principles_Inheritance_Paragraph1: string;
+
+	Principles_Composition_Title: string;
+	Principles_Composition_Paragraph1: string;
+
+	Principles_Abstraction_Title: string;
+	Principles_Abstraction_Paragraph1: string;
+
+	Principles_Polymorphism_Title: string;
+	Principles_Polymorphism_Paragraph1: string;
+
+	Principles_SR_Title: string;
+	Principles_SR_Paragraph1: string;
+
+	Principles_OC_Title: string;
+	Principles_OC_Paragraph1: string;
+
+	Principles_Liskov_Title: string;
+	Principles_Liskov_Paragraph1: string;
+
+	Principles_IS_Title: string;
+	Principles_IS_Paragraph1: string;
+
+	Principles_DI_Title: string;
+	Principles_DI_Paragraph1: string;
 
 	Technologies_Typescript_Title: string;
 	Technologies_Typescript_Paragraph1: string;
+
+	Technologies_CSharp_Title: string;
+	Technologies_CSharp_Paragraph1: string;
 
 	Assessments_Title: string;
 	Assessments_Paragraph1: string;
@@ -43,6 +82,7 @@ interface IUiText {
 	Menu_Home: string;
 	Menu_About: string;
 	Menu_Career: string;
+	Menu_Principles: string;
 	Menu_Technologies: string;
 	Menu_Technologies_CSharp: string;
 	Menu_Technologies_Typescript: string;
