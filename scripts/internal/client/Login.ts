@@ -2,11 +2,11 @@
 /// <reference path="../../../../DefinitelyTyped/jquery/jquery.d.ts" />
 /// <reference path="../../../../DefinitelyTyped/knockout/knockout.d.ts" />
 
-var StaticText: UiText;
+declare var StaticText: IUiTextManager;
 
 $(document).ready(() => {
     // Set static text
-    StaticText = new UiText(CultureCode.en_GB);
+    StaticText = new UiTextManager(CultureCode.en_GB);
 
     ko.applyBindings(StaticText);
 });

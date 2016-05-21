@@ -20,9 +20,14 @@
 /// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 /// <reference path="../../../../DefinitelyTyped/timelinejs/timelinejs.d.ts" />
 
+interface Window {
+	timeline: any;
+}
+
 interface IAppModel {
 	Api: IApi;
 	User: IUser;
+	Pages: IPage[];
 	Users: IUser[];
 	Jobs: IJob[];
 	TimelineEras: ITimelineEra[];
@@ -35,15 +40,16 @@ interface IAppModel {
 	ClearMessage(): void;
 }
 
-declare var StaticText: UiText;
-declare var UrlRouter: Router;
+declare var StaticText: IUiTextManager;
 declare var TL: any;  // TimelineJS
 declare var Model: AppModel;
+declare var window: Window;
 
 class AppModel {
 
 	Api: IApi;
 	User: User;
+	Pages: IPage[];
 	Users: User[];
 	Jobs: Job[];
 	TimelineEras: TimelineEra[];
@@ -69,6 +75,7 @@ class AppModel {
 		
 		this.Api = api;
 		this.User = utils.CreateUser(user);
+		this.Pages = new PageRepository().Get();
 		this.SetJobs(jobs, utils);
 		this.SetUsers(users, utils);
 		this.SetAssessments(assessments, utils);
@@ -76,12 +83,12 @@ class AppModel {
 		this.SetTimeline(jobs, eras, utils)
 		this.MessageStatus = messageStatus;
 		this.CurrentMessage = currentMessage;
-		this.SetMenuItems();
-		this.CurrentPage = ko.observable<Page>(Page.Home);
+		this.SetMenuItems(this.Pages);
+		this.CurrentPage = ko.observable<Page>(_.first(this.Pages));
 		this.MenuVisible = ko.observable<Boolean>(false);
 		// this.PageContentVisible = ko.computed(() => !this.MenuVisible) ;
 		this.PageContentVisible = ko.observable<Boolean>(true);
-		this.SetPage(Page.Home, true);
+		this.SetPage(_.first(this.Pages).ID, true);
 	}
 
 	// PUBLIC METHODS
@@ -110,7 +117,8 @@ class AppModel {
 		this.MessageStatus = MessageDisplayStatus.None;
 	}
 
-	public SetPage(page: Page, pageLoad: boolean = false) {
+	public SetPage(pageId: number, pageLoad: boolean = false) {
+		var page: Page = this.GetPageById(this.Pages, pageId);
 		this.MenuItems.forEach((x) => {
 			this.SetSelectedMenuItem(x, page);
 			if (x.SubItems && x.SubItems.length > 0)
@@ -136,32 +144,43 @@ class AppModel {
 	}
 
 	// PRIVATE METHODS
-	private InsertTemplate(page: Page, mainPageId: string): void {
-		var container = $("#" + mainPageId);
 
-		switch (page)
-		{
-			case Page.Home:
-				container.html(home_html);
-				break;
-			case Page.About:
-				container.html(about_html);
-				break;
-			case Page.Career:
-				container.html(career_html);
-				var timeline = new TL.Timeline('timeline', this.Timeline);
-				break;
-			case Page.Programming_CSharp:
-				container.html(programming_csharp_html);
-				break;
-			case Page.Programming_Typescript:
-				container.html(programming_typescript_html);
-				break;
-		}	
-		
+	private GetPageById(pages: Page[], pageId: number): Page {
+		var page:   Page;
+
+		page = this.GetPageInCollectionById(pageId, pages);
+
+		if (!page) {
+			pages.forEach((p) => {
+				var children = p.ChildrenPages;
+				if (children && children.length > 0)
+				{
+					var result = this.GetPageInCollectionById(pageId, children);
+					if (result) {
+						page = result;
+						return page;
+					}
+				}
+			});
+		}
+		return page;
 	}
 
-	private SetSelectedMenuItem(menuItem: MenuItem, page: Page): void {
+	private GetPageInCollectionById(pageId: number, pages: Page[]): Page {
+		 return _.find(pages, (p) => { return p.ID === pageId; });
+	}
+
+	private InsertTemplate(page: Page, mainPageId: string): void {
+		var container = $("#" + mainPageId);
+		var pageVariable: string = page.PartialFileName.replace(".html", "_html");
+		container.html(eval(pageVariable));
+
+		if (page.PartialFileName === "career.html") {
+			window.timeline = new TL.Timeline('timeline-embed', this.Timeline);
+		}	
+	}
+
+	private SetSelectedMenuItem(menuItem: MenuItem, page: IPage): void {
 		if (menuItem.Page === page) {
 			menuItem.Selected(true);
 		} else {
@@ -169,20 +188,21 @@ class AppModel {
 		}
 	}
 
-	private SetMenuItems(): void {
+	private SetMenuItems(pages: IPage[]): void {
 		var menuItems = new Array<MenuItem>();
 
-		menuItems.push(new MenuItem(StaticText.Current.Menu_Home, Page.Home, MenuItemLevel.One, null));
-		menuItems.push(new MenuItem(StaticText.Current.Menu_About, Page.About, MenuItemLevel.One, null));
-		menuItems.push(new MenuItem(StaticText.Current.Menu_Career, Page.Career, MenuItemLevel.One, null));
+		pages.forEach((page) => {
 
-		var programmingItems = new Array<MenuItem>();
-		programmingItems.push(new MenuItem(StaticText.Current.Menu_Programming_CSharp, Page.Programming_CSharp, MenuItemLevel.Two, null));
-		programmingItems.push(new MenuItem(StaticText.Current.Menu_Programming_Typescript, Page.Programming_Typescript, MenuItemLevel.Two, null));
-		menuItems.push(new MenuItem(StaticText.Current.Menu_Programming, null, MenuItemLevel.One, programmingItems));
+			var subitems = new Array<MenuItem>();
 
+			if (page.ChildrenPages && page.ChildrenPages.length > 0) {
+				page.ChildrenPages.forEach((child) => {
+					subitems.push(new MenuItem(child, MenuItemLevel.Two, null));
+				});
+			}
 
-		menuItems.push(new MenuItem(StaticText.Current.Menu_Logout, Page.Logout, MenuItemLevel.One, null));
+			menuItems.push(new MenuItem(page, MenuItemLevel.One, subitems));
+		});
 
 		this.MenuItems = menuItems;
 	}

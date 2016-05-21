@@ -26,12 +26,3 @@ enum MessageDisplayStatus {
 	Warning = 2,
 	Error = 3
 }
-
-enum Page {
-	Home = 1,
-	About = 2,
-	Career = 3,
-	Programming_CSharp = 4,
-	Programming_Typescript = 5,
-	Logout = 6
-}

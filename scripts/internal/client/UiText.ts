@@ -18,12 +18,6 @@ interface IUiText {
 	Login_ForgottenPassword_Title: string;
 	Login_ForgottenPassword_Button: string;
 
-	Tabs_Home: string;
-	Tabs_Jobs: string;
-	Tabs_Assessments: string;
-	Tabs_LiveChat: string;
-	Tabs_Programming: string;
-
 	Home_Title: string;
 	Home_Paragraph1: string;
 
@@ -33,11 +27,11 @@ interface IUiText {
 	Career_Title: string;
 	Career_Paragraph1: string;
 
-	ProgrammingCSharp_Title: string;
-	ProgrammingCSharp_Paragraph1: string;
+	Technologies_CSharp_Title: string;
+	Technologies_CSharp_Paragraph1: string;
 
-	ProgrammingTypescript_Title: string;
-	ProgrammingTypescript_Paragraph1: string;
+	Technologies_Typescript_Title: string;
+	Technologies_Typescript_Paragraph1: string;
 
 	Assessments_Title: string;
 	Assessments_Paragraph1: string;
@@ -49,13 +43,17 @@ interface IUiText {
 	Menu_Home: string;
 	Menu_About: string;
 	Menu_Career: string;
-	Menu_Programming: string;
-	Menu_Programming_CSharp: string;
-	Menu_Programming_Typescript: string;
+	Menu_Technologies: string;
+	Menu_Technologies_CSharp: string;
+	Menu_Technologies_Typescript: string;
 	Menu_Logout: string;
 }
 
-class UiText {
+interface IUiTextManager {
+	Current: IUiText;
+}
+
+class UiTextManager implements IUiTextManager {
 	Current: IUiText;
 	enGB: IUiText;
 	// Other languages here

@@ -7,7 +7,7 @@
 /// <reference path="Enums.ts" />
 
 var Model: AppModel;
-var StaticText: UiText;
+var StaticText: IUiTextManager;
 var UrlRouter: Router;
 
 $(document).ready(() => {
@@ -20,12 +20,12 @@ $(document).ready(() => {
     var api = new StubApi(errorHandler, logger);
 
     // Set static text
-    StaticText = new UiText(CultureCode.en_GB);
+    StaticText = new UiTextManager(CultureCode.en_GB);
 
     // Set the model data
     Model = api.GetAllData();
 
-    // Set up the router
-    UrlRouter = new Router();
+    // Set the # router
+    UrlRouter = new Router(Model.Pages);
     UrlRouter.Initialise();
 });

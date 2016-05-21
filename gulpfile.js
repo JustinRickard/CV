@@ -13,8 +13,12 @@ var tap        = require('gulp-tap');
 
 // Helper methods
 
-function performChange(content) {
+function replaceNewLines(content) {
     return content.replace(/\n/g, ' \\\n');
+}
+
+function replaceQuotes(content) {
+    return content.replace(/\'/g, '\\\'')
 }
 
 // Tasks
@@ -75,8 +79,9 @@ gulp.task('partials', function () {
       console.log(" - " + filename)
 
       return stream
+        .pipe(change(replaceQuotes))
         .pipe(insert.wrap('var ' + filename + '_html: string = \'', '\n\';'))
-        .pipe(change(performChange))
+        .pipe(change(replaceNewLines))
         .pipe(concat(filename + ".ts"))
         .pipe(gulp.dest('./partials/generated'));
     }))

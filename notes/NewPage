@@ -1,0 +1,15 @@
+Current steps to create a new page:
+1. Add new partial
+2. Router: Add page to initialise
+3. Router: Add page to navigate to
+4. AppModel.ts: Add new MenuItem to array
+
+
+If we had a page class: 
+1. Add new partial
+2. Add new Page class instance in PageRepository (including url)
+
+Auto-generate the routes in router.ts
+Navigate to receives URL
+AppModel.ts: MenuItem takes in Page class
+

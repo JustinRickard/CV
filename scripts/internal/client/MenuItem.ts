@@ -1,14 +1,13 @@
-/// <reference path="Enums.ts" />
+/// <reference path="Page.ts" />
 /// <reference path="AppModel.ts" />
 /// <reference path="Router.ts" />
 /// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 /// <reference path="../../../../DefinitelyTyped/knockout/knockout.d.ts" />
 
 interface IMenuItem {
-	Text: string;
 	Page: Page;
-	SubItems: IMenuItem[];
 	Level: MenuItemLevel;
+	SubItems: IMenuItem[];
 }
 
 // Let MenuItem know about the model
@@ -17,15 +16,13 @@ declare var UrlRouter: Router;
 
 class MenuItem implements IMenuItem {
 
-	Text: string;
 	Page: Page;
 	SubItems: MenuItem[];
 	Level: MenuItemLevel;
 	Selected: KnockoutObservable<boolean>;
 	Expanded: KnockoutObservable<boolean>;
 
-	constructor (uiText: string, page: Page, level: MenuItemLevel, subItems: MenuItem[]) {
-		this.Text = uiText;
+	constructor (page: Page, level: MenuItemLevel, subItems: MenuItem[]) {
 		this.Page = page;
 		this.SubItems = subItems;
 		this.Level = level;
@@ -35,7 +32,7 @@ class MenuItem implements IMenuItem {
 
 	public Select (): void {
 		if (!this.SubItems || this.SubItems.length === 0) {
-			UrlRouter.NavigateTo(this.Page);
+			UrlRouter.NavigateTo(this.Page.Url);
 		} else {
 			this.Expanded(!this.Expanded());
 		}

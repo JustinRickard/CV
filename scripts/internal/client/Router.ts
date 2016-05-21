@@ -1,54 +1,52 @@
 /// <reference path="../../../../DefinitelyTyped/routie/routie.d.ts" />
-// <reference path="AppModel.ts" />s
-// <reference path="Enums.ts" />
+/// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="AppModel.ts" />
+/// <reference path="repositories/PageRepository.ts" />
+/// <reference path="Enums.ts" />
 
 declare var Model: AppModel;
 
 class Router {
-	constructor () {
 
+	Pages: Page[];
+
+	constructor (pages: Page[]) {
+		this.Pages = pages;
 	}
 
 	public Initialise() {
-		routie({
-			'/': () => {
-				Model.SetPage(Page.Home);
-			},
-			'/about': () => {
-				Model.SetPage(Page.About);
-			},
-			'/career': () => {
-				Model.SetPage(Page.Career);
-			},
-			'/programming_csharp': () => {
-				Model.SetPage(Page.Programming_CSharp);
-			},
-			'/programming_typescript': () => {
-				Model.SetPage(Page.Programming_Typescript);
-			}
-		});
+		var routeData = this.GetRoutieData();
+		routie(routeData);
 	}
 
-	public NavigateTo (page: Page) {
-		switch (page) {
-			case Page.About:
-				routie('/about');
-				break;
-			case Page.Career:
-				routie('/career');
-				break;
-			case Page.Programming_CSharp:
-				routie('/programming_csharp');
-				break;
-			case Page.Programming_Typescript:
-				routie('/programming_typescript');
-				break;
-			case Page.Logout:
-				window.location.href = '/logout';
-				break;
-			default:
-				routie('/');
-				break;
+	public NavigateTo (url: string) {
+		if (url === "/logout") {
+			window.location.href = '/logout';
+		} else {
+			routie(url);
 		}
+		
+	}
+
+	private GetRoutieData(): { [key: string]: Function; } {
+		var routes: { [key: string]: Function; } = { };
+
+		this.Pages.forEach((page) => {
+			var children = page.ChildrenPages;
+			if (children && children.length > 0)
+			{
+				children.forEach((childPage) => {
+					this.AddPageRoute(childPage, routes);
+				});
+			} else {
+				this.AddPageRoute(page, routes);
+			}
+		});
+
+		return routes;
+	}
+
+	private AddPageRoute(page: Page, routes: { [key: string]: Function; }) {
+		routes[page.Url] = new Function('p', 'Model.SetPage(' + page.ID + ')');
 	}
 }
