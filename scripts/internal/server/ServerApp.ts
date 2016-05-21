@@ -1,4 +1,4 @@
-/// <reference path="../DefinitelyTyped/requirejs/require.d.ts" />
+/// <reference path="../../../../DefinitelyTyped/requirejs/require.d.ts" />
 
 // var session = require('express-session');
 var cookieParser = require('cookie-parser');
