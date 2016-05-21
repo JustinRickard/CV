@@ -51,7 +51,7 @@ gulp.task('server_ts', function(){
 });
 
 gulp.task('server_app_ts', function() {
-    gulp.src(['ServerApp.ts'])
+    gulp.src(['./scripts/internal/server/ServerApp.ts'])
     .pipe(typescript())
     .pipe(gulp.dest('.'))
 });
@@ -92,7 +92,7 @@ gulp.task('watch', function () {
     gulp.watch('./scripts/internal/client/*.ts', ['client_ts']);
     gulp.watch('./partials/generated/*.ts', ['client_ts']);
     gulp.watch('./scripts/internal/server/*.ts', ['server_ts']);
-    gulp.watch('./ServerApp.ts', ['server_app_ts']);
+    gulp.watch('./scripts/internal/server/ServerApp.ts', ['server_app_ts']);
     gulp.watch('./scripts/internal/client/Login.ts', ['client_ts_login']);
 });
 

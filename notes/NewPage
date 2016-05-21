@@ -1,15 +1,13 @@
-Current steps to create a new page:
-1. Add new partial
-2. Router: Add page to initialise
-3. Router: Add page to navigate to
-4. AppModel.ts: Add new MenuItem to array
+-----------------------------
+ Steps to create a new page:
+-----------------------------
 
+1. Add new partial HTML file to the partials folder.
+2. In the PageRepository.ts file, create a new page referencing
 
-If we had a page class: 
-1. Add new partial
-2. Add new Page class instance in PageRepository (including url)
+-----------------------------
+ Steps to delete a page:
+-----------------------------
 
-Auto-generate the routes in router.ts
-Navigate to receives URL
-AppModel.ts: MenuItem takes in Page class
-
+1. Delete the partial file from the partials folder
+2. Remove the line to add a new page in the PageRepository.ts file
