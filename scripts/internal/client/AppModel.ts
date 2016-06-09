@@ -9,6 +9,7 @@
 /// <reference path="ErrorHandler.ts" />
 /// <reference path="MenuItem.ts" />
 /// <reference path="UiText.ts" />
+/// <reference path="helpers/MenuHelper.ts" />
 /// <reference path="timeline/Timeline.ts" />
 /// <reference path="timeline/TimelineSlide.ts" />
 /// <reference path="timeline/TimelineEra.ts" />
@@ -48,6 +49,7 @@ declare var window: Window;
 class AppModel {
 
 	Api: IApi;
+	ErrorHandler: IErrorHandler;
 	User: User;
 	Pages: IPage[];
 	Users: User[];
@@ -74,6 +76,7 @@ class AppModel {
 		var utils = new Utilities(errorHandler);
 		
 		this.Api = api;
+		this.ErrorHandler = errorHandler;
 		this.User = utils.CreateUser(user);
 		this.Pages = new PageRepository().Get();
 		this.SetJobs(jobs, utils);
@@ -119,6 +122,8 @@ class AppModel {
 
 	public SetPage(pageId: number, pageLoad: boolean = false) {
 		var page: Page = this.GetPageById(this.Pages, pageId);
+		var menuHelper: IMenuHelper = new MenuHelper(this.ErrorHandler);
+
 		this.MenuItems.forEach((x) => {
 			this.SetSelectedMenuItem(x, page);
 			if (x.SubItems && x.SubItems.length > 0)
@@ -137,13 +142,17 @@ class AppModel {
 		this.CurrentPage(page);
 		this.InsertTemplate(page, mainPageId);
 		if (!pageLoad) {
-			var element = document.getElementById(mainPageId);
-			ko.cleanNode(element);
-			ko.applyBindings(StaticText, document.getElementById(mainPageId));
+			this.ApplyBindings(mainPageId);
 		}
 	}
 
 	// PRIVATE METHODS
+
+	private ApplyBindings(mainPageId: string) {
+		var element = document.getElementById(mainPageId);
+		ko.cleanNode(element);
+		ko.applyBindings(StaticText, document.getElementById(mainPageId));
+	}
 
 	private GetPageById(pages: Page[], pageId: number): Page {
 		var page:   Page;

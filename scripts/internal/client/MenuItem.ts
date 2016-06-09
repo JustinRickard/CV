@@ -8,6 +8,9 @@ interface IMenuItem {
 	Page: Page;
 	Level: MenuItemLevel;
 	SubItems: IMenuItem[];
+	Selected: KnockoutObservable<boolean>;
+	Expanded: KnockoutObservable<boolean>;
+	Select(): void;
 }
 
 // Let MenuItem know about the model
