@@ -24,35 +24,37 @@
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Muli">
 	</head>
 	<body>
-		<div id="banner" class="banner">
-			<div class="logo">JR</div>
-			<div class="slogan">
-				<div class="slogan-item slogan-1">Create</div>
-				<div class="slogan-item slogan-2">Improve</div>
-				<div class="slogan-item slogan-3">Inspire</div>
-			</div>
-		</div>
-
-		<img id="menu-icon" alt="menu" data-bind="click: Model.ToggleMenu" />
-
-
-		<div id="menu" data-bind="foreach: Model.MenuItems, visible: Model.MenuVisible">
-			<div class="menu-item">
-				<a data-bind="text: Page.DisplayName, click: Select, css: { selected: Selected }"></a>
-				<!-- ko if: SubItems && SubItems.length > 0 -->
-				<div class="sub-item-container" data-bind="visible: Expanded">
-					<div class="sub-item" data-bind="foreach: SubItems">
-						<a data-bind="text: Page.DisplayName, click: Select, css: { selected: Selected }"></a>
-					</div>
+		<div id="container">
+			<div id="banner" class="banner">
+				<div class="logo">JR</div>
+				<div class="slogan">
+					<div class="slogan-item slogan-1">Create</div>
+					<div class="slogan-item slogan-2">Improve</div>
+					<div class="slogan-item slogan-3">Inspire</div>
 				</div>
-				<!-- /ko -->
 			</div>
-		</div>
-		<div id="main-container">
-			<div id="page-content-container" data-bind="visible: Model.PageContentVisible"></div>
-		</div>
-		<div id="footer" class="footer">
-			© Copyright Justin Rickard 2016
+
+			<img id="menu-icon" alt="menu" data-bind="click: Model.ToggleMenu" />
+
+
+			<div id="menu" data-bind="foreach: Model.MenuItems, visible: Model.MenuVisible">
+				<div class="menu-item">
+					<a data-bind="text: Page.DisplayName, click: Select, css: { selected: Selected }"></a>
+					<!-- ko if: SubItems && SubItems.length > 0 -->
+					<div class="sub-item-container" data-bind="visible: Expanded">
+						<div class="sub-item" data-bind="foreach: SubItems">
+							<a data-bind="text: Page.DisplayName, click: Select, css: { selected: Selected }"></a>
+						</div>
+					</div>
+					<!-- /ko -->
+				</div>
+			</div>
+			<div id="main-container">
+				<div id="page-content-container" data-bind="visible: Model.PageContentVisible"></div>
+			</div>
+			<div id="footer" class="footer">
+				© Copyright Justin Rickard 2016
+			</div>
 		</div>
 	</body>
 </html>

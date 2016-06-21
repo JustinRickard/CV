@@ -22,6 +22,20 @@ function replaceQuotes(content) {
 }
 
 // Tasks
+gulp.task('unit_tests', function() {
+    gulp.src(['./unit_tests/jasmine/*.js'])
+    .pipe(concat('UnitTests.js'))
+    .pipe(gulp.dest('./public/scripts'))
+});
+
+gulp.task('testable_js', function() {
+  gulp.src([
+    './scripts/internal/client/*.ts',
+    './partials/generated/*.ts'
+    ])
+    .pipe(typescript())
+    .pipe(gulp.dest('./public/scripts/testable'))
+})
 
 gulp.task('client_ts', function(){
   gulp.src([
@@ -104,6 +118,8 @@ gulp.task('default',
         'server_ts',
         'server_app_ts',
         'client_ts_login',
-        'routie'
+        'routie',
+        'unit_tests',
+        'testable_js'
     ]
 );

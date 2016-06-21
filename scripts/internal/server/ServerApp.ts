@@ -28,6 +28,11 @@ app.get('/', checkAuth, function(req, res) {
 
 // Routes
 
+// Unit tests
+app.get('/tests', function(req, res) {
+	res.render('tests');
+});
+
 //Login
 app.get('/login', function(req, res) {
 	sess=req.session;
