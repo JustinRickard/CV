@@ -7,9 +7,11 @@ interface IPage {
 	PartialFileName: string;
 	Url: string;
 	DisplayName: string;
+	StaticText: IUiTextManager;
+	UsesClientSideRouting: boolean;
 }
 
-declare var StaticText: IUiTextManager;
+// declare var StaticText: IUiTextManager;
 
 class Page implements IPage {
 	ID: number;
@@ -18,18 +20,24 @@ class Page implements IPage {
 	PartialFileName: string;
 	Url: string;
 	DisplayName: string;
+	StaticText: IUiTextManager;
+	UsesClientSideRouting: boolean;
 
 	constructor (
 		id: number,
 		displayNameKey: string, 
 		childrenPages: IPage[],
 		partialFileName: string,
-		url: string
+		url: string,
+		staticText: IUiTextManager,
+		UsesClientSideRouting: boolean = true
 	)
 	{
+		this.StaticText = staticText;
 		this.ID = id;
 		this.DisplayNameKey = displayNameKey;
-		this.DisplayName = StaticText.Current[displayNameKey];
+		this.DisplayName = this.StaticText.Current[displayNameKey];
+		this.UsesClientSideRouting = UsesClientSideRouting;
 
 		if (childrenPages && childrenPages.length > 0) {
 			this.ChildrenPages = childrenPages;

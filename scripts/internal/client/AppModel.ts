@@ -78,7 +78,7 @@ class AppModel {
 		this.Api = api;
 		this.ErrorHandler = errorHandler;
 		this.User = utils.CreateUser(user);
-		this.Pages = new PageRepository().Get();
+		this.Pages = new PageRepository(StaticText).Get();
 		this.SetJobs(jobs, utils);
 		this.SetUsers(users, utils);
 		this.SetAssessments(assessments, utils);
