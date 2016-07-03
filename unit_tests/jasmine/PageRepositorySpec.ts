@@ -3,7 +3,7 @@
 /// <reference path="../../scripts/internal/client/repositories/PageRepository.ts" />
 /// <reference path="../../scripts/internal/client/Page.ts" />
 
-describe("PageRepository", function() {
+describe("Page Repository", () => {
 	var uiText: IUiTextManager;
 	var repo: IPageRepository;
 	var pages: IPage[];
@@ -23,7 +23,7 @@ describe("PageRepository", function() {
   		pages.forEach((page: Page) => {
   			expect(page.ID).toBeTruthy();
 			expect(page.DisplayNameKey).toBeTruthy();		
-						expect(page.DisplayName).toBeTruthy();
+			expect(page.DisplayName).toBeTruthy();
 			expect(page.StaticText).toBeTruthy();
 
 			if (page.ChildrenPages && page.ChildrenPages.length > 0) {
