@@ -7,8 +7,6 @@ interface IMediator {
 	Subscribe(channelName: string, context: {}, func: Function): void
 }
 
-declare var UrlRouter: Router;
-
 class Mediator {
 
 	Channels: { [name: string]: ISubscription[]; }

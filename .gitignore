@@ -1,4 +1,6 @@
 public/scripts/*
+!public/scripts/external/
+!public/scripts/external/*
 public/css/*
 partials/generated/*
 node_modules/*
