@@ -8,11 +8,11 @@ class Logger {
 
 	}
 
-	public Error (message: string) {
+	public Error (message: string): void {
 		console.log("Error: " + message);
 	}
 
-	public Warning (message: string) {
+	public Warning (message: string): void {
 		console.log("Warning: " + message);
 	}
 }

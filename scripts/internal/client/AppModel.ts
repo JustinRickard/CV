@@ -52,6 +52,7 @@ class AppModel {
 	ErrorHandler: IErrorHandler;
 	User: User;
 	Pages: IPage[];
+	UrlRouter: Router;
 	Users: User[];
 	Jobs: Job[];
 	TimelineEras: TimelineEra[];
@@ -67,6 +68,7 @@ class AppModel {
 	MenuVisible: KnockoutObservable<Boolean>;
 	// PageContentVisible: KnockoutComputed<Boolean>;
 	PageContentVisible: KnockoutObservable<Boolean>;
+	MessageMediator: Mediator;
 
 	constructor (api: IApi, user: IUser, users: IUser[], jobs: IJob[], eras: ITimelineEra[],
 		assessments: IAssessment[], chatPosts: IChatPost[],
@@ -74,11 +76,15 @@ class AppModel {
 		logger: ILogger, errorHandler: IErrorHandler) {
 
 		var utils = new Utilities(errorHandler);
-		
+
 		this.Api = api;
 		this.ErrorHandler = errorHandler;
 		this.User = utils.CreateUser(user);
 		this.Pages = new PageRepository(StaticText).Get();
+    	// Set the # router
+    	this.UrlRouter = new Router(this.Pages);
+    	this.UrlRouter.Initialise();
+    	this.MessageMediator = new Mediator(this.UrlRouter);
 		this.SetJobs(jobs, utils);
 		this.SetUsers(users, utils);
 		this.SetAssessments(assessments, utils);
@@ -206,11 +212,11 @@ class AppModel {
 
 			if (page.ChildrenPages && page.ChildrenPages.length > 0) {
 				page.ChildrenPages.forEach((child) => {
-					subitems.push(new MenuItem(child, MenuItemLevel.Two, null));
+					subitems.push(new MenuItem(child, MenuItemLevel.Two, null, this.MessageMediator));
 				});
 			}
 
-			menuItems.push(new MenuItem(page, MenuItemLevel.One, subitems));
+			menuItems.push(new MenuItem(page, MenuItemLevel.One, subitems, this.MessageMediator));
 		});
 
 		this.MenuItems = menuItems;

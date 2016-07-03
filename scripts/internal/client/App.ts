@@ -4,11 +4,13 @@
 /// <reference path="Utilities.ts" />
 /// <reference path="UiText.ts" />
 /// <reference path="Router.ts" />
+/// <reference path="mediator/Mediator.ts" />
 /// <reference path="Enums.ts" />
 
 var Model: AppModel;
 var StaticText: IUiTextManager;
 var UrlRouter: Router;
+var MessageMediator: IMediator;
 
 $(document).ready(() => {
 	var logger = new Logger();
@@ -24,8 +26,4 @@ $(document).ready(() => {
 
     // Set the model data
     Model = api.GetAllData();
-
-    // Set the # router
-    UrlRouter = new Router(Model.Pages);
-    UrlRouter.Initialise();
 });
