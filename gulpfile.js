@@ -23,7 +23,7 @@ function replaceQuotes(content) {
 
 // Tasks
 gulp.task('unit_tests', function() {
-    gulp.src(['./unit_tests/jasmine/*.ts'])
+    gulp.src(['./unit_tests/jasmine/**/*.ts'])
     .pipe(typescript())
     .pipe(concat('UnitTests.js'))
     .pipe(gulp.dest('./public/scripts'))
@@ -79,10 +79,12 @@ gulp.task('less', function () {
     .pipe(gulp.dest('./public/css'));
 });
 
+/*
 gulp.task('routie', function () {
     gulp.src('../routie/lib/routie.js')
     .pipe(gulp.dest('./public/scripts/external'));
 });
+*/
 
 gulp.task('partials', function () {
     console.log("Generating partial views for pages:")
