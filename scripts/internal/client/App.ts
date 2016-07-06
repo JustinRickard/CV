@@ -26,4 +26,7 @@ $(document).ready(() => {
 
     // Set the model data
     Model = api.GetAllData();
+
+    // Initialise the # router
+    Model.UrlRouter.Initialise();
 });

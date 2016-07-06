@@ -83,7 +83,6 @@ class AppModel {
 		this.Pages = new PageRepository(StaticText).Get();
     	// Set the # router
     	this.UrlRouter = new Router(this.Pages);
-    	this.UrlRouter.Initialise();
     	this.MessageMediator = new Mediator(this.UrlRouter);
 		this.SetJobs(jobs, utils);
 		this.SetUsers(users, utils);
