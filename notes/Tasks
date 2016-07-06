@@ -1,16 +1,15 @@
 ------------------------------------------------------------------
 Priority  |	Type	|	Description
 ------------------------------------------------------------------	
-High		Bug			Reload of #/route errors (Model undefined)
-High		Task		Add all node dependencies to package.json
-Medium		Task		Add unit tests for all client scripts
-Medium		Task		Use EJS instead of Jade
-Medium		Task		Use components to construct pages server-side (EJS)
-Medium		Task		Add content to each page
-Medium		Task		Add javascript as a category
-Medium		Task		Use mediator for all inter-class communication
-Medium		Bug			Footer does not stick to bottom of screen
-Low			Task		Allow infinite nesting of menu items
-Low			Task		Set up database on separate server (MongoDB / Mongoose)
-Low			Task		Add Assessments to DB
-Low			Task		Seperate server-side routing out into controller classes
+High        Bug	        Reload of #/route errors (Model undefined)
+Medium      Task        Add unit tests for all client scripts
+Medium      Task        Use EJS instead of Jade
+Medium      Task        Use components to construct pages server-side (EJS)
+Medium      Task        Add content to each page
+Medium      Task        Add javascript as a category
+Medium      Task        Use mediator for all inter-class communication
+Medium      Bug	        Footer does not stick to bottom of screen
+Low         Task        Allow infinite nesting of menu items
+Low         Task        Set up database on separate server (MongoDB / Mongoose)
+Low         Task        Add Assessments to DB
+Low         Task        Seperate server-side routing out into controller classes
