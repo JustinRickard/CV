@@ -1,6 +1,5 @@
 /// <reference path="../../../../DefinitelyTyped/requirejs/require.d.ts" />
 
-// var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var bodyParser: any = require('body-parser');
@@ -18,26 +17,26 @@ app.use(cookieSession({
   keys: ['key1', 'key2']
 }))
 
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 
 var sess;
 
 app.get('/', checkAuth, function(req, res) {
-	res.render('main');
+	res.render('pages/main');
 });
 
 // Routes
 
 // Unit tests
 app.get('/tests', function(req, res) {
-	res.render('tests');
+	res.render('pages/tests');
 });
 
 //Login
 app.get('/login', function(req, res) {
 	sess=req.session;
 
-	res.render('login');
+	res.render('pages/login');
 });
 
 app.post('/login', function(req, res) {
@@ -106,5 +105,5 @@ function checkAuth(req, res, next) {
 }
 
 function redirectToLogin(res) {
-	res.render('login');
+	res.render('pages/login');
 }

@@ -13,22 +13,22 @@
     "url": "git://github.com/JustinRickard/CV.git"
   },
   "dependencies": {
-    "express":"latest",
-    "jade":"latest",
-    "cookie-parser":"latest",
-    "cookie-session":"latest",
-    "body-parser":"latest",
-    "gulp":"latest",
-    "gulp-tsc":"latest",
-    "gulp-less":"latest",
-    "gulp-concat":"latest",
-    "gulp-insert":"latest",
-    "gulp-rename":"latest",
-    "gulp-change":"latest",
-    "gulp-foreach":"latest",
-    "gulp-tap":"latest",
-    "path":"latest"
+    "express": "latest",
+    "jade": "latest",
+    "cookie-parser": "latest",
+    "cookie-session": "latest",
+    "body-parser": "latest",
+    "gulp": "latest",
+    "gulp-tsc": "latest",
+    "gulp-less": "latest",
+    "gulp-concat": "latest",
+    "gulp-insert": "latest",
+    "gulp-rename": "latest",
+    "gulp-change": "latest",
+    "gulp-foreach": "latest",
+    "gulp-tap": "latest",
+    "path": "latest",
+    "ejs": "latest"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
