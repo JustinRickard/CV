@@ -19,7 +19,7 @@ describe("Assessment", () => {
 
 	describe("Question", () => {
 
-		var helper = new QuestionSpecHelper();
+		// var helper = new QuestionSpecHelper();
 		var numberOfOptions: number;
 
 		var question: IQuestion;

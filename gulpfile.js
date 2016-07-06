@@ -24,7 +24,6 @@ function replaceQuotes(content) {
 // Tasks
 gulp.task('unit_tests', function() {
     gulp.src([
-        './unit_tests/jasmine/assessment/helpers/*.ts',
         './unit_tests/jasmine/**/*.ts'])
     .pipe(typescript())
     .pipe(concat('UnitTests.js'))
@@ -123,7 +122,7 @@ gulp.task('default',
         'server_ts',
         'server_app_ts',
         'client_ts_login',
-        'routie',
+        // 'routie',
         'unit_tests',
         'testable_js'
     ]

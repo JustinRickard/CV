@@ -1,5 +1,5 @@
 {
-  "name": "JustinRickard",
+  "name": "JustinRickardCV",
   "version": "1.0.0",
   "description": "Developer demo web application",
   "main": "ServerApp.js",
@@ -13,11 +13,14 @@
     "url": "git://github.com/JustinRickard/CV.git"
   },
   "dependencies": {
-    "express":"*",
-    "cookie-parser":"*"
+    "express":"latest",
+    "jade":"latest",
+    "cookie-parser":"latest",
+    "cookie-session":"latest",
+    "body-parser":"latest",
+    "gulp":"latest",
+    "gulp-install": "latest"
   },
   "devDependencies": {
-    "gulp-install": "~0.6.0",
-    "gulp-tsc": "~1.1.4"
   }
 }
