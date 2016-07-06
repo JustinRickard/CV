@@ -19,7 +19,15 @@
     "cookie-session":"latest",
     "body-parser":"latest",
     "gulp":"latest",
-    "gulp-install": "latest"
+    "gulp-tsc":"latest",
+    "gulp-less":"latest",
+    "gulp-concat":"latest",
+    "gulp-insert":"latest",
+    "gulp-rename":"latest",
+    "gulp-change":"latest",
+    "gulp-foreach":"latest",
+    "gulp-tap":"latest",
+    "path":"latest"
   },
   "devDependencies": {
   }

@@ -1,5 +1,4 @@
 // Dependencies
-
 var gulp       = require('gulp');
 var typescript = require('gulp-tsc');
 var less       = require('gulp-less');
@@ -12,7 +11,6 @@ var path       = require('path');
 var tap        = require('gulp-tap');
 
 // Helper methods
-
 function replaceNewLines(content) {
     return content.replace(/\n/g, ' \\\n');
 }
@@ -29,15 +27,6 @@ gulp.task('unit_tests', function() {
     .pipe(concat('UnitTests.js'))
     .pipe(gulp.dest('./public/scripts'))
 });
-
-gulp.task('testable_js', function() {
-  gulp.src([
-    './scripts/internal/client/*.ts',
-    './partials/generated/*.ts'
-    ])
-    .pipe(typescript())
-    .pipe(gulp.dest('./public/scripts/testable'))
-})
 
 gulp.task('client_ts', function(){
   gulp.src([
@@ -80,17 +69,19 @@ gulp.task('less', function () {
     .pipe(gulp.dest('./public/css'));
 });
 
-/*
-gulp.task('routie', function () {
-    gulp.src('../routie/lib/routie.js')
-    .pipe(gulp.dest('./public/scripts/external'));
+gulp.task('partials2', function() {
+    return gulp.src('partials/*.html')
+    .pipe(foreach(function(stream, file) {
+        var filename = path.basename(file.path, ".html");
+        console.log(" - " + filename)
+        return stream;
+    }));
 });
-*/
 
 gulp.task('partials', function () {
     console.log("Generating partial views for pages:")
 
-    gulp.src('partials/*.html')
+    return gulp.src('partials/*.html')
     .pipe(foreach(function(stream, file){
     
       var filename = path.basename(file.path, ".html");
@@ -101,7 +92,7 @@ gulp.task('partials', function () {
         .pipe(insert.wrap('var ' + filename + '_html: string = \'', '\n\';'))
         .pipe(change(replaceNewLines))
         .pipe(concat(filename + ".ts"))
-        .pipe(gulp.dest('./partials/generated'));
+        .pipe(gulp.dest('./partials/generated/'));
     }))
 });
 
@@ -122,8 +113,6 @@ gulp.task('default',
         'server_ts',
         'server_app_ts',
         'client_ts_login',
-        // 'routie',
-        'unit_tests',
-        'testable_js'
+        'unit_tests'
     ]
 );

@@ -3,5 +3,5 @@ public/scripts/*
 !public/scripts/external/*
 public/css/*
 partials/generated/*
-node_modules/*
+node_modules/
 ServerApp.js

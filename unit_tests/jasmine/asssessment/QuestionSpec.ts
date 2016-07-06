@@ -2,7 +2,6 @@
 /// <reference path="../../../scripts/internal/client/assessment/Question.ts" />
 /// <reference path="../../../scripts/internal/client/assessment/Option.ts" />
 /// <reference path="../../../scripts/internal/client/ErrorHandler.ts" />
-/// <reference path="helpers/QuestionSpecHelper.ts" />
 
 var GenerateOptions =  function(quantity)  {
 		var options = new Array<QuestionOption>();
@@ -19,7 +18,6 @@ describe("Assessment", () => {
 
 	describe("Question", () => {
 
-		// var helper = new QuestionSpecHelper();
 		var numberOfOptions: number;
 
 		var question: IQuestion;
@@ -36,7 +34,6 @@ describe("Assessment", () => {
 			displayOrder = 1;
 
 			numberOfOptions = 6
-			// options = helper.GenerateOptions(numberOfOptions);
 			options = GenerateOptions(numberOfOptions);
 
 			var appModel: any = null;
