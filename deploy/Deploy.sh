@@ -18,14 +18,13 @@ apt-get upgrade
 
 # (use sudo if doing manually)
 apt-get install git nodejs npm nginx
-npm install -g requirejs express express-session cookie-parser cookie-session gulp gulp-less gulp-tsc gulp-insert gulp-rename gulp-change gulp-foreach gulp-filelist gulp-path gulp-tap pm2 body-parser --save-dev
+npm install
 sudo ln -s /usr/bin/nodejs /usr/bin/node
 
 # Copy source code to local machine
 git clone $githubUrl
 
 # Copy external source code
-git clone https://github.com/jgallen23/routie.git
 git clone https://github.com/DefinitelyTyped/DefinitelyTyped.git
 
 # Build the output files with Gulp

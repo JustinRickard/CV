@@ -5,10 +5,11 @@
 # Changes : Add script to deploy updates to the app
 
 # Set up variables 
-workingDirectory=~/websites/CV
+workingDirectory=~/websites
 githubUrl=https://github.com/JustinRickard/CV.git
 
-cd $workingDirectory 
+cd $workingDirectory/CV
+npm install
 
 # Check if source code up-to-date 
 #if [[ $1 != "force" ]]
