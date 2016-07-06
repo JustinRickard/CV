@@ -1,7 +1,6 @@
 ------------------------------------------------------------------
 Priority  |	Type	|	Description
 ------------------------------------------------------------------	
-High        Bug	        Reload of #/route errors (Model undefined)
 Medium      Task        Add unit tests for all client scripts
 Medium      Task        Use EJS instead of Jade
 Medium      Task        Use components to construct pages server-side (EJS)
