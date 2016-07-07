@@ -51,14 +51,22 @@ class PageRepository implements IPageRepository {
 		var principlesPage = this.NewPage(20, "Menu_Principles", principlesChildrenPages, "", "");
 		pages.push(principlesPage);
 
-
 		// Design patterns
+		var designPatternPages = new Array<Page>();
 
+		designPatternPages.push(this.NewPage(21, "DesignPatterns_Observer_Title", null, "design_pattern_observer.html", "/design_pattern_observer"));
+		designPatternPages.push(this.NewPage(22, "DesignPatterns_Mediator_Title", null, "design_pattern_mediator.html", "/design_pattern_mediator"));
+		designPatternPages.push(this.NewPage(23, "DesignPatterns_ChainOfResponsibility_Title", null, "design_pattern_chain_of_responsibility.html", "/design_pattern_chain_of_responsibility"));
+		designPatternPages.push(this.NewPage(24, "DesignPatterns_Factory_Title", null, "design_pattern_factory.html", "/design_pattern_factory"));
+		designPatternPages.push(this.NewPage(25, "DesignPatterns_Facade_Title", null, "design_pattern_facade.html", "/design_pattern_facade"));
 
+		var designPatternPage = this.NewPage(26, "Menu_DesignPatterns", designPatternPages, "","");
+		pages.push(designPatternPage);
+		
 		// Technologies	
 		var technologiesChildrenPages = new Array<Page>();	
-		technologiesChildrenPages.push(this.NewPage(4, "Menu_Technologies_CSharp", null, "programming_csharp.html", "/programming_csharp"));
-		technologiesChildrenPages.push(this.NewPage(5, "Menu_Technologies_Typescript", null, "programming_typescript.html", "/programming_typescript"));
+		technologiesChildrenPages.push(this.NewPage(4, "Technologies_CSharp_Title", null, "programming_csharp.html", "/programming_csharp"));
+		technologiesChildrenPages.push(this.NewPage(5, "Technologies_Typescript_Title", null, "programming_typescript.html", "/programming_typescript"));
 
 		var technologiesPage = this.NewPage(6, "Menu_Technologies", technologiesChildrenPages, "", "");
 		pages.push(technologiesPage);

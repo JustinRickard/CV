@@ -28,6 +28,21 @@ class en_gb implements IUiText {
 	Career_Title: string = "My Career";
 	Career_Paragraph1: string = "TODO: Career intro";
 
+	DesignPatterns_Observer_Title: string = "Observer";
+	DesignPatterns_Observer_Paragraph1: string = "TODO: Observer pattern";
+
+	DesignPatterns_Mediator_Title: string = "Mediator";
+	DesignPatterns_Mediator_Paragraph1: string = "TODO: Mediator pattern";
+
+	DesignPatterns_ChainOfResponsibility_Title: string = "Chain of Responsibility";
+	DesignPatterns_ChainOfResponsibility_Paragraph1: string = "TODO: Chain of Responsibility";
+
+	DesignPatterns_Factory_Title: string = "Factory";
+	DesignPatterns_Factory_Paragraph1: string = "TODO: Factory attern";
+
+	DesignPatterns_Facade_Title: string = "Facade";
+	DesignPatterns_Facade_Paragraph1: string = "TODO: Facade pattern";
+
 	Principles_DRY_Title: string = "Don't repeat yourself";
 	Principles_DRY_Paragraph1: string = "TODO: Don't repeat yourself";
 
@@ -70,7 +85,7 @@ class en_gb implements IUiText {
 	Technologies_CSharp_Title: string = "C#";
 	Technologies_CSharp_Paragraph1: string = "TODO: C# intro"
 
-	Technologies_Typescript_Title: string = "TODO: Typescript";
+	Technologies_Typescript_Title: string = "Typescript";
 	Technologies_Typescript_Paragraph1: string = "TODO: TypeScript intro"
 
 	Assessments_Title: string = "Assessments";
@@ -85,7 +100,6 @@ class en_gb implements IUiText {
 	Menu_Career: string = "My Career";
 	Menu_Principles: string = "Principles";
 	Menu_Technologies: string = "Technologies";
-	Menu_Technologies_CSharp: string = "C#";
-	Menu_Technologies_Typescript: string = "Typescript";
+	Menu_DesignPatterns: string = "Design Patterns";
 	Menu_Logout: string = "Log out"
 }

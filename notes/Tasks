@@ -1,10 +1,10 @@
 ------------------------------------------------------------------
 Priority  |	Type	|	Description
 ------------------------------------------------------------------	
+Medium      Task        Add content to each page
 Medium      Task        Add unit tests for all client scripts
 Medium      Task        Use EJS instead of Jade
 Medium      Task        Use components to construct pages server-side (EJS)
-Medium      Task        Add content to each page
 Medium      Task        Add javascript as a category
 Medium      Task        Use mediator for all inter-class communication
 Medium      Bug	        Footer does not stick to bottom of screen

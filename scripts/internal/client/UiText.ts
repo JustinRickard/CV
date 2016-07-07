@@ -27,6 +27,21 @@ interface IUiText {
 	Career_Title: string;
 	Career_Paragraph1: string;
 
+	DesignPatterns_Observer_Title: string;
+	DesignPatterns_Observer_Paragraph1: string;
+
+	DesignPatterns_Mediator_Title: string;
+	DesignPatterns_Mediator_Paragraph1: string;
+
+	DesignPatterns_ChainOfResponsibility_Title: string;
+	DesignPatterns_ChainOfResponsibility_Paragraph1: string;
+
+	DesignPatterns_Factory_Title: string;
+	DesignPatterns_Factory_Paragraph1: string;
+
+	DesignPatterns_Facade_Title: string;
+	DesignPatterns_Facade_Paragraph1: string;
+
 	Principles_DRY_Title: string;
 	Principles_DRY_Paragraph1: string;
 
@@ -84,8 +99,7 @@ interface IUiText {
 	Menu_Career: string;
 	Menu_Principles: string;
 	Menu_Technologies: string;
-	Menu_Technologies_CSharp: string;
-	Menu_Technologies_Typescript: string;
+	Menu_DesignPatterns: string;
 	Menu_Logout: string;
 }
 
