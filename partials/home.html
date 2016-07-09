@@ -1,21 +1,14 @@
-<!-- TODO: Use a template -->
+<div id="home" data-bind="visible: Model.CurrentPage().PartialFileName==='home.html'">
+	<h1 data-bind="text: StaticText.Current.Home_Title"></h1>
 
-<div id="home-links" data-bind="foreach: Model.MenuItems">
-	
-	<!-- ko if: !SubItems || SubItems.length === 0 -->
-		<div class="home-link-container" data-bind="click: Select">
-			<h1 data-bind="text: Page.DisplayName"></h1>
-		</div>
-	<!-- /ko -->
+	<p data-bind="text: StaticText.Current.Home_P1"></p>
 
-	<!-- ko if: SubItems && SubItems.length > 0 -->
-	<div>
-		<div class="home-sub-item" data-bind="foreach: SubItems">
-			<div class="home-link-container" data-bind="click: Select">
-				<h1 data-bind="text: Page.DisplayName"></h1>
-			</div>
-		</div>
+	<div class="bullet-list-container">
+		<div class="bullet"></div><p data-bind="text: StaticText.Current.Home_P1_B1"></p>
+		<div class="bullet"></div><p data-bind="text: StaticText.Current.Home_P1_B2"></p>
+		<div class="bullet"></div><p data-bind="text: StaticText.Current.Home_P1_B3"></p>
+		<div class="bullet"></div><p data-bind="text: StaticText.Current.Home_P1_B4"></p>
+		<div class="bullet"></div><p data-bind="text: StaticText.Current.Home_P1_B5"></p>
 	</div>
-	<!-- /ko -->
-	</div>
+	<p data-bind="text: StaticText.Current.Home_P2"></p>
 </div>

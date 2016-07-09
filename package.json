@@ -28,7 +28,8 @@
     "gulp-foreach": "latest",
     "gulp-tap": "latest",
     "path": "latest",
-    "ejs": "latest"
+    "ejs": "latest",
+    "highlight": "latest"
   },
   "devDependencies": {}
 }

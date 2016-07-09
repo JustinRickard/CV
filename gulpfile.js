@@ -49,6 +49,11 @@ gulp.task('client_ts_login', function() {
       .pipe(gulp.dest('./public/scripts'))
 });
 
+gulp.task('client_node_modules', function() {
+    gulp.src(['./node_modules/highlight/lib/highlight.js'])
+    .pipe(gulp.dest('./public/scripts/external/'))
+})
+
 gulp.task('server_ts', function(){
   gulp.src(['./scripts/internal/server/*.ts'])
     .pipe(typescript())
@@ -67,15 +72,6 @@ gulp.task('less', function () {
         console.log(err);
     }))
     .pipe(gulp.dest('./public/css'));
-});
-
-gulp.task('partials2', function() {
-    return gulp.src('partials/*.html')
-    .pipe(foreach(function(stream, file) {
-        var filename = path.basename(file.path, ".html");
-        console.log(" - " + filename)
-        return stream;
-    }));
 });
 
 gulp.task('partials', function () {
@@ -110,6 +106,7 @@ gulp.task('default',
         'less',
         'partials',
         'client_ts',
+        'client_node_modules',
         'server_ts',
         'server_app_ts',
         'client_ts_login',

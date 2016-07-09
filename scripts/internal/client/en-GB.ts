@@ -5,7 +5,7 @@ class en_gb implements IUiText {
 	constructor() {
 	}
 
-	Banner_Logo: string = "JR";
+	Banner_Logo: string = "Justin R";
 	Banner_Slogan1: string = "Create";
 	Banner_Slogan2: string = "Improve";
 	Banner_Slogan3: string = "Inspire";
@@ -19,8 +19,15 @@ class en_gb implements IUiText {
 	Login_ForgottenPassword_Button: string = "Remind me!";
 	Login_ForgottenPassword_Title: string = "Forgotten password?";
 
-	Home_Title: string = "Who am I?";
-	Home_Paragraph1: string = "TODO: Home";
+	Home_Title: string = "Hi!";
+	Home_P1: string = "In this online CV app, I mention:";
+	Home_P1_B1: string = "How I like to work";
+	Home_P1_B2: string = "My previous jobs";
+	Home_P1_B3: string = "Principles of software development";
+	Home_P1_B4: string = "Design patterns";
+	Home_P1_B5: string = "Technologies I am familiar with";
+
+	Home_P2: string = "Use the menu to navigate to each page.";
 
 	About_Title: string = "About me";
 	About_Paragraph1: string = "TODO: About me"

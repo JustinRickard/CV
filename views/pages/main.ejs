@@ -9,6 +9,7 @@
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>	
 		<script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
 		<script type="text/javascript" src="scripts/external/routie.js"></script>
+		<script type="text/javascript" src="scripts/external/highlight.js"></script>
 		<script type="text/javascript" src="scripts/App.js"></script>
 
 		<!-- CSS -->
@@ -16,6 +17,7 @@
 	</head>
 	<body>
 		<div id="container">
+
 			<% include ../partials/banner %>
 
 			<img id="menu-icon" alt="menu" data-bind="click: Model.ToggleMenu" />
@@ -36,9 +38,9 @@
 			<div id="main-container">
 				<div id="page-content-container" data-bind="visible: Model.PageContentVisible"></div>
 			</div>
-			<div id="footer" class="footer">
-				© Copyright Justin Rickard 2016
-			</div>
+
+			<% include ../partials/footer %>
+
 		</div>
 	</body>
 </html>

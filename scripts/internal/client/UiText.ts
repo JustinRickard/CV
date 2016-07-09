@@ -19,7 +19,13 @@ interface IUiText {
 	Login_ForgottenPassword_Button: string;
 
 	Home_Title: string;
-	Home_Paragraph1: string;
+	Home_P1: string;
+	Home_P1_B1: string;
+	Home_P1_B2: string;
+	Home_P1_B3: string;
+	Home_P1_B4: string;
+	Home_P1_B5: string;
+	Home_P2: string;
 
 	About_Title: string;
 	About_Paragraph1: string;
