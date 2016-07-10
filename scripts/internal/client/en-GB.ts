@@ -19,7 +19,7 @@ class en_gb implements IUiText {
 	Login_ForgottenPassword_Button: string = "Remind me!";
 	Login_ForgottenPassword_Title: string = "Forgotten password?";
 
-	Home_Title: string = "Hi!";
+	Home_Title: string = "Welcome!";
 	Home_P1: string = "In this online CV app, I mention:";
 	Home_P1_B1: string = "How I like to work";
 	Home_P1_B2: string = "My previous jobs";
@@ -30,7 +30,17 @@ class en_gb implements IUiText {
 	Home_P2: string = "Use the menu to navigate to each page.";
 
 	About_Title: string = "About me";
-	About_Paragraph1: string = "TODO: About me"
+	About_P1: string = "As a software developer, these are my top 5 philosophies:"
+	About_P1_B1: string = "Automation";
+	About_P1_B1_P1: string = "In order to maximise productivity, any repeatedly performed tasks should be automated so you can spend more time developing. This can often be done by writing scripts, such as PowerShell on Windows and Bash on Unix and Linux. For more complex tasks such as automated application deployment, external tools may need to be used such as TeamCity, Jenkins or Team Foundation Server (TFS).";
+	About_P1_B2: string = "Refactoring";
+	About_P1_B2_P1: string = "Code can very easily become messy due to many factors. It is important to refactor your newly written code as you go along, and before each commit to check whether anything can be refactored or made more generic. Repeated code is costly to maintain, so look out for it. And if you spot it, refactor it!";
+	About_P1_B3: string = "Laying a solid foundation";
+	About_P1_B3_P1: string = "It is very tempting to quickly knock together a working feature or application to either show that you are making good progress or to give an early demonstration to steakholders. While this is sometimes necessary, it should be avoided when possible. From experience, it is always a lot quicker to lay a sturdy foundation first, then write the rest of your code on top of it. The problem with skipping the foundation laying is that once your code works, you then need to dig it up to ensure it is written properly, which often takes more effort than you had predicted. Another disadvantage is that some parts of the foundation never get done as the project deadline looms... and the final product is less robust than you had intended. The larger the project, the more important it is to lay good foundations right from the start."
+	About_P1_B4: string = "Use up-to-date technology";
+	About_P1_B4_P1: string = "It is very common for a technology to be used in a software project, and as the software ages the technology used becomes out of date. Often this is because it can be difficult to change, more so if your code is tightly coupled. The main problem with out-of-date technology is that there is little or no support for it, and often there will be bugs that are fixed in a later release. ";
+	About_P1_B5: string = "Be organised";
+	About_P1_B5_P1: string = "";
 
 	Career_Title: string = "My Career";
 	Career_Paragraph1: string = "TODO: Career intro";

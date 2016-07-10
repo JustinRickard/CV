@@ -28,7 +28,18 @@ interface IUiText {
 	Home_P2: string;
 
 	About_Title: string;
-	About_Paragraph1: string;
+	About_P1: string;
+	About_P1_B1: string;
+	About_P1_B1_P1: string;
+	About_P1_B2: string;
+	About_P1_B2_P1: string;
+	About_P1_B3: string;
+	About_P1_B3_P1: string;
+	About_P1_B4: string;
+	About_P1_B4_P1: string;
+	About_P1_B5: string;
+	About_P1_B5_P1: string;
+
 
 	Career_Title: string;
 	Career_Paragraph1: string;
