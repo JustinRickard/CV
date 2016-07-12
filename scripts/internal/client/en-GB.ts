@@ -43,10 +43,15 @@ class en_gb implements IUiText {
 	About_P1_B5_P1: string = "";
 
 	Career_Title: string = "My Career";
-	Career_Paragraph1: string = "TODO: Career intro";
+	Career_P1: string = "Take a look at my professional experience using the timeline below.";
 
 	DesignPatterns_Observer_Title: string = "Observer";
-	DesignPatterns_Observer_Paragraph1: string = "TODO: Observer pattern";
+	DesignPatterns_Observer_P1: string = "The observer pattern facilitates communication between different parts of a system in the following way:"
+	DesignPatterns_Observer_P1_B1: string = "Objects that need to be informed of a change are called \"obsevers\""
+	DesignPatterns_Observer_P1_B2: string = "Observers register themselves with an object that performs a certain action (subject)";
+	DesignPatterns_Observer_P1_B3: string = "When the subject completes an action, a notify() method is run"
+	DesignPatterns_Observer_P1_B4: string = "The notify method informs each registered observer of the action"
+	DesignPatterns_Observer_P1_B5: string = "Each observer processes this message in whatever way they need to"
 
 	DesignPatterns_Mediator_Title: string = "Mediator";
 	DesignPatterns_Mediator_Paragraph1: string = "TODO: Mediator pattern";

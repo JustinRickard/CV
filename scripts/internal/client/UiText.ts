@@ -40,12 +40,18 @@ interface IUiText {
 	About_P1_B5: string;
 	About_P1_B5_P1: string;
 
-
 	Career_Title: string;
-	Career_Paragraph1: string;
+	Career_P1: string;
 
 	DesignPatterns_Observer_Title: string;
-	DesignPatterns_Observer_Paragraph1: string;
+	DesignPatterns_Observer_P1: string;
+	DesignPatterns_Observer_P1_B1: string;
+	DesignPatterns_Observer_P1_B2: string;
+	DesignPatterns_Observer_P1_B3: string;
+	DesignPatterns_Observer_P1_B4: string;
+	DesignPatterns_Observer_P1_B5: string;
+
+
 
 	DesignPatterns_Mediator_Title: string;
 	DesignPatterns_Mediator_Paragraph1: string;
