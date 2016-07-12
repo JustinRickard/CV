@@ -46,15 +46,19 @@ class en_gb implements IUiText {
 	Career_P1: string = "Take a look at my professional experience using the timeline below.";
 
 	DesignPatterns_Observer_Title: string = "Observer";
-	DesignPatterns_Observer_P1: string = "The observer pattern facilitates communication between different parts of a system in the following way:"
-	DesignPatterns_Observer_P1_B1: string = "Objects that need to be informed of a change are called \"obsevers\""
+	DesignPatterns_Observer_P1: string = "The observer pattern facilitates communication between different parts of a system in the following way:";
+	DesignPatterns_Observer_P1_B1: string = "Objects that need to be informed of a change are called \"obsevers\"";
 	DesignPatterns_Observer_P1_B2: string = "Observers register themselves with an object that performs a certain action (subject)";
-	DesignPatterns_Observer_P1_B3: string = "When the subject completes an action, a notify() method is run"
-	DesignPatterns_Observer_P1_B4: string = "The notify method informs each registered observer of the action"
-	DesignPatterns_Observer_P1_B5: string = "Each observer processes this message in whatever way they need to"
+	DesignPatterns_Observer_P1_B3: string = "When the subject completes an action, a notify() method is run";
+	DesignPatterns_Observer_P1_B4: string = "The notify method informs each registered observer of the action";
+	DesignPatterns_Observer_P1_B5: string = "Each observer processes this message in whatever way they need to";
 
 	DesignPatterns_Mediator_Title: string = "Mediator";
-	DesignPatterns_Mediator_Paragraph1: string = "TODO: Mediator pattern";
+	DesignPatterns_Mediator_P1: string = "The mediator pattern can be thought of as similar to the observer pattern but allows for more decoupled code:";
+	DesignPatterns_Mediator_P1_B1: string = "Observers register with the mediator on a channel.";
+	DesignPatterns_Mediator_P1_B2: string = "When subjects complete an action, they inform the mediator.";
+	DesignPatterns_Mediator_P1_B3: string = "When the mediator receives an update from a subject, it passes it on to the observers of that channel.";
+	DesignPatterns_Mediator_P2: string = "A major benefit of the mediator pattern is that it can vastly simplify the communication between different parts of your application.";
 
 	DesignPatterns_ChainOfResponsibility_Title: string = "Chain of Responsibility";
 	DesignPatterns_ChainOfResponsibility_Paragraph1: string = "TODO: Chain of Responsibility";

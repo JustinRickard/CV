@@ -51,10 +51,12 @@ interface IUiText {
 	DesignPatterns_Observer_P1_B4: string;
 	DesignPatterns_Observer_P1_B5: string;
 
-
-
 	DesignPatterns_Mediator_Title: string;
-	DesignPatterns_Mediator_Paragraph1: string;
+	DesignPatterns_Mediator_P1: string;
+	DesignPatterns_Mediator_P1_B1: string;
+	DesignPatterns_Mediator_P1_B2: string;
+	DesignPatterns_Mediator_P1_B3: string;
+	DesignPatterns_Mediator_P2: string;
 
 	DesignPatterns_ChainOfResponsibility_Title: string;
 	DesignPatterns_ChainOfResponsibility_Paragraph1: string;
