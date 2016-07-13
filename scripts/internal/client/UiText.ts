@@ -59,13 +59,21 @@ interface IUiText {
 	DesignPatterns_Mediator_P2: string;
 
 	DesignPatterns_ChainOfResponsibility_Title: string;
-	DesignPatterns_ChainOfResponsibility_Paragraph1: string;
+	DesignPatterns_ChainOfResponsibility_P1: string;
+	DesignPatterns_ChainOfResponsibility_P1_B1: string;
+	DesignPatterns_ChainOfResponsibility_P1_B2: string;
+	DesignPatterns_ChainOfResponsibility_P1_B3: string;
 
 	DesignPatterns_Factory_Title: string;
-	DesignPatterns_Factory_Paragraph1: string;
+	DesignPatterns_Factory_P1: string;
+	DesignPatterns_Factory_P1_B1: string;
+	DesignPatterns_Factory_P1_B2: string;
+	DesignPatterns_Factory_P1_B3: string;
 
 	DesignPatterns_Facade_Title: string;
-	DesignPatterns_Facade_Paragraph1: string;
+	DesignPatterns_Facade_P1: string;
+	DesignPatterns_Facade_P1_B1: string;
+	DesignPatterns_Facade_P1_B2: string;
 
 	Principles_DRY_Title: string;
 	Principles_DRY_Paragraph1: string;

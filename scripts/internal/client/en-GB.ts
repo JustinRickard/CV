@@ -61,13 +61,21 @@ class en_gb implements IUiText {
 	DesignPatterns_Mediator_P2: string = "A major benefit of the mediator pattern is that it can vastly simplify the communication between different parts of your application.";
 
 	DesignPatterns_ChainOfResponsibility_Title: string = "Chain of Responsibility";
-	DesignPatterns_ChainOfResponsibility_Paragraph1: string = "TODO: Chain of Responsibility";
+	DesignPatterns_ChainOfResponsibility_P1: string = "The chain of responsibily pattern:";
+	DesignPatterns_ChainOfResponsibility_P1_B1: string ="Provides decoupling of the sender of a request and receiver";
+	DesignPatterns_ChainOfResponsibility_P1_B2: string ="Gives more than one object a chance to handle the request";
+	DesignPatterns_ChainOfResponsibility_P1_B3: string ="The request is passed along the chain until it is handled";
 
 	DesignPatterns_Factory_Title: string = "Factory";
-	DesignPatterns_Factory_Paragraph1: string = "TODO: Factory attern";
+	DesignPatterns_Factory_P1: string = "The factory pattern:";
+	DesignPatterns_Factory_P1_B1: string = "Is a creational design pattern"
+	DesignPatterns_Factory_P1_B2: string = "Hides the creation logic from the client"
+	DesignPatterns_Factory_P1_B3: string = "Newly created objects implement a common interface"
 
 	DesignPatterns_Facade_Title: string = "Facade";
-	DesignPatterns_Facade_Paragraph1: string = "TODO: Facade pattern";
+	DesignPatterns_Facade_P1: string = "The facade pattern:";
+	DesignPatterns_Facade_P1_B1: string = "Provides a simplified interface to a larger body of code.";
+	DesignPatterns_Facade_P1_B2: string = "Defines a higher-level interface that  makes a subsystem easier to use";
 
 	Principles_DRY_Title: string = "Don't repeat yourself";
 	Principles_DRY_Paragraph1: string = "TODO: Don't repeat yourself";
