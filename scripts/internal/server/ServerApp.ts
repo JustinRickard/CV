@@ -48,10 +48,6 @@ var HomeUiText: IHomeUiText = new  HomeUiText2();
 var sess;
 
 app.get(Routes.Home, function(req, res) {
-
-    // console.log ("UiText :" + JSON.stringify(HomeUiText));
-    // console.log("Routes :" + JSON.stringify(Routes));
-
 	res.render(Pages.Home, {
 		UiText: HomeUiText,
 		Routes: Routes
