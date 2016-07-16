@@ -54,16 +54,27 @@ gulp.task('client_node_modules', function() {
     .pipe(gulp.dest('./public/scripts/external/'))
 })
 
+/*
 gulp.task('server_ts', function(){
   gulp.src(['./scripts/internal/server/*.ts'])
     .pipe(typescript())
     .pipe(gulp.dest('./scripts/internal/server'))
 });
+*/
 
 gulp.task('server_app_ts', function() {
-    gulp.src(['./scripts/internal/server/ServerApp.ts'])
+    gulp.src([
+        './resources/home/HomeUiText.ts',
+        './scripts/internal/server/ServerApp.ts'
+    ])
     .pipe(typescript())
+    .pipe(concat('ServerApp.js'))
     .pipe(gulp.dest('.'))
+
+    //gulp.src([
+     //   './scripts/internal/server/ServerApp.js'
+    //])
+    //.pipe(gulp.dest('./ServerApp.js'))
 });
 
 gulp.task('less', function () {
@@ -107,7 +118,7 @@ gulp.task('default',
         'partials',
         'client_ts',
         'client_node_modules',
-        'server_ts',
+        // 'server_ts',
         'server_app_ts',
         'client_ts_login',
         'unit_tests'

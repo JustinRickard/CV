@@ -1,0 +1,103 @@
+#home-container {
+	max-width: 69rem;
+
+	#main-container {
+		#title-container {
+			text-align: center;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: 3.0rem;
+			.title {
+				margin-bottom: 0rem;
+				font-size: 7rem;
+				margin-top: 0;
+			}
+			.subtitle {
+				line-height: 0rem;
+				margin-top: 0;
+				padding-left: 20rem;
+			}
+		}
+
+		#links-container {
+			display: table-row;
+			vertical-align: top;
+			margin-bottom: 2rem;
+			.link {
+				padding: 1.25rem;
+				border-radius: 0.5rem;
+				color: @text-color-light;
+				text-align: center;
+				min-height: 8.5rem; /* Hack to get heights equal. Fix later. */
+			}
+			a {
+				margin-left: 5%;
+				margin-right: 5%;
+				display: inline-block;
+				text-decoration: none;
+	    		width: 23%;
+	    		vertical-align: top;
+	    	}
+			#link-1 {
+				background-color: @color-1;
+				h1,h2,h3,h4,h5,p {
+					color: @text-color-light;
+				}
+			}
+			#link-2 {
+				background-color: @color-2;
+				h1,h2,h3,h4,h5,p {
+					color: @text-color-light;
+				}
+			}
+			#link-3 {
+				background-color: @color-3;
+				h1,h2,h3,h4,h5,p {
+					color: @text-color-light;
+				}
+			}
+		}
+	}
+
+	.home-logo-container {
+		img {
+			width: 11rem;
+			margin: 3rem;
+			margin-top: 0.5rem;
+		}
+	}
+
+	#logo-container-1 {
+		vertical-align: bottom;
+		img {
+			vertical-align: bottom;
+		}
+	}
+
+	#logo-container-3 {
+		float: left;
+		img {
+			display: block;
+			height: 4rem;
+			width: auto;
+		}
+	}
+
+	#logo-container-4 {
+		float: right;
+		img {
+			display:block;
+			height: 4rem;
+			width: auto;
+		}
+	}
+
+	#logo-container-5 {
+		margin-top: 3rem;
+		vertical-align: top;
+		img {
+			vertical-align: top;
+		}
+	}
+}
+
