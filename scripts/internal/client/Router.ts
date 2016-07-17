@@ -20,12 +20,7 @@ class Router {
 	}
 
 	public NavigateTo (url: string) {
-		if (url === "/logout") {
-			window.location.href = '/logout';
-		} else {
 			routie(url);
-		}
-		
 	}
 
 	private GetRoutieData(): { [key: string]: Function; } {

@@ -71,9 +71,6 @@ class PageRepository implements IPageRepository {
 		var technologiesPage = this.NewPage(6, "Menu_Technologies", technologiesChildrenPages, "", "");
 		pages.push(technologiesPage);
 
-		// Logout
-		pages.push(this.NewPage(200, "Menu_Logout", null, "", "/logout", false));
-
 		return pages;
 	}
 }
