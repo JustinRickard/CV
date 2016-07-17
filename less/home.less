@@ -35,23 +35,36 @@
 			a {
 				display: inline-block;
 				text-decoration: none;
-	    		vertical-align: top;
+	    		vertical-align: top;   		
 	    	}
+
 
 			#link-1 {
 				background-color: @color-1;
+				&:hover {
+					background-color: lighten(@color-1, 10%);
+	    		}
+
 				h1,h2,h3,h4,h5,p {
 					color: @text-color-light;
 				}
 			}
 			#link-2 {
 				background-color: @color-2;
+				&:hover {
+					background-color: lighten(@color-2, 10%);
+	    		}
+
 				h1,h2,h3,h4,h5,p {
 					color: @text-color-light;
 				}
 			}
 			#link-3 {
 				background-color: @color-3;
+				&:hover {
+					background-color: lighten(@color-3, 10%);
+	    		}
+
 				h1,h2,h3,h4,h5,p {
 					color: @text-color-light;
 				}
