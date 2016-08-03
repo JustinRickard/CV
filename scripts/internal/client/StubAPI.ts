@@ -92,27 +92,27 @@ class StubApi {
 		var uni_start = new Date(2005, 8, 1);
 		var uni_headline = "Loughborough University";
 		var uni_title = "Computer Science (BSc)";
-		var uni_imageUrl = "images/loughborough_university.jpg";
+		var uni_imageUrl = "../images/loughborough_university.jpg";
 
 		var fidessa1_start = new Date(2008, 8, 1);
 		var fidessa1_headline = "Fidessa";
 		var fidessa1_title = "Trading Platform Engineer";
-		var fidessa1_imageUrl = "images/fidessa.jpg";
+		var fidessa1_imageUrl = "../images/fidessa.jpg";
 
 		var fidessa2_start = new Date(2012, 8, 1);
 		var fidessa2_headline = "Fidessa";
 		var fidessa2_title = "FIX Connectivity Engineer";
-		var fidessa2_imageUrl = "images/fidessa.jpg";
+		var fidessa2_imageUrl = "../images/fidessa.jpg";
 
 		var accesso_start = new Date(2013, 5, 1);
 		var accesso_headline = "Accesso";
 		var accesso_title = "Software Developer";
-		var accesso_imageUrl = "images/accesso.png";
+		var accesso_imageUrl = "../images/accesso.png";
 
 		var adc_start = new Date(2014, 8, 1);
 		var adc_headline = "a&dc";
 		var adc_title = "Software Developer";
-		var adc_imageUrl = "images/adc.jpg";
+		var adc_imageUrl = "../images/adc.jpg";
 
 		var uni = new Job(uni_headline, uni_title, uni_start, fidessa1_start, false, uni_imageUrl);
 		var fid1 = new Job(fidessa1_headline, fidessa1_title, fidessa1_start, fidessa2_start, false, fidessa1_imageUrl);
