@@ -101,10 +101,15 @@ class en_gb implements IUiText {
 	Principles_Automation_Paragraph2_B4: string = "Regular data retrieval";
 
 	Principles_CD_Title: string = "Continuous delivery";
-	Principles_CD_Paragraph1: string = "TODO: Continuous delivery";
+	Principles_CD_Paragraph1: string = "The terms \"Continuous Delivery\" and \"Continuous Integration\" have become very fashionable terms recently, with many people having their own opinions on their meanings. For me, Continous Delivery means that our software project is always in a position where it could be deployed (or delivered) if needed. This can be achieved by";
+	Principles_CD_Paragraph1_B1: string = "Using a build server such as TeamCity, Jenkins or Team Foundation Server (TFS)";
+	Principles_CD_Paragraph1_B2: string = "Build server alerts the team when a commit breaks the build or causes any automated tests to fail";
+	Principles_CD_Paragraph1_B3: string = "Ensuring the team has a culture of fixing the build as a first priority, and not to make commits on top of a broken build";
+	Principles_CD_Paragraph1_B4: string = "Preventing a commit to the mainline trunk if it breaks the build or causes an automated test to fail (although some teams find this overly restrictive)";
 
 	Principles_Encapsulation_Title: string = "Encapsulation";
-	Principles_Encapsulation_Paragraph1: string = "TODO: Encapsulation";
+	Principles_Encapsulation_Paragraph1: string = "Encapsulation is a principle of object-oriented programming that is about hiding the inner workings of a class, while providing a simple interface to interact with it.";
+	Principles_Encapsulation_Paragraph2: string = "For example we may have a Person class with a method EatBiscuit(biscuit). Within the EatBiscuit method, there may be several inner methods being called in succession, such as OpenBiscuitTin(), GetBiscuit(biscuit), ShoveInMouth(biscuit). By wrapping up these 3 consecutive methods into one method, we make the interaction with the Person object simpler.";
 
 	Principles_Inheritance_Title: string = "Inheritance";
 	Principles_Inheritance_Paragraph1: string = "TODO: Inheritance";
