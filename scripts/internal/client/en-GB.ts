@@ -84,7 +84,7 @@ class en_gb implements IUiText {
 	DesignPatterns_Facade_P1_B1: string = "Provides a simplified interface to a larger body of code.";
 	DesignPatterns_Facade_P1_B2: string = "Defines a higher-level interface that  makes a subsystem easier to use";
 
-	Principles_DRY_Title: string = "Don't repeat yourself (DRY)";
+	Principles_DRY_Title: string = "Don't repeat yourself";
 	Principles_DRY_Paragraph1: string = "For me, DRY is the most important principle to follow when programming for the following reasons:";
 	Principles_DRY_Paragraph1_B1: string = "Code will be more easily maintainable as logic is in one place only";
 	Principles_DRY_Paragraph1_B2: string = "Code can very easily be split out to other files if necessary";
@@ -93,7 +93,12 @@ class en_gb implements IUiText {
 	Principles_DRY_Paragraph1_B5: string = "Bugs will appear less frequently if changes need to be made in one place only";
 
 	Principles_Automation_Title: string = "Automation";
-	Principles_Automation_Paragraph1: string = "TODO: Automation";
+	Principles_Automation_Paragraph1: string = "It is important for a software team's productivity for all repeated tasks to be automated. While an initial effort is required to script up, test and maintain these tasks, much time will be saved in the long-term.";
+	Principles_Automation_Paragraph2: string = "The following are common tasks for a software development team that should normally be automated";
+	Principles_Automation_Paragraph2_B1: string = "Building an application";
+	Principles_Automation_Paragraph2_B2: string = "Deploying an application";
+	Principles_Automation_Paragraph2_B3: string = "Compiling CSS and Javascript when source files are changed in a development environment";
+	Principles_Automation_Paragraph2_B4: string = "Regular data retrieval";
 
 	Principles_CD_Title: string = "Continuous delivery";
 	Principles_CD_Paragraph1: string = "TODO: Continuous delivery";
