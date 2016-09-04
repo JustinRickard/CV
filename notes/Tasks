@@ -2,7 +2,7 @@
 Priority  |	Type	|	Description
 ------------------------------------------------------------------	
 Medium      Task        Add content to each page
-Medium      Task        Get Highlightjs
+Medium      Task        Get Highlightjs / Bootstrap
 Medium      Task        Add unit tests for all client scripts
 Medium      Task        Add javascript as a category
 Medium      Task        Use mediator for all inter-class communication
