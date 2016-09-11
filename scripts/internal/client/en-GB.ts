@@ -144,10 +144,18 @@ class en_gb implements IUiText {
 	Principles_Liskov_Paragraph3: string = "A common example of this is with the shapes Rectangle and Square. It could be said that a Square class should inherit from the Rectangle class because a square is a rectangle, albeit with an equal height and width. However complications can arise with regards to behaviour, since a method \"SetWidth() on a rectangle would affect the width only, however on a square it should also affect the height. As such, the SetWidth() method becomes inappropriate for a square.\" As such, Square should probably not inherit from Rectangle.";
 
 	Principles_IS_Title: string = "Interface segregation principle";
-	Principles_IS_Paragraph1: string = "TODO: Interface segregation";
+	Principles_IS_Paragraph1: string = "The Interface Segregation Principle states that clients should not be forced to implement interfaces they don't use.";
+	Principles_IS_Paragraph2: string = "Rather than having large interfaces, it is more flexible to have smaller interfaces that can be used in combination with one-another.";
+	Principles_IS_Paragraph3: string = "For example, cars, cement mixers and motorbikes are all vehicles. If we had an IVehicle interface that each class inherited, this may work for methods such as Accelerate(), Brake(), etc. However the cement mixer would have a method Mix(), which the others would not. Also, the Motorbike class may have a method Wheelie() that the others would not. As such, IVehicle is a polluted interface and is not sufficiently flexible.";
+	Principles_IS_Paragraph4: string = "Rather than having the one IVehicle interface, we would be better off with several: IDriveable, IMixable and IWheelie (or IWheelieable if you prefer). Then the Car class could implement IDriveable, the CementMixer class could implement IDriveable and IMixable and the Motorbike class could implement IDriveable and IWheelie.";
 
 	Principles_DI_Title: string = "Dependency inversion";
-	Principles_DI_Paragraph1: string = "TODO: Dependency inversion";
+	Principles_DI_Paragraph1: string = "The Dependency Inversion principle states that:";
+	Principles_DI_Paragraph1_B1: string = "High level modules should not depend upon low-level modules. Both should depend upon abstractions.";
+	Principles_DI_Paragraph1_B2: string = "Abstractions should never depend upon details. Details should depend upon abstractions.";
+	Principles_DI_Paragraph2: string = "This principle promotes loose coupling of software modules, which allows software to be more easily unit tested as well as allowing developers to program against interfaces rather than concrete classes which may not exist yet.";
+	Principles_DI_Paragraph3: string = "For example, we may have a method ProcessRegistration() on the RegistrationHandler class, which may ultimately send an email using the SendEmail() on the EmailService class. As such, the method ProcessRegistration() depends on the EmailService class. As such, we cannot unit test this method without calling the EmailService class and sending an email out.";
+	Principles_DI_Paragraph4: string = "In order to reverse this dependency, we can simply pass in the EmailService object when instantiating up the RegistrationHandler class. ";
 
 	Technologies_CSharp_Title: string = "C#";
 	Technologies_CSharp_Paragraph1: string = "TODO: C# intro"
@@ -165,8 +173,12 @@ class en_gb implements IUiText {
 	Menu_Home: string = "Home";
 	Menu_About: string = "About me";
 	Menu_Career: string = "My Career";
-	Menu_Principles: string = "Principles";
+	Menu_OOPrinciples: string = "Object-Oriented Principles";
+	Menu_SolidPrinciples: string = "SOLID Principles";
+	Menu_Principles: string = "Other Principles";
 	Menu_Technologies: string = "Technologies";
+	Menu_JavascriptTechnologies: string = "Javascript Technologies";
+	Menu_DatabaseTechnologies: string = "Database Technologies";
 	Menu_DesignPatterns: string = "Design Patterns";
 	Menu_Logout: string = "Log out"
 }
