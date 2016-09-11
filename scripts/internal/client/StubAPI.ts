@@ -21,12 +21,8 @@ class StubApi {
 
 	public GetAllData(): AppModel {
 
-		var user = this.GenerateUser(1066, "JustinR86", "Justin", "Rickard", "justinr86.jr@gmail.com", "07712334445");
-		var users = this.GenerateUsers(4);
-		var appModel = new AppModel(
-
-			this, user, users, this.GenerateJobs(), this.GenerateEras(),
-			this.GenerateAssessments(4), this.GenerateChatPosts(users),
+		var appModel = new AppModel(this,
+			this.GenerateJobs(), this.GenerateEras(),
 			MessageDisplayStatus.None, "", this.Logger, this.ErrorHandler);
 
 		return appModel;

@@ -1,7 +1,4 @@
 /// <reference path="API.ts" />
-/// <reference path="User.ts" />
-/// <reference path="ChatPost.ts" />
-/// <reference path="assessment/Assessment.ts" />
 /// <reference path="Job.ts" />
 /// <reference path="Enums.ts" />
 /// <reference path="Utilities.ts" />
@@ -13,11 +10,6 @@
 /// <reference path="timeline/Timeline.ts" />
 /// <reference path="timeline/TimelineSlide.ts" />
 /// <reference path="timeline/TimelineEra.ts" />
-/// <reference path="../../../partials/generated/home.ts" />
-/// <reference path="../../../partials/generated/about.ts" />
-/// <reference path="../../../partials/generated/career.ts" />
-/// <reference path="../../../partials/generated/programming_csharp.ts" />
-/// <reference path="../../../partials/generated/programming_typescript.ts" />
 /// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 /// <reference path="../../../../DefinitelyTyped/timelinejs/timelinejs.d.ts" />
 
@@ -50,15 +42,10 @@ class AppModel {
 
 	Api: IApi;
 	ErrorHandler: IErrorHandler;
-	User: User;
 	Pages: IPage[];
 	UrlRouter: Router;
-	Users: User[];
 	Jobs: Job[];
 	TimelineEras: TimelineEra[];
-	Assessments: Assessment[];
-	ChatPosts: ChatPost[];
-	CurrentAssessment: Assessment;
 	MessageStatus: MessageDisplayStatus;
 	CurrentMessage: string;
 	CultureCode: CultureCode;
@@ -69,8 +56,7 @@ class AppModel {
 	PageContentVisible: KnockoutObservable<Boolean>;
 	MessageMediator: Mediator;
 
-	constructor (api: IApi, user: IUser, users: IUser[], jobs: IJob[], eras: ITimelineEra[],
-		assessments: IAssessment[], chatPosts: IChatPost[],
+	constructor (api: IApi, jobs: IJob[], eras: ITimelineEra[],
 		messageStatus: MessageDisplayStatus, currentMessage: string,
 		logger: ILogger, errorHandler: IErrorHandler) {
 
@@ -78,15 +64,10 @@ class AppModel {
 
 		this.Api = api;
 		this.ErrorHandler = errorHandler;
-		this.User = utils.CreateUser(user);
 		this.Pages = new PageRepository(StaticText).Get();
-    	// Set the # router
     	this.UrlRouter = new Router(this.Pages);
     	this.MessageMediator = new Mediator(this.UrlRouter);
 		this.SetJobs(jobs, utils);
-		this.SetUsers(users, utils);
-		this.SetAssessments(assessments, utils);
-		this.SetChatPosts(chatPosts, utils);
 		this.SetTimeline(jobs, eras, utils)
 		this.MessageStatus = messageStatus;
 		this.CurrentMessage = currentMessage;
@@ -95,7 +76,7 @@ class AppModel {
 		this.CurrentPage = ko.observable<Page>(startingPage);
 		this.MenuVisible = ko.observable<Boolean>(false);
 		this.PageContentVisible = ko.observable<Boolean>(true);
-		this.SetPage(startingPage.ID, true);
+		// this.SetPage(startingPage.ID, true);
 	}
 
 	// PUBLIC METHODS
@@ -103,15 +84,6 @@ class AppModel {
 	public ToggleMenu() {
 		Model.MenuVisible(!Model.MenuVisible());
 		Model.PageContentVisible(!Model.MenuVisible())
-	}
-
-	public StartAssessment (assessmentId: number): void {
-		// Ensure no other assessments are in progress.
-		this.Assessments.forEach((x) => { x.InProgress = false; });
-
-		// Flag the selected assessment as in progress
-		var selectedAssessment = _.find(this.Assessments, (x) => { x.ID === assessmentId });
-		selectedAssessment.InProgress = true;
 	}
 
 	public SetMessage(messageStatus: MessageDisplayStatus, message: string): void {
@@ -220,37 +192,8 @@ class AppModel {
 		this.MenuItems = menuItems;
 	}
 
-	private SortAssessments(): void {
-		this.Assessments = _.orderBy(this.Assessments, ['Name'], ['asc']);
-	}
-
-	private SortChatPosts(): void {
-		this.ChatPosts = _.orderBy(this.ChatPosts, ['Time'], ['asc']);
-	}
-
 	private SortJobs(): void {
 		this.Jobs = _.orderBy(this.Jobs, ['Start'], ['asc']);
-	}
-
-	
-	private SetUsers(users: IUser[], utils: Utilities): void {
-		this.Users = new Array<User>();
-		users.forEach((x) => { this.Users.push(utils.CreateUser(x))});
-	}
-
-	private SetAssessments(assessments: IAssessment[], utils: Utilities): void {
-		this.Assessments = new Array<Assessment>();
-		assessments.forEach((x) => { this.Assessments.push(utils.CreateAssessment(x))});
-		this.SortAssessments();
-	}
-
-	private SetChatPosts(chatPosts: IChatPost[], utils: Utilities): void {
-		this.ChatPosts = new Array<ChatPost>();
-		chatPosts.forEach((post) => {
-			var user = _.find(this.Users, (u) => { return u.ID === post.UserID });
-			this.ChatPosts.push(utils.CreateChatPost(post, user)) 
-		});
-		this.SortChatPosts();
 	}
 
 	private SetJobs(jobs: IJob[], utils: Utilities): void {

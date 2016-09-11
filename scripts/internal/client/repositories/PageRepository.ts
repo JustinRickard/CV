@@ -107,7 +107,7 @@ class PageRepository implements IPageRepository {
 		
 		jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Typescript_Title", null, "programming_typescript.html", "/programming_typescript"));
 
-		var jsTechnologiesPage = this.NewPage("Menu_Technologies", jsTechnologiesChildrenPages, "", "");
+		var jsTechnologiesPage = this.NewPage("Menu_JavascriptTechnologies", jsTechnologiesChildrenPages, "", "");
 		pages.push(jsTechnologiesPage);
 	}
 
