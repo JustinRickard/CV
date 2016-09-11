@@ -17,6 +17,7 @@ class Router {
 	public Initialise() {
 		var routeData = this.GetRoutieData();
 		routie(routeData);
+		this.NavigateTo("/");
 	}
 
 	public NavigateTo (url: string) {

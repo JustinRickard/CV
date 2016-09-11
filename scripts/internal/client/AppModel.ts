@@ -66,7 +66,6 @@ class AppModel {
 	Timeline: Timeline;
 	CurrentPage: KnockoutObservable<Page>;
 	MenuVisible: KnockoutObservable<Boolean>;
-	// PageContentVisible: KnockoutComputed<Boolean>;
 	PageContentVisible: KnockoutObservable<Boolean>;
 	MessageMediator: Mediator;
 
@@ -92,11 +91,11 @@ class AppModel {
 		this.MessageStatus = messageStatus;
 		this.CurrentMessage = currentMessage;
 		this.SetMenuItems(this.Pages);
-		this.CurrentPage = ko.observable<Page>(_.first(this.Pages));
+		var startingPage = _.first(this.Pages);
+		this.CurrentPage = ko.observable<Page>(startingPage);
 		this.MenuVisible = ko.observable<Boolean>(false);
-		// this.PageContentVisible = ko.computed(() => !this.MenuVisible) ;
 		this.PageContentVisible = ko.observable<Boolean>(true);
-		this.SetPage(_.first(this.Pages).ID, true);
+		this.SetPage(startingPage.ID, true);
 	}
 
 	// PUBLIC METHODS

@@ -104,6 +104,7 @@ class PageRepository implements IPageRepository {
 
 	private AddJavascriptTechnologyPages(pages: Array<Page>): void {
 		var jsTechnologiesChildrenPages = new Array<Page>();	
+		
 		jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Typescript_Title", null, "programming_typescript.html", "/programming_typescript"));
 
 		var jsTechnologiesPage = this.NewPage("Menu_Technologies", jsTechnologiesChildrenPages, "", "");
@@ -112,6 +113,8 @@ class PageRepository implements IPageRepository {
 
 	private AddDatabaseTechnologyPages(pages: Array<Page>): void {
 		var dbTechnologiesChildrenPages = new Array<Page>();	
+
+		dbTechnologiesChildrenPages.push(this.NewPage("Technologies_SqlServer_Title", null, "programming_sqlserver.html", "/programming_sqlserver"));
 
 		var dbTechnologiesPage = this.NewPage("Menu_DatabaseTechnologies", dbTechnologiesChildrenPages, "", "");
 		pages.push(dbTechnologiesPage);

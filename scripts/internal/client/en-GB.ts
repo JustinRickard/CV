@@ -158,10 +158,13 @@ class en_gb implements IUiText {
 	Principles_DI_Paragraph4: string = "In order to reverse this dependency, we can simply pass in the EmailService object when instantiating up the RegistrationHandler class. ";
 
 	Technologies_CSharp_Title: string = "C#";
-	Technologies_CSharp_Paragraph1: string = "TODO: C# intro"
+	Technologies_CSharp_Paragraph1: string = "TODO: C# intro";
+
+	Technologies_SqlServer_Title: string = "Microsoft SQL Server";
+	Technologies_SqlServer_Paragraph1: string = "TODO: SqlServer";
 
 	Technologies_Typescript_Title: string = "Typescript";
-	Technologies_Typescript_Paragraph1: string = "TODO: TypeScript intro"
+	Technologies_Typescript_Paragraph1: string = "TODO: TypeScript intro";
 
 	Assessments_Title: string = "Assessments";
 	Assessments_Paragraph1: string = "TODO: Assessment intro";
