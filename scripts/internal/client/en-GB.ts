@@ -112,25 +112,36 @@ class en_gb implements IUiText {
 	Principles_Encapsulation_Paragraph2: string = "For example we may have a Person class with a method EatBiscuit(biscuit). Within the EatBiscuit method, there may be several inner methods being called in succession, such as OpenBiscuitTin(), GetBiscuit(biscuit), ShoveInMouth(biscuit). By wrapping up these 3 consecutive methods into one method, we make the interaction with the Person object simpler.";
 
 	Principles_Inheritance_Title: string = "Inheritance";
-	Principles_Inheritance_Paragraph1: string = "TODO: Inheritance";
+	Principles_Inheritance_Paragraph1: string = "Inheritance is an object-oriented principle that allows re-use of functionality by providing a hierarchical class structure.";
+	Principles_Inheritance_Paragraph2: string = "For example: cars, vans, lorries, buses, bikes and motorbikes are all forms of vehicles. Therefore it may make sense to have a base class called Vehicle that all of these could inherit. The vehicle class could have common methods such as Accelerate, Brake, Reverse, Turn as well as common properties such as NumerOfSeats, NumberOfWheels, etc.";
+	Principles_Inheritance_Paragraph3: string = " The use of class inheritance is actually becoming less popular as the use of Interface Composition is becoming more popular.";
 
 	Principles_Composition_Title: string = "Interface composition";
-	Principles_Composition_Paragraph1: string = "TODO: Interface composition";
+	Principles_Composition_Paragraph1: string = "Interface composition allows classes to have multiple behaviours by implementing multiple interfaces. This has become more popular in recent years and by many preferred over inheritance in order to achieve polymorphism.";
+	Principles_Composition_Paragraph2: string = "For example: cars, vans, lorries, buses, bikes and motorbikes are all vehicles. Instead of having them inherit a base class called Vehicle, each class could inherit behaviours via an interface. For example they may all implement the Accelerate, Brake and Turn behaviours. However it could be that only bikes and motorbikes implement the Wheelie behaviour, and that all except these 2 implement the Load/Unload behaviour.";
 
 	Principles_Abstraction_Title: string = "Abstraction";
-	Principles_Abstraction_Paragraph1: string = "TODO: Abstraction";
+	Principles_Abstraction_Paragraph1: string = "Abstraction can be defined as the concept of describing something in simpler terms, focusing only on what is important or relevant."
+	Principles_Abstraction_Paragraph2: string = "For example, we may have a process that deals with Vehicles objects, without being concerned exactly what type of vehicle it is, since all vehicles have certain properties in common. The Vehicle class may be an abstract class. We could use the technique of Encapsulation to abstract away the complexities of the inner workings of the different classes we interact with.";
 
 	Principles_Polymorphism_Title: string =  "Polymorphism";
-	Principles_Polymorphism_Paragraph1: string = "TODO: Polymorphism";
+	Principles_Polymorphism_Paragraph1: string = "Polymorphism is the ability to present the same interface for different types.";
+	Principles_Polymorphism_Paragraph2: string = "For example, a car class and a bus class would both have a method \"Accelerate()\". However the implementation for each may be different. Each of these classes may implement the IVehicle interface which ensures the Accelerate method exists. The client code would therefore be able to run vehicle.Accelerate() on each item, which would in fact call two different methods, one on the car class and one on the bus class.";
 
 	Principles_SR_Title: string = "Single responsibility principle";
-	Principles_SR_Paragraph1: string = "TODO: Single responsibility principle";
+	Principles_SR_Paragraph1: string = "The Single Responsibility Principle states that every module or class should have one job to do, and one only. As soon as a class is doing more than one job, it is violating this principle.";
+	Principles_SR_Paragraph2: string = "Adhering to this principle makes your software much easier to maintain and change, as any change will only need to be made in one place.";
+	Principles_SR_Paragraph3: string = "For example, your program logs errors to the server when they occur using NLog. Within each class, we could have code along the lines of \"_logger = new NLog.Logger()\" for instantiating the logger, as well as \"_logger.Error(errorMessage)\". Now imagine that you need to change the logging library to another. You would need to change each and every class where logging code exists, to use the new library and its different methods.";
+	Principles_SR_Paragraph4: string = "If we had created a Logger class which handles all the logging, then when it comes to changing the logging library, we would simply need to change the Logger class, and nothing else. This is how adhering to this principle can vastly simplify the maintenance of software.";
 
 	Principles_OC_Title: string = "Open closed principle";
-	Principles_OC_Paragraph1: string = "TODO: Open closed principle";
+	Principles_OC_Paragraph1: string = "The Open Closed principle states that modules and classes should be open for extension, but closed for modification.";
+	Principles_OC_Paragraph2: string = "The benefit for this is that your classes and modules may already be in use and depended on by client applications, so avoiding changes avoids creating new bugs. Changing the name of a function for example, could result in a client application breaking. So if we require a change to an existing function, we could create a new function and extend the existing one.";
 
-	Principles_Liskov_Title: string = "Liskov's law";
-	Principles_Liskov_Paragraph1: string = "TODO: Liskov";
+	Principles_Liskov_Title: string = "Liskov's substitution principle";
+	Principles_Liskov_Paragraph1: string = "Liskov's Substitution Principle (LSP) states that \"Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it.\"";
+	Principles_Liskov_Paragraph2: string = "It provides a guideline on when it is appropriate to extend classes, and when an alternative such as composition is best.";
+	Principles_Liskov_Paragraph3: string = "A common example of this is with the shapes Rectangle and Square. It could be said that a Square class should inherit from the Rectangle class because a square is a rectangle, albeit with an equal height and width. However complications can arise with regards to behaviour, since a method \"SetWidth() on a rectangle would affect the width only, however on a square it should also affect the height. As such, the SetWidth() method becomes inappropriate for a square.\" As such, Square should probably not inherit from Rectangle.";
 
 	Principles_IS_Title: string = "Interface segregation principle";
 	Principles_IS_Paragraph1: string = "TODO: Interface segregation";
