@@ -157,31 +157,66 @@ class en_gb implements IUiText {
 	Principles_DI_Paragraph3: string = "For example, we may have a method ProcessRegistration() on the RegistrationHandler class, which may ultimately send an email using the SendEmail() on the EmailService class. As such, the method ProcessRegistration() depends on the EmailService class. As such, we cannot unit test this method without calling the EmailService class and sending an email out.";
 	Principles_DI_Paragraph4: string = "In order to reverse this dependency, we can simply pass in the EmailService object when instantiating up the RegistrationHandler class. ";
 
+	// Server Technologies
 	Technologies_CSharp_Title: string = "C#";
 	Technologies_CSharp_Paragraph1: string = "TODO: C# intro";
 
+	Technologies_iText_Title: string = "iText Sharp";
+	Technologies_iText_Paragraph1: string = "TODO: iText Sharp intro";
+
+	Technologies_NUnit_Title: string = "NUnit";
+	Technologies_NUnit_Paragraph1: string = "TODO: NUnit intro";
+
+	Technologies_MVC_Title: string = "ASP.NET MVC";
+	Technologies_MVC_Paragraph1: string = "TODO: MVC intro";
+
+	Technologies_WebForms_Title: string = "ASP.NET Web Forms";
+	Technologies_WebForms_Paragraph1: string = "TODO: Web Forms intro";
+
+	Technologies_PowerShell_Title: string = "PowerShell";
+	Technologies_PowerShell_Paragraph1: string = "TODO: PowerShell intro";
+
+	// Database Technologies
 	Technologies_SqlServer_Title: string = "Microsoft SQL Server";
 	Technologies_SqlServer_Paragraph1: string = "TODO: SqlServer";
 
+	Technologies_MySql_Title: string = "MySql";
+	Technologies_MySql_Paragraph1: string = "TODO: MySql";
+
+	Technologies_MongoDB_Title: string = "MongoDB";
+	Technologies_MongoDB_Paragraph1: string = "TODO: MongoDB";
+
+	// Javascript Technologies
 	Technologies_Typescript_Title: string = "Typescript";
 	Technologies_Typescript_Paragraph1: string = "TODO: TypeScript intro";
 
-	Assessments_Title: string = "Assessments";
-	Assessments_Paragraph1: string = "TODO: Assessment intro";
+	Technologies_Knockout_Title: string = "Knockout";
+	Technologies_Knockout_Paragraph1: string = "TODO: Knockout";
 
-	Chat_Title: string = "Chat live with other members who are logged on!";
-	Chat_Post: string = "Post";
-	Chat_PostHelp: string = "Type your post here";
+	Technologies_React_Title: string = "React";
+	Technologies_React_Paragraph1: string = "TODO: React";
 
+	Technologies_Angular1_Title: string = "Angular 1";
+	Technologies_Angular1_Paragraph1: string = "TODO: Angular 1";
+
+	Technologies_Angular2_Title: string = "Angular 2";
+	Technologies_Angular2_Paragraph1: string = "TODO: Angular 2";
+
+	Technologies_Jasmine_Title: string = "Jasmine";
+	Technologies_Jasmine_Paragraph1: string = "TODO: Jasmine";
+
+	Technologies_Mocha_Title: string = "Mocha";
+	Technologies_Mocha_Paragraph1: string = "TODO: Mocha";
+
+	// Menu Text
 	Menu_Home: string = "Home";
 	Menu_About: string = "About me";
 	Menu_Career: string = "My Career";
 	Menu_OOPrinciples: string = "Object-Oriented Principles";
 	Menu_SolidPrinciples: string = "SOLID Principles";
 	Menu_Principles: string = "Other Principles";
-	Menu_Technologies: string = "Technologies";
+	Menu_ServerTechnologies: string = "Server Technologies";
 	Menu_JavascriptTechnologies: string = "Javascript Technologies";
 	Menu_DatabaseTechnologies: string = "Database Technologies";
 	Menu_DesignPatterns: string = "Design Patterns";
-	Menu_Logout: string = "Log out"
 }

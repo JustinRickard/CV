@@ -120,20 +120,14 @@ interface IUiText {
 	Technologies_CSharp_Title: string;
 	Technologies_CSharp_Paragraph1: string;
 
-	Assessments_Title: string;
-	Assessments_Paragraph1: string;
-
-	Chat_Title: string;
-	Chat_Post: string;
-	Chat_PostHelp: string;
-
 	Menu_Home: string;
 	Menu_About: string;
 	Menu_Career: string;
 	Menu_Principles: string;
-	Menu_Technologies: string;
 	Menu_DesignPatterns: string;
-	Menu_Logout: string;
+	Menu_ServerTechnologies: string;
+	Menu_DatabaseTechnologies: string;
+	Menu_JavascriptTechnologies: string;
 }
 
 interface IUiTextManager {

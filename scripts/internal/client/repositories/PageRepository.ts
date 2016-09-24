@@ -96,27 +96,41 @@ class PageRepository implements IPageRepository {
 
 	private AddTechnologyPages(pages: Array<Page>): void {
 		var technologiesChildrenPages = new Array<Page>();	
+
 		technologiesChildrenPages.push(this.NewPage("Technologies_CSharp_Title", null, "programming_csharp.html", "/programming_csharp"));
+		technologiesChildrenPages.push(this.NewPage("Technologies_iText_Title", null, "programming_itext.html", "/programming_itext"));
+		technologiesChildrenPages.push(this.NewPage("Technologies_NUnit_Title", null, "programming_nunit.html", "/programming_nunit"));
+		technologiesChildrenPages.push(this.NewPage("Technologies_MVC_Title", null, "programming_mvc.html", "/programming_mvc"));
+		technologiesChildrenPages.push(this.NewPage("Technologies_WebForms_Title", null, "programming_webforms.html", "/programming_webforms"));
+		technologiesChildrenPages.push(this.NewPage("Technologies_PowerShell_Title", null, "programming_powershell.html", "/programming_powershell"));
 
-		var technologiesPage = this.NewPage("Menu_Technologies", technologiesChildrenPages, "", "");
+		var technologiesPage = this.NewPage("Menu_ServerTechnologies", technologiesChildrenPages, "", "");
 		pages.push(technologiesPage);
-	}
-
-	private AddJavascriptTechnologyPages(pages: Array<Page>): void {
-		var jsTechnologiesChildrenPages = new Array<Page>();	
-		
-		jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Typescript_Title", null, "programming_typescript.html", "/programming_typescript"));
-
-		var jsTechnologiesPage = this.NewPage("Menu_JavascriptTechnologies", jsTechnologiesChildrenPages, "", "");
-		pages.push(jsTechnologiesPage);
 	}
 
 	private AddDatabaseTechnologyPages(pages: Array<Page>): void {
 		var dbTechnologiesChildrenPages = new Array<Page>();	
 
 		dbTechnologiesChildrenPages.push(this.NewPage("Technologies_SqlServer_Title", null, "programming_sqlserver.html", "/programming_sqlserver"));
+		dbTechnologiesChildrenPages.push(this.NewPage("Technologies_MySql_Title", null, "programming_mysql.html", "/programming_mysql"));
+		dbTechnologiesChildrenPages.push(this.NewPage("Technologies_MongoDB_Title", null, "programming_mongodb.html", "/programming_mongodb"));
 
 		var dbTechnologiesPage = this.NewPage("Menu_DatabaseTechnologies", dbTechnologiesChildrenPages, "", "");
 		pages.push(dbTechnologiesPage);
+	}
+
+	private AddJavascriptTechnologyPages(pages: Array<Page>): void {
+		var jsTechnologiesChildrenPages = new Array<Page>();	
+		
+		jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Typescript_Title", null, "programming_typescript.html", "/programming_typescript"));
+		jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Knockout_Title", null, "programming_knockout.html", "/programming_knockout"));
+		jsTechnologiesChildrenPages.push(this.NewPage("Technologies_React_Title", null, "programming_react.html", "/programming_react"));
+		jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Angular1_Title", null, "programming_angular1.html", "/programming_angular1"));
+		jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Angular2_Title", null, "programming_angular2.html", "/programming_angular2"));
+		jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Jasmine_Title", null, "programming_jasmine.html", "/programming_jasmine"));
+		jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Mocha_Title", null, "programming_mocha.html", "/programming_mocha"));
+
+		var jsTechnologiesPage = this.NewPage("Menu_JavascriptTechnologies", jsTechnologiesChildrenPages, "", "");
+		pages.push(jsTechnologiesPage);
 	}
 }
