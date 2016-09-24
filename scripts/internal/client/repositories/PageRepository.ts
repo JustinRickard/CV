@@ -39,7 +39,7 @@ class PageRepository implements IPageRepository {
 		this.AddSolidPrinciplePages(pages);
 		this.AddOtherPrinciplePages(pages);
 		this.AddDesignPatternPages(pages);
-		this.AddTechnologyPages(pages);
+		this.AddServerTechnologyPages(pages);
 		this.AddDatabaseTechnologyPages(pages);
 		this.AddJavascriptTechnologyPages(pages);
 
@@ -94,14 +94,15 @@ class PageRepository implements IPageRepository {
 		pages.push(designPatternPage);
 	}
 
-	private AddTechnologyPages(pages: Array<Page>): void {
+	private AddServerTechnologyPages(pages: Array<Page>): void {
 		var technologiesChildrenPages = new Array<Page>();	
 
 		technologiesChildrenPages.push(this.NewPage("Technologies_CSharp_Title", null, "programming_csharp.html", "/programming_csharp"));
-		technologiesChildrenPages.push(this.NewPage("Technologies_iText_Title", null, "programming_itext.html", "/programming_itext"));
-		technologiesChildrenPages.push(this.NewPage("Technologies_NUnit_Title", null, "programming_nunit.html", "/programming_nunit"));
 		technologiesChildrenPages.push(this.NewPage("Technologies_MVC_Title", null, "programming_mvc.html", "/programming_mvc"));
 		technologiesChildrenPages.push(this.NewPage("Technologies_WebForms_Title", null, "programming_webforms.html", "/programming_webforms"));
+		technologiesChildrenPages.push(this.NewPage("Technologies_NodeJS_Title", null, "programming_nodejs.html", "/programming_nodejs"));
+		technologiesChildrenPages.push(this.NewPage("Technologies_iText_Title", null, "programming_itext.html", "/programming_itext"));
+		technologiesChildrenPages.push(this.NewPage("Technologies_NUnit_Title", null, "programming_nunit.html", "/programming_nunit"));
 		technologiesChildrenPages.push(this.NewPage("Technologies_PowerShell_Title", null, "programming_powershell.html", "/programming_powershell"));
 
 		var technologiesPage = this.NewPage("Menu_ServerTechnologies", technologiesChildrenPages, "", "");

@@ -161,17 +161,20 @@ class en_gb implements IUiText {
 	Technologies_CSharp_Title: string = "C#";
 	Technologies_CSharp_Paragraph1: string = "TODO: C# intro";
 
-	Technologies_iText_Title: string = "iText Sharp";
-	Technologies_iText_Paragraph1: string = "TODO: iText Sharp intro";
-
-	Technologies_NUnit_Title: string = "NUnit";
-	Technologies_NUnit_Paragraph1: string = "TODO: NUnit intro";
-
 	Technologies_MVC_Title: string = "ASP.NET MVC";
 	Technologies_MVC_Paragraph1: string = "TODO: MVC intro";
 
 	Technologies_WebForms_Title: string = "ASP.NET Web Forms";
 	Technologies_WebForms_Paragraph1: string = "TODO: Web Forms intro";
+
+	Technologies_NodeJS_Title: string = "NodeJS";
+	Technologies_NodeJS_Paragraph1: string = "TODO: NodeJS intro";
+
+	Technologies_NUnit_Title: string = "NUnit";
+	Technologies_NUnit_Paragraph1: string = "TODO: NUnit intro";
+
+	Technologies_iText_Title: string = "iText Sharp";
+	Technologies_iText_Paragraph1: string = "TODO: iText Sharp intro";
 
 	Technologies_PowerShell_Title: string = "PowerShell";
 	Technologies_PowerShell_Paragraph1: string = "TODO: PowerShell intro";
