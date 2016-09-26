@@ -27,7 +27,7 @@ class LiveApi implements IApi {
 		var data: IAppModel = this.Utils.Get("GetAll");
 		if (data)
 		{
-			var appModel = new AppModel(this,
+			var appModel = new AppModel(this, [],
 				data.Jobs, data.TimelineEras,
 				data.MessageStatus, data.CurrentMessage, 
 				this.Logger, this.ErrorHandler);

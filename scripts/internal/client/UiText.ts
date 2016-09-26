@@ -40,6 +40,9 @@ interface IUiText {
 	About_P1_B5: string;
 	About_P1_B5_P1: string;
 
+	Experience_Year: string;
+	Experience_Years: string;
+
 	Career_Title: string;
 	Career_P1: string;
 

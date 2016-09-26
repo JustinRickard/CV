@@ -21,7 +21,7 @@ class StubApi {
 
 	public GetAllData(): AppModel {
 
-		var appModel = new AppModel(this,
+		var appModel = new AppModel(this, this.GetExperience(),
 			this.GenerateJobs(), this.GenerateEras(),
 			MessageDisplayStatus.None, "", this.Logger, this.ErrorHandler);
 
@@ -38,6 +38,23 @@ class StubApi {
 	}
 
 	// PRIVATE METHODS
+
+	private GetExperience(): IExperienceItem[] {
+		return 	[
+			{
+				Name: "Test",
+				Years: 1
+			},
+			{
+				Name: "Test 2",
+				Years: 2
+			},
+			{
+				Name: "Test 3",
+				Years: 3
+			}
+		]
+	}
 
 	private GenerateChatPosts(users: IUser[]): IChatPost[] {
 		// return post data

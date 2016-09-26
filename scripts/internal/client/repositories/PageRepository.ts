@@ -32,6 +32,7 @@ class PageRepository implements IPageRepository {
 		var pages = new Array<Page>();
 
 		pages.push(this.NewPage("Menu_Home", null, "home.html", "/"));
+		pages.push(this.NewPage("Menu_Experience", null, "experience.html", "/experience"));
 		pages.push(this.NewPage("Menu_About", null, "about.html", "/about"));
 		pages.push(this.NewPage("Menu_Career", null, "career.html", "/career"));
 

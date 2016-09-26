@@ -17,6 +17,17 @@
 
 		<!-- CSS -->
 		<link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+		<!-- Knockout Templates -->
+		<script type="text/html" id="experience-template">
+			<div id="experience-container">
+			    <div class="experience-name">
+			    	<h3 data-bind="text: Name"></h3>
+			    </div>
+			    <div class="experience-years" data-bind="text: Description"></div>
+		    </div>
+		</script>
+
 	</head>
 	<body>
 		<div id="container">

@@ -49,8 +49,14 @@ class en_gb implements IUiText {
 	About_P1_B5_P1_B6: string = "Ensure any important files you have are backed up";
 	About_P1_B5_P1_B7: string = "Keeping code files small and manageable";
 
+	Experience_Title = "Experience";
+	Experience_Year: string = "Year";
+	Experience_Years: string = "Years";
+
 	Career_Title: string = "My Career";
 	Career_P1: string = "Take a look at my professional experience using the timeline below.";
+
+
 
 	DesignPatterns_Observer_Title: string = "Observer";
 	DesignPatterns_Observer_P1: string = "The observer pattern facilitates communication between different parts of a system in the following way:";
@@ -213,6 +219,7 @@ class en_gb implements IUiText {
 
 	// Menu Text
 	Menu_Home: string = "Home";
+	Menu_Experience: string = "Experience";
 	Menu_About: string = "About me";
 	Menu_Career: string = "My Career";
 	Menu_OOPrinciples: string = "Object-Oriented Principles";

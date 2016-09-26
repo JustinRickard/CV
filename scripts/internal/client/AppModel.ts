@@ -6,6 +6,7 @@
 /// <reference path="ErrorHandler.ts" />
 /// <reference path="MenuItem.ts" />
 /// <reference path="UiText.ts" />
+/// <reference path="ExperienceItem.ts" />
 /// <reference path="helpers/MenuHelper.ts" />
 /// <reference path="timeline/Timeline.ts" />
 /// <reference path="timeline/TimelineSlide.ts" />
@@ -29,6 +30,7 @@ interface IAppModel {
 	MessageStatus: MessageDisplayStatus;
 	CurrentMessage: string;
 	CultureCode: CultureCode;
+	Experience: IExperienceItem[];
 	SetMessage(messageStatus: MessageDisplayStatus, message: string): void;
 	ClearMessage(): void;
 }
@@ -44,6 +46,7 @@ class AppModel {
 	ErrorHandler: IErrorHandler;
 	Pages: IPage[];
 	UrlRouter: Router;
+	Experience: IExperienceItemClientDto[];
 	Jobs: Job[];
 	TimelineEras: TimelineEra[];
 	MessageStatus: MessageDisplayStatus;
@@ -56,7 +59,7 @@ class AppModel {
 	PageContentVisible: KnockoutObservable<Boolean>;
 	MessageMediator: Mediator;
 
-	constructor (api: IApi, jobs: IJob[], eras: ITimelineEra[],
+	constructor (api: IApi, experience: IExperienceItem[], jobs: IJob[], eras: ITimelineEra[],
 		messageStatus: MessageDisplayStatus, currentMessage: string,
 		logger: ILogger, errorHandler: IErrorHandler) {
 
@@ -64,6 +67,7 @@ class AppModel {
 
 		this.Api = api;
 		this.ErrorHandler = errorHandler;
+		this.Experience = this.GetExperience(experience, StaticText);
 		this.Pages = new PageRepository(StaticText).Get();
     	this.UrlRouter = new Router(this.Pages);
     	this.MessageMediator = new Mediator(this.UrlRouter);
@@ -123,6 +127,16 @@ class AppModel {
 	}
 
 	// PRIVATE METHODS
+
+	private GetExperience(experienceRecords: IExperienceItem[], staticText: IUiTextManager): IExperienceItemClientDto[] {
+		var experience = new Array<IExperienceItemClientDto> ();
+
+		experienceRecords.forEach((x) => {
+			experience.push(new ExperienceItem(x.Name, x.Years, staticText))
+		});
+
+		return experience;
+	}
 
 	private ApplyBindings(mainPageId: string) {
 		var element = document.getElementById(mainPageId);
