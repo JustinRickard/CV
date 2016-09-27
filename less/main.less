@@ -15,3 +15,26 @@ color: @text-color-light;
 background: @text-color-light;
 color: @color-1;
 }
+
+#experience {
+	.experience-container {
+		
+		display: table-row;
+		.experience-name {
+			display: table-cell;
+			padding: 0.5rem;
+			padding-right: 3rem;
+			margin-top: 0.25rem;
+			margin-bottom: 0.25rem;
+		}
+
+		.experience-years {
+			display: table-cell;
+			padding: 0.5rem;
+		}
+	}
+
+	.experience-container:nth-of-type(odd) {
+		background: @table-odd-color;
+	}
+}

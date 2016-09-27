@@ -47,6 +47,9 @@ class AppModel {
 	Pages: IPage[];
 	UrlRouter: Router;
 	Experience: IExperienceItemClientDto[];
+	ExperienceServer: IExperienceItemClientDto[];
+	ExperienceDatabase: IExperienceItemClientDto[];
+	ExperienceFrontEnd: IExperienceItemClientDto[];
 	Jobs: Job[];
 	TimelineEras: TimelineEra[];
 	MessageStatus: MessageDisplayStatus;
@@ -68,6 +71,9 @@ class AppModel {
 		this.Api = api;
 		this.ErrorHandler = errorHandler;
 		this.Experience = this.GetExperience(experience, StaticText);
+		this.ExperienceServer = _.filter(this.Experience, (o) => { return o.Type == TechnologyType.Server; });
+		this.ExperienceDatabase = _.filter(this.Experience, (o) => { return o.Type == TechnologyType.Database; });
+		this.ExperienceFrontEnd = _.filter(this.Experience, (o) => { return o.Type == TechnologyType.FrontEnd; });
 		this.Pages = new PageRepository(StaticText).Get();
     	this.UrlRouter = new Router(this.Pages);
     	this.MessageMediator = new Mediator(this.UrlRouter);
@@ -132,7 +138,7 @@ class AppModel {
 		var experience = new Array<IExperienceItemClientDto> ();
 
 		experienceRecords.forEach((x) => {
-			experience.push(new ExperienceItem(x.Name, x.Years, staticText))
+			experience.push(new ExperienceItem(x.Name, x.Years, x.Type, staticText))
 		});
 
 		return experience;

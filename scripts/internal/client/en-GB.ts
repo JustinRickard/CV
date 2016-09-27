@@ -50,8 +50,11 @@ class en_gb implements IUiText {
 	About_P1_B5_P1_B7: string = "Keeping code files small and manageable";
 
 	Experience_Title = "Experience";
-	Experience_Year: string = "Year";
-	Experience_Years: string = "Years";
+	Experience_Year: string = "year";
+	Experience_Years: string = "years";
+	Experience_FrontEnd = "Front-End";
+	Experience_Database = "Database";
+	Experience_Server = "Server";
 
 	Career_Title: string = "My Career";
 	Career_P1: string = "Take a look at my professional experience using the timeline below.";

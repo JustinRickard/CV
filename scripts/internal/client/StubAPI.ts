@@ -42,17 +42,95 @@ class StubApi {
 	private GetExperience(): IExperienceItem[] {
 		return 	[
 			{
-				Name: "Test",
-				Years: 1
+				Type: TechnologyType.Server,
+				Name: "C#",
+				Years: 4
 			},
 			{
-				Name: "Test 2",
+				Type: TechnologyType.Server,
+				Name: "ASP.NET Web API",
 				Years: 2
 			},
 			{
-				Name: "Test 3",
+				Type: TechnologyType.Server,
+				Name: "ASP.NET MVC",
 				Years: 3
-			}
+			},
+			{
+				Type: TechnologyType.Server,
+				Name: "ASP.NET Web Forms",
+				Years: 2
+			},
+			{
+				Type: TechnologyType.Server,
+				Name: "Node JS",
+				Years: 1
+			},
+			{
+				Type: TechnologyType.Server,
+				Name: "PowerShell",
+				Years: 3
+			},
+			{
+				Type: TechnologyType.Server,
+				Name: "N Unit",
+				Years: 3
+			},
+			{
+				Type: TechnologyType.Server,
+				Name: "iTextSharp",
+				Years: 2
+			},
+			{
+				Type: TechnologyType.Database,
+				Name: "Sql Server",
+				Years: 4
+			},
+			{
+				Type: TechnologyType.Database,
+				Name: "MySQL",
+				Years: 1
+			},
+			{
+				Type: TechnologyType.Database,
+				Name: "MongoDB",
+				Years: 0
+			},
+			{
+				Type: TechnologyType.FrontEnd,
+				Name: "TypeScript",
+				Years: 3
+			},
+			{
+				Type: TechnologyType.FrontEnd,
+				Name: "Knockout",
+				Years: 2
+			},
+			{
+				Type: TechnologyType.FrontEnd,
+				Name: "Angular 1",
+				Years: 2
+			},
+			{
+				Type: TechnologyType.FrontEnd,
+				Name: "Angular 2",
+				Years: 0
+			},
+			{
+				Type: TechnologyType.FrontEnd,
+				Name: "React",
+				Years: 0
+			},
+			{
+				Type: TechnologyType.FrontEnd,
+				Name: "Jasmine",
+				Years: 2
+			},
+			{
+				Type: TechnologyType.FrontEnd,
+				Name: "Mocha",
+				Years: 0
+			},
 		]
 	}
 
