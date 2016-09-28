@@ -168,25 +168,46 @@ class en_gb implements IUiText {
 
 	// Server Technologies
 	Technologies_CSharp_Title: string = "C#";
-	Technologies_CSharp_Paragraph1: string = "TODO: C# intro";
+	Technologies_CSharp_Paragraph1: string = "C# is an object-oriented language that can be used to write .NET applications. It has a similar syntax to Java.";
+	Technologies_CSharp_Paragraph2: string = "It is my favourite language to code in due to the easy-to-use syntax, its rich features (such as LINQ) and that it can be written in Microsoft Visual Studio.";
 
 	Technologies_MVC_Title: string = "ASP.NET MVC";
-	Technologies_MVC_Paragraph1: string = "TODO: MVC intro";
+	Technologies_MVC_Paragraph1: string = "This flavour of ASP.NET deals with server-side page rendering by combining 3 types of files - Model, View and Controller.";
+	Technologies_MVC_Paragraph2: string = "The 'Model' (or 'View-Model') is a class that defines what data the view will have access to.";
+	Technologies_MVC_Paragraph3: string = "The 'View' is a HTML template, which can be fed a data model in order to display its content, and enriched with logic using Razor for example.";
+	Technologies_MVC_Paragraph4: string = "The 'Controller' handles the requests from the clients, and responds. Usually this will involve getting data and returning a view. Controller logic should be kept to a minimum in order to keep the code base clean. Tasks should be offloaded to services and models.";
+
+	Technologies_WebApi_Title: string = "Microsoft Web API";
+	Technologies_WebApi_Paragraph1: string = "Web API is Microsoft's tool for creating a JSON API for your web application.";
+	Technologies_WebApi_Paragraph2: string = "The emergence of Single Page Applications (SPA) has lead to many products abandoning server-side rendering and using a Javsscript framework on the front-end that interacts with the server's API layer.";
 
 	Technologies_WebForms_Title: string = "ASP.NET Web Forms";
-	Technologies_WebForms_Paragraph1: string = "TODO: Web Forms intro";
+	Technologies_WebForms_Paragraph1: string = "Web Forms are an old ASP.NET technology for developing web applications. You would not expect new products to use Web Forms, however there are many legacy systems out there that use it due to its popularity in the past.";
+	Technologies_WebForms_Paragraph2: string = "They make use of a Page file (.aspx) and a Code-Behind file (.aspx.cs). The Page contains the markup, including ASP tags, while the Code-Behind deals with the logic such as button clicks.";
 
-	Technologies_NodeJS_Title: string = "NodeJS";
-	Technologies_NodeJS_Paragraph1: string = "TODO: NodeJS intro";
+	Technologies_NodeJS_Title: string = "Node JS";
+	Technologies_NodeJS_Paragraph1: string = "Node JS is an open-source technology that allows you to quickly and easily develop a web server in Javascript. This application is written in Node JS.";
+	Technologies_NodeJS_Paragraph2: string = "It is very light-weight, and so you need to import pretty much any tool you need. This contrasts to ASP.NET which comes with a lot of built-in goodies, but results in a larger code base.";
+	Technologies_NodeJS_Paragraph3: string = "Server-side rendering can be achieved using various template plug-ins. My preference is EJS. Single Page Applications can be easily developed using Node JS as the API server.";
+	Technologies_NodeJS_Paragraph3: string = "Node JS is well suited for a simple API server as it is quick to set up. Some people question whether it is an appropriate tool to use for building large enterprise applications.";
+	Technologies_NodeJS_Paragraph4: string = "If a large and complex system is developed in Node JS, it should be architected to use Microservices and possibly a message bus such as RabbitMQ.";
 
 	Technologies_NUnit_Title: string = "NUnit";
-	Technologies_NUnit_Paragraph1: string = "TODO: NUnit intro";
+	Technologies_NUnit_Paragraph1: string = "This is the most popular unit testing framework for .NET. I have used this for as long as I have developed in C#. Other popular test frameworks are very similar - if you can use one, you can easily pick up another.";
 
 	Technologies_iText_Title: string = "iText Sharp";
-	Technologies_iText_Paragraph1: string = "TODO: iText Sharp intro";
+	Technologies_iText_Paragraph1: string = "This is a PDF generation library for .NET development. It is a good tool and there is a lot of support for it online.";
+	Technologies_iText_Paragraph2: string = "When developing with iText, it is very important not to follow the same style as the documentation's examples. These examples do not have any refactoring applied and do not separate concerns in any way.";
+	Technologies_iText_Paragraph3: string = "From experience, I have found it is important split your code up so that you have:";
+	Technologies_iText_Paragraph3_B1: string = "Renderer class - responsible only for drawing elements";
+	Technologies_iText_Paragraph3_B2: string = "Renderable component classes (with a Renderer class injected)";
+	Technologies_iText_Paragraph3_B3: string = "Renderable sub-components within the components";
+	Technologies_iText_Paragraph3_B4: string = "Settings class - to define document's settings such as margins";
+	Technologies_iText_Paragraph3_B5: string = "Render Manager class - to simulate a component or sub-component render and go-ahead if successful.";
 
 	Technologies_PowerShell_Title: string = "PowerShell";
-	Technologies_PowerShell_Paragraph1: string = "TODO: PowerShell intro";
+	Technologies_PowerShell_Paragraph1: string = "PowerShell is the Windows scripting language that is very powerful. It is great for automating tasks to speed up development.";
+	Technologies_PowerShell_Paragraph2: string = "With PowerShell you can do interact with all sorts of applications such as IIS, Task Scheduler and Windows Processes.";
 
 	// Database Technologies
 	Technologies_SqlServer_Title: string = "Microsoft SQL Server";
