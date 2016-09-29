@@ -9,6 +9,8 @@ interface IUiText {
 	Banner_Slogan2: string;
 	Banner_Slogan3: string;
 
+	Footer_Copyright: string;
+
 	Login_Title: string;
 	Login_Username: string;
 	Login_Password: string;

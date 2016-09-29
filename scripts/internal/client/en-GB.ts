@@ -10,6 +10,8 @@ class en_gb implements IUiText {
 	Banner_Slogan2: string = "Improve";
 	Banner_Slogan3: string = "Inspire";
 
+	Footer_Copyright: string = "© Justin Rickard " + new Date().getFullYear();
+
 	Login_Title: string = "Login";
 	Login_Username: string = "Username";
 	Login_Password: string = "Password";
