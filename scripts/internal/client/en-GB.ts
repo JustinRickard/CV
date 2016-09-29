@@ -59,8 +59,6 @@ class en_gb implements IUiText {
 	Career_Title: string = "My Career";
 	Career_P1: string = "Take a look at my professional experience using the timeline below.";
 
-
-
 	DesignPatterns_Observer_Title: string = "Observer";
 	DesignPatterns_Observer_P1: string = "The observer pattern facilitates communication between different parts of a system in the following way:";
 	DesignPatterns_Observer_P1_B1: string = "Objects that need to be informed of a change are called \"obsevers\"";
@@ -189,8 +187,8 @@ class en_gb implements IUiText {
 	Technologies_NodeJS_Paragraph1: string = "Node JS is an open-source technology that allows you to quickly and easily develop a web server in Javascript. This application is written in Node JS.";
 	Technologies_NodeJS_Paragraph2: string = "It is very light-weight, and so you need to import pretty much any tool you need. This contrasts to ASP.NET which comes with a lot of built-in goodies, but results in a larger code base.";
 	Technologies_NodeJS_Paragraph3: string = "Server-side rendering can be achieved using various template plug-ins. My preference is EJS. Single Page Applications can be easily developed using Node JS as the API server.";
-	Technologies_NodeJS_Paragraph3: string = "Node JS is well suited for a simple API server as it is quick to set up. Some people question whether it is an appropriate tool to use for building large enterprise applications.";
-	Technologies_NodeJS_Paragraph4: string = "If a large and complex system is developed in Node JS, it should be architected to use Microservices and possibly a message bus such as RabbitMQ.";
+	Technologies_NodeJS_Paragraph4: string = "Node JS is well suited for a simple API server as it is quick to set up. Some people question whether it is an appropriate tool to use for building large enterprise applications.";
+	Technologies_NodeJS_Paragraph5: string = "If a large and complex system is developed in Node JS, it should be architected to use Microservices and possibly a message bus such as RabbitMQ.";
 
 	Technologies_NUnit_Title: string = "NUnit";
 	Technologies_NUnit_Paragraph1: string = "This is the most popular unit testing framework for .NET. I have used this for as long as I have developed in C#. Other popular test frameworks are very similar - if you can use one, you can easily pick up another.";
@@ -207,39 +205,44 @@ class en_gb implements IUiText {
 
 	Technologies_PowerShell_Title: string = "PowerShell";
 	Technologies_PowerShell_Paragraph1: string = "PowerShell is the Windows scripting language that is very powerful. It is great for automating tasks to speed up development.";
-	Technologies_PowerShell_Paragraph2: string = "With PowerShell you can do interact with all sorts of applications such as IIS, Task Scheduler and Windows Processes.";
+	Technologies_PowerShell_Paragraph2: string = "With PowerShell you can interact with all sorts of applications such as IIS, Task Scheduler and Windows Processes. For this reason, PowerShell is a great tool for automated deployments.";
 
 	// Database Technologies
 	Technologies_SqlServer_Title: string = "Microsoft SQL Server";
-	Technologies_SqlServer_Paragraph1: string = "TODO: SqlServer";
+	Technologies_SqlServer_Paragraph1: string = "SQL Server is my preferred database as it is very feature-rich and comes with SQL Server Management Studio which makes certain tasks, such as creating backups and restoring very easy.";
 
 	Technologies_MySql_Title: string = "MySql";
-	Technologies_MySql_Paragraph1: string = "TODO: MySql";
+	Technologies_MySql_Paragraph1: string = "I have some experience of using MySQL on Linux servers. When using it, I have missed the benefits that T-SQL brings. Also the GUIs for MySQL are not nearly as good as SQL Server Management Studio.";
 
 	Technologies_MongoDB_Title: string = "MongoDB";
-	Technologies_MongoDB_Paragraph1: string = "TODO: MongoDB";
+	Technologies_MongoDB_Paragraph1: string = "MongoDB is a popular No-SQL database. It can be used with Mongoose, the official ORM for MongoDB. I plan on using it for database for this application in the near future.";
 
 	// Javascript Technologies
-	Technologies_Typescript_Title: string = "Typescript";
-	Technologies_Typescript_Paragraph1: string = "TODO: TypeScript intro";
+	Technologies_Typescript_Title: string = "TypesSript";
+	Technologies_Typescript_Paragraph1: string = "I love TypeScript! Why? It solves so many of Javascript's weaknesses.";
+	Technologies_Typescript_Paragraph2: string = "The main problem with Javascript is that it is loosely typed. This often results in run-time errors that would have been caught if it were compiled. TypeScript compiles your .ts file into .js files, and performs type checking. If you have a type mismatch, the compiler will pick it up.";
+	Technologies_Typescript_Paragraph3: string = "TypeScript also allows us to write nice object-oriented code easily, using classes, interfaces, inheritance, etc.";
 
 	Technologies_Knockout_Title: string = "Knockout";
-	Technologies_Knockout_Paragraph1: string = "TODO: Knockout";
+	Technologies_Knockout_Paragraph1: string = "Knockout is a two-way binding library that is great for quickly getting an interactive page knocked out.";
+	Technologies_Knockout_Paragraph2: string = "It allows you to bind your Javascript data structure to the DOM, in a similar way to Mustache and Handlebars, and has been around for quite a few years.";
+	Technologies_Knockout_Paragraph3: string = "This app has been written using Knockout.";
 
 	Technologies_React_Title: string = "React";
-	Technologies_React_Paragraph1: string = "TODO: React";
+	Technologies_React_Paragraph1: string = "React is a new Javascript library developed by Facebook.";
+	Technologies_React_Paragraph2: string = "It allows for very fast rendering due to its use of a virtual DOM. It also provides very tight data control due to its uni-directional data flow.";
 
 	Technologies_Angular1_Title: string = "Angular 1";
-	Technologies_Angular1_Paragraph1: string = "TODO: Angular 1";
+	Technologies_Angular1_Paragraph1: string = "Angular is a very commonly used Javascript framework. It provides templating, data-binding, routing, HTTP requests and much more.";
 
 	Technologies_Angular2_Title: string = "Angular 2";
-	Technologies_Angular2_Paragraph1: string = "TODO: Angular 2";
+	Technologies_Angular2_Paragraph1: string = "Angular 2 is an update on Angular 1 and provides various improvements on the previous version.";
 
 	Technologies_Jasmine_Title: string = "Jasmine";
-	Technologies_Jasmine_Paragraph1: string = "TODO: Jasmine";
+	Technologies_Jasmine_Paragraph1: string = "Jasmine is a Javascript testing framework. It runs in the browser.";
 
 	Technologies_Mocha_Title: string = "Mocha";
-	Technologies_Mocha_Paragraph1: string = "TODO: Mocha";
+	Technologies_Mocha_Paragraph1: string = "Mocha is a Javascript test framework that has become very popular recently. I believe this is due to its flexibility - you can choose from a range of assertion libraries (including Jasmine's assertion library), it can run on the command line and in the browser.";
 
 	// Menu Text
 	Menu_Home: string = "Home";

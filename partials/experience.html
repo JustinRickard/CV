@@ -2,11 +2,17 @@
 <h1 data-bind="text: StaticText.Current.Experience_Title"></h1>
 
 	<h2 data-bind="text: StaticText.Current.Experience_Server"></h2>
-	<div data-bind="template: { name: 'experience-template', foreach: Model.ExperienceServer }"></div>
+	<div class="exerience-table-container">
+		<div data-bind="template: { name: 'experience-template', foreach: Model.ExperienceServer }"></div>
+	</div>
 
-	<h2 data-bind="text: StaticText.Current.Experience_Database"></h2>
-	<div data-bind="template: { name: 'experience-template', foreach: Model.ExperienceDatabase }"></div>
+	<div class="exerience-table-container">
+		<h2 data-bind="text: StaticText.Current.Experience_Database"></h2>
+		<div data-bind="template: { name: 'experience-template', foreach: Model.ExperienceDatabase }"></div>
+	</div>
 
-	<h2 data-bind="text: StaticText.Current.Experience_FrontEnd"></h2>
-	<div data-bind="template: { name: 'experience-template', foreach: Model.ExperienceFrontEnd }"></div>
+	<div class="exerience-table-container">
+		<h2 data-bind="text: StaticText.Current.Experience_FrontEnd"></h2>
+		<div data-bind="template: { name: 'experience-template', foreach: Model.ExperienceFrontEnd }"></div>
+	</div>
 </div>
