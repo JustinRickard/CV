@@ -220,7 +220,7 @@ class en_gb implements IUiText {
 	Technologies_MongoDB_Paragraph1: string = "MongoDB is a popular No-SQL database. It can be used with Mongoose, the official ORM for MongoDB. I plan on using it for database for this application in the near future.";
 
 	// Javascript Technologies
-	Technologies_Typescript_Title: string = "TypesSript";
+	Technologies_Typescript_Title: string = "TypeScript";
 	Technologies_Typescript_Paragraph1: string = "I love TypeScript! Why? It solves so many of Javascript's weaknesses.";
 	Technologies_Typescript_Paragraph2: string = "The main problem with Javascript is that it is loosely typed. This often results in run-time errors that would have been caught if it were compiled. TypeScript compiles your .ts file into .js files, and performs type checking. If you have a type mismatch, the compiler will pick it up.";
 	Technologies_Typescript_Paragraph3: string = "TypeScript also allows us to write nice object-oriented code easily, using classes, interfaces, inheritance, etc.";
