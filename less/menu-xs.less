@@ -33,15 +33,14 @@
 
 		.sub-item {
 			a {
+				border-width: 0px;
+				border-bottom-width: 1px;
+				border-style: solid;
+				border-color: lighten(@color-1, 60%);
 
-			border-width: 0px;
-			border-bottom-width: 1px;
-			border-style: solid;
-			border-color: lighten(@color-1, 60%);
-
-			background: linear-gradient(to bottom, @subitem-bg-color 0%, lighten(@subitem-bg-color, 5%) 50%,@subitem-bg-color 51%,lighten(@subitem-bg-color,10%) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-			-moz-background: linear-gradient(top, @subitem-bg-color 0%, lighten(@subitem-bg-color, 5%) 50%,@subitem-bg-color 51%,lighten(@subitem-bg-color,10%) 100%); /* Firefox */
-			-webkit-background: linear-gradient(top, @subitem-bg-color 0%, lighten(@subitem-bg-color, 5%) 50%,@subitem-bg-color 51%,lighten(@subitem-bg-color,10%) 100%); /* Webkit */
+				background: linear-gradient(to bottom, @subitem-bg-color 0%, lighten(@subitem-bg-color, 5%) 50%,@subitem-bg-color 51%,lighten(@subitem-bg-color,10%) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+				-moz-background: linear-gradient(top, @subitem-bg-color 0%, lighten(@subitem-bg-color, 5%) 50%,@subitem-bg-color 51%,lighten(@subitem-bg-color,10%) 100%); /* Firefox */
+				-webkit-background: linear-gradient(top, @subitem-bg-color 0%, lighten(@subitem-bg-color, 5%) 50%,@subitem-bg-color 51%,lighten(@subitem-bg-color,10%) 100%); /* Webkit */
 
 			/* background: linear-gradient(180deg, @subitem-bg-color, darken(@subitem-bg-color, 5%)); */
 				&:hover {
@@ -57,6 +56,10 @@
 				-moz-background: linear-gradient(top, @menu-background-color 0%, lighten(@menu-background-color, 5%) 50%,@menu-background-color 51%,lighten(@menu-background-color,10%) 100%); /* Firefox */
 				-webkit-background: linear-gradient(top, @menu-background-color 0%, lighten(@menu-background-color, 5%) 50%,@menu-background-color 51%,lighten(@menu-background-color,10%) 100%); /* Webkit */
 
+			}
+
+			a:last-child {
+				border-style: none;
 			}
 		}
 	}
