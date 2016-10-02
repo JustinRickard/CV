@@ -32,6 +32,19 @@
 		    </div>
 		</script>
 
+		<script type="text/html" id="job-template">
+			<div class="job-container">
+				<div class="job-text-container">
+					<h2 data-bind="text: DatesString"></h2>
+					<b><p data-bind="text: Company"></p></b>
+					<p data-bind="text: Description"></p>
+				</div>
+				<div class="job-image-container">
+					<img data-bind="attr: { src: ImageUrl }">
+				</div>
+			</div>
+		</script>
+
 	</head>
 	<body>
 		<div id="container">

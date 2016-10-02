@@ -215,7 +215,7 @@ class AppModel {
 	}
 
 	private SortJobs(): void {
-		this.Jobs = _.orderBy(this.Jobs, ['Start'], ['asc']);
+		this.Jobs = _.orderBy(this.Jobs, ['Start'], ['desc']);
 	}
 
 	private SetJobs(jobs: IJob[], utils: Utilities): void {

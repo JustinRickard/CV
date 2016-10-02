@@ -196,14 +196,14 @@ class StubApi {
 		var fidessa2_imageUrl = "../images/fidessa.jpg";
 
 		var accesso_start = new Date(2013, 5, 1);
-		var accesso_headline = "Accesso";
+		var accesso_headline = "accesso";
 		var accesso_title = "Software Developer";
 		var accesso_imageUrl = "../images/accesso.png";
 
 		var adc_start = new Date(2014, 8, 1);
 		var adc_headline = "a&dc";
 		var adc_title = "Software Developer";
-		var adc_imageUrl = "../images/adc.jpg";
+		var adc_imageUrl = "../images/adc.png";
 
 		var uni = new Job(uni_headline, uni_title, uni_start, fidessa1_start, false, uni_imageUrl);
 		var fid1 = new Job(fidessa1_headline, fidessa1_title, fidessa1_start, fidessa2_start, false, fidessa1_imageUrl);
