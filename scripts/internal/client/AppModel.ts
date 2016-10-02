@@ -180,9 +180,11 @@ class AppModel {
 		var pageVariable: string = page.PartialFileName.replace(".html", "_html");
 		container.html(eval(pageVariable));
 
+		/* Timeline JS3 can't be used with FontAwesome. Use when fixed.
 		if (page.PartialFileName === "career.html") {
 			window.timeline = new TL.Timeline('timeline-embed', this.Timeline);
-		}	
+		}
+		*/	
 	}
 
 	private SetSelectedMenuItem(menuItem: MenuItem, page: IPage): void {

@@ -6,13 +6,20 @@
 		<!-- Javascript -->
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.2.1/lodash.min.js"></script>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>	
-		<script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+		<!-- <script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script> -->
 		<script type="text/javascript" src="../scripts/external/routie.js"></script>
 		<script type="text/javascript" src="../scripts/App.js"></script>
 
 		<!-- CSS -->
-		<link title="timeline-styles" rel="stylesheet" type="text/css" href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
+
+		<!--
+		We can't use Timeline with FontAwesome. Use when this is fixed. Issue below.
+		https://github.com/NUKnightLab/TimelineJS3/issues/410
+		<link title="timeline-styles" rel="stylesheet" type="text/css" href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css"> -->
+
+		<link title="font-awesome" rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+
 
 		<!-- CSS -->
 		<link rel="stylesheet" type="text/css" href="../css/styles.css">
@@ -33,10 +40,12 @@
 
 			<img id="menu-icon" alt="menu" data-bind="click: Model.ToggleMenu" />
 
-
 			<div id="menu" data-bind="foreach: Model.MenuItems, visible: Model.MenuVisible">
 				<div class="menu-item">
-					<a data-bind="text: Page.DisplayName, click: Select, css: { selected: Selected }"></a>
+					<a data-bind="click: Select, css: { selected: Selected }">
+						<div class="menu-item-text-container" data-bind="text: Page.DisplayName"></div>
+						<i class="fa" data-bind="css: {'fa-home' : Page.DisplayNameKey=='Menu_Home', 'fa-briefcase' : Page.DisplayNameKey=='Menu_Experience', 'fa-info-circle' : Page.DisplayNameKey=='Menu_About', 'fa-history' : Page.DisplayNameKey=='Menu_Career', 'fa-caret-right' : SubItems.length > 0 && !Expanded(), 'fa-caret-down' : SubItems.length > 0 && Expanded()}"></i>
+					</a>
 					<!-- ko if: SubItems && SubItems.length > 0 -->
 					<div class="sub-item-container" data-bind="visible: Expanded">
 						<div class="sub-item" data-bind="foreach: SubItems">
