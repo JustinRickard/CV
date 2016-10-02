@@ -15,7 +15,8 @@
 /// <reference path="../../../../DefinitelyTyped/timelinejs/timelinejs.d.ts" />
 
 interface KnockoutBindingHandlers {
-    slideIn: KnockoutBindingHandler;
+    slideHorizontal: KnockoutBindingHandler;
+    slideVertical: KnockoutBindingHandler;
 }
 
 /*
@@ -142,7 +143,7 @@ class AppModel {
 		var element = document.getElementById(mainPageId);
 		ko.cleanNode(element);
 
-		ko.bindingHandlers.slideIn = {
+		ko.bindingHandlers.slideVertical = {
 		    init: function (element, valueAccessor) {
 		        var value = ko.utils.unwrapObservable(valueAccessor());
 		        $(element).toggle(value);
