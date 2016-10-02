@@ -14,9 +14,15 @@
 /// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 /// <reference path="../../../../DefinitelyTyped/timelinejs/timelinejs.d.ts" />
 
+interface KnockoutBindingHandlers {
+    slideIn: KnockoutBindingHandler;
+}
+
+/*
 interface Window {
 	timeline: any;
 }
+*/
 
 interface IAppModel {
 	Api: IApi;
@@ -61,6 +67,7 @@ class AppModel {
 	MenuVisible: KnockoutObservable<Boolean>;
 	PageContentVisible: KnockoutObservable<Boolean>;
 	MessageMediator: Mediator;
+	MainPageId: string;
 
 	constructor (api: IApi, experience: IExperienceItem[], jobs: IJob[], eras: ITimelineEra[],
 		messageStatus: MessageDisplayStatus, currentMessage: string,
@@ -86,6 +93,7 @@ class AppModel {
 		this.CurrentPage = ko.observable<Page>(startingPage);
 		this.MenuVisible = ko.observable<Boolean>(false);
 		this.PageContentVisible = ko.observable<Boolean>(true);
+		this.MainPageId = "page-content-container";
 	}
 
 	// PUBLIC METHODS
@@ -123,13 +131,29 @@ class AppModel {
 		this.PageContentVisible(true);
 		this.MenuVisible(false);
 
-		var mainPageId = "page-content-container";
-
 		this.CurrentPage(page);
-		this.InsertTemplate(page, mainPageId);
+		this.InsertTemplate(page, this.MainPageId);
 		if (!pageLoad) {
-			this.ApplyBindings(mainPageId);
+			this.ApplyBindings(this.MainPageId);
 		}
+	}
+
+	public ApplyBindings(mainPageId: string) {
+		var element = document.getElementById(mainPageId);
+		ko.cleanNode(element);
+
+		ko.bindingHandlers.slideIn = {
+		    init: function (element, valueAccessor) {
+		        var value = ko.utils.unwrapObservable(valueAccessor());
+		        $(element).toggle(value);
+		    },
+		    update: function (element, valueAccessor) {
+		        var value = ko.utils.unwrapObservable(valueAccessor());
+		        value ? $(element).slideDown() : $(element).slideUp();
+		    }
+		}
+     
+		ko.applyBindings(StaticText, document.getElementById(mainPageId));
 	}
 
 	// PRIVATE METHODS
@@ -142,12 +166,6 @@ class AppModel {
 		});
 
 		return experience;
-	}
-
-	private ApplyBindings(mainPageId: string) {
-		var element = document.getElementById(mainPageId);
-		ko.cleanNode(element);
-		ko.applyBindings(StaticText, document.getElementById(mainPageId));
 	}
 
 	private GetPageById(pages: Page[], pageId: number): Page {

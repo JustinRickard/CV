@@ -26,6 +26,7 @@ $(document).ready(() => {
 
     // Set the model data
     Model = api.GetAllData();
+    Model.ApplyBindings(Model.MainPageId);
 
     // Initialise the # router
     Model.UrlRouter.Initialise();

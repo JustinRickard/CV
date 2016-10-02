@@ -60,7 +60,7 @@
 						<i class="fa fa-lg" data-bind="css: {'fa-home' : Page.DisplayNameKey=='Menu_Home', 'fa-briefcase' : Page.DisplayNameKey=='Menu_Experience', 'fa-info-circle' : Page.DisplayNameKey=='Menu_About', 'fa-history' : Page.DisplayNameKey=='Menu_Career', 'fa-caret-right' : SubItems.length > 0 && !Expanded(), 'fa-caret-down' : SubItems.length > 0 && Expanded()}"></i>
 					</a>
 					<!-- ko if: SubItems && SubItems.length > 0 -->
-					<div class="sub-item-container" data-bind="visible: Expanded">
+					<div class="sub-item-container" data-bind="slideIn: Expanded">
 						<div class="sub-item" data-bind="foreach: SubItems">
 							<a data-bind="text: Page.DisplayName, click: Select, css: { selected: Selected }"></a>
 						</div>
