@@ -16,18 +16,12 @@
 			-webkit-background: linear-gradient(top, @menu-background-color 0%, lighten(@menu-background-color, 5%) 50%, lighten(@menu-background-color, 5%) 51%,lighten(@menu-background-color,0%) 100%); /* Webkit */
 
 			padding: 1.0rem;
-			&:hover {
-				color: @text-color-light;
-				background-color: darken(@menu-background-color, 10%);
-			}
 		}
+		
 		a.selected {
 			background: linear-gradient(to bottom, @color-2 0%, lighten(@color-2,5%) 50%, lighten(@color-2,5%) 51%,lighten(@color-2,0%) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 			-moz-background: linear-gradient(top, @menu-background-color 0%, lighten(@menu-background-color, 5%) 50%, lighten(@color-2,5%) 51%,lighten(@menu-background-color,0%) 100%); /* Firefox */
 			-webkit-background: linear-gradient(top, @menu-background-color 0%, lighten(@menu-background-color, 5%) 50%, lighten(@color-2,5%) 51%,lighten(@menu-background-color,0%) 100%); /* Webkit */
-
-
-			/* background: linear-gradient(180deg, darken(@color-2, 5%), @color-2); */
 			color: @text-color-light;
 		}
 
@@ -41,13 +35,8 @@
 				background: linear-gradient(to bottom, @subitem-bg-color 0%, lighten(@subitem-bg-color, 5%) 50%,@subitem-bg-color 51%,lighten(@subitem-bg-color,10%) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 				-moz-background: linear-gradient(top, @subitem-bg-color 0%, lighten(@subitem-bg-color, 5%) 50%,@subitem-bg-color 51%,lighten(@subitem-bg-color,10%) 100%); /* Firefox */
 				-webkit-background: linear-gradient(top, @subitem-bg-color 0%, lighten(@subitem-bg-color, 5%) 50%,@subitem-bg-color 51%,lighten(@subitem-bg-color,10%) 100%); /* Webkit */
-
-			/* background: linear-gradient(180deg, @subitem-bg-color, darken(@subitem-bg-color, 5%)); */
-				&:hover {
-					background: linear-gradient(180deg, darken(@subitem-bg-color, 5%), darken(@subitem-bg-color, 10%));
-					color: lighten(@color-2, 5%);
-				}
 			}
+
 			a.selected {
 				font-style: bold;
 				color: @text-color-light;

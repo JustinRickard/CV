@@ -3,6 +3,15 @@
 	left: 1rem;
 	max-width: 15rem;
 	margin-bottom: 7rem;
+
+	.menu-item {
+		a {
+			&:hover {
+				color: @text-color-light;
+				background: linear-gradient(180deg, lighten(@color-2, 5%), lighten(@color-2, 10%));
+			}
+		}
+	}
 }
 
 #menu-icon {
