@@ -11,9 +11,9 @@
 
 		
 		a {
-			background: linear-gradient(to bottom, @menu-background-color 0%, lighten(@menu-background-color, 5%) 50%,@menu-background-color 51%,lighten(@menu-background-color,10%) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-			-moz-background: linear-gradient(top, @menu-background-color 0%, lighten(@menu-background-color, 5%) 50%,@menu-background-color 51%,lighten(@menu-background-color,10%) 100%); /* Firefox */
-			-webkit-background: linear-gradient(top, @menu-background-color 0%, lighten(@menu-background-color, 5%) 50%,@menu-background-color 51%,lighten(@menu-background-color,10%) 100%); /* Webkit */
+			background: linear-gradient(to bottom, @menu-background-color 0%, lighten(@menu-background-color, 5%) 50%,lighten(@menu-background-color, 5%) 51%,lighten(@menu-background-color,0%) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			-moz-background: linear-gradient(top, @menu-background-color 0%, lighten(@menu-background-color, 5%) 50%, lighten(@menu-background-color, 5%) 51%,lighten(@menu-background-color,0%) 100%); /* Firefox */
+			-webkit-background: linear-gradient(top, @menu-background-color 0%, lighten(@menu-background-color, 5%) 50%, lighten(@menu-background-color, 5%) 51%,lighten(@menu-background-color,0%) 100%); /* Webkit */
 
 			padding: 1.0rem;
 			&:hover {
@@ -22,9 +22,9 @@
 			}
 		}
 		a.selected {
-			background: linear-gradient(to bottom, @color-2 0%, lighten(@color-2,5%) 50%, @color-2 51%,lighten(@color-2,10%) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-			-moz-background: linear-gradient(top, @menu-background-color 0%, lighten(@menu-background-color, 5%) 50%,@menu-background-color 51%,lighten(@menu-background-color,10%) 100%); /* Firefox */
-			-webkit-background: linear-gradient(top, @menu-background-color 0%, lighten(@menu-background-color, 5%) 50%,@menu-background-color 51%,lighten(@menu-background-color,10%) 100%); /* Webkit */
+			background: linear-gradient(to bottom, @color-2 0%, lighten(@color-2,5%) 50%, lighten(@color-2,5%) 51%,lighten(@color-2,0%) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			-moz-background: linear-gradient(top, @menu-background-color 0%, lighten(@menu-background-color, 5%) 50%, lighten(@color-2,5%) 51%,lighten(@menu-background-color,0%) 100%); /* Firefox */
+			-webkit-background: linear-gradient(top, @menu-background-color 0%, lighten(@menu-background-color, 5%) 50%, lighten(@color-2,5%) 51%,lighten(@menu-background-color,0%) 100%); /* Webkit */
 
 
 			/* background: linear-gradient(180deg, darken(@color-2, 5%), @color-2); */
