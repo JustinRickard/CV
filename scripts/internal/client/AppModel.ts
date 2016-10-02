@@ -86,7 +86,6 @@ class AppModel {
 		this.CurrentPage = ko.observable<Page>(startingPage);
 		this.MenuVisible = ko.observable<Boolean>(false);
 		this.PageContentVisible = ko.observable<Boolean>(true);
-		// this.SetPage(startingPage.ID, true);
 	}
 
 	// PUBLIC METHODS
@@ -107,6 +106,7 @@ class AppModel {
 	}
 
 	public SetPage(pageId: number, pageLoad: boolean = false) {
+		$('html,body').scrollTop(0);
 		var page: Page = this.GetPageById(this.Pages, pageId);
 		var menuHelper: IMenuHelper = new MenuHelper(this.ErrorHandler);
 
