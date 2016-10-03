@@ -1,5 +1,7 @@
 /// <reference path="../../../../DefinitelyTyped/requirejs/require.d.ts" />
 /// <reference path="../../../resources/home/HomeUiText.ts" />
+/// <reference path="../shared/models/Enums.ts" />
+/// <reference path="../shared/models/Job.ts" />
 
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
@@ -57,7 +59,10 @@ app.get(Routes.Home, function(req, res) {
 // Routes
 
 app.get(Routes.CV, function(req, res) {
-	res.render(Pages.CV);
+	res.render(Pages.CV, {
+		Jobs: JSON.stringify(GenerateJobs()),
+		Experience: JSON.stringify(GetExperience())
+	});
 });
 
 // Unit tests
@@ -140,4 +145,146 @@ function checkAuth(req, res, next) {
 
 function redirectToLogin(res) {
 	res.render(Pages.Login);
+}
+
+// private GetExperience(): IExperienceItem[] {
+function GetExperience() {
+	return 	[
+		{
+			Type: TechnologyType.Server,
+			Name: "C#",
+			Years: 4
+		},
+		{
+			Type: TechnologyType.Server,
+			Name: "ASP.NET Web API",
+			Years: 2
+		},
+		{
+			Type: TechnologyType.Server,
+			Name: "ASP.NET MVC",
+			Years: 3
+		},
+		{
+			Type: TechnologyType.Server,
+			Name: "ASP.NET Web Forms",
+			Years: 2
+		},
+		{
+			Type: TechnologyType.Server,
+			Name: "Node JS",
+			Years: 1
+		},
+		{
+			Type: TechnologyType.Server,
+			Name: "PowerShell",
+			Years: 3
+		},
+		{
+			Type: TechnologyType.Server,
+			Name: "N Unit",
+			Years: 3
+		},
+		{
+			Type: TechnologyType.Server,
+			Name: "iTextSharp",
+			Years: 2
+		},
+		{
+			Type: TechnologyType.Database,
+			Name: "Sql Server",
+			Years: 4
+		},
+		{
+			Type: TechnologyType.Database,
+			Name: "MySQL",
+			Years: 1
+		},
+		{
+			Type: TechnologyType.Database,
+			Name: "MongoDB",
+			Years: 0
+		},
+		{
+			Type: TechnologyType.FrontEnd,
+			Name: "TypeScript",
+			Years: 3
+		},
+		{
+			Type: TechnologyType.FrontEnd,
+			Name: "Knockout",
+			Years: 2
+		},
+		{
+			Type: TechnologyType.FrontEnd,
+			Name: "Angular 1",
+			Years: 2
+		},
+		{
+			Type: TechnologyType.FrontEnd,
+			Name: "Angular 2",
+			Years: 0
+		},
+		{
+			Type: TechnologyType.FrontEnd,
+			Name: "React",
+			Years: 0
+		},
+		{
+			Type: TechnologyType.FrontEnd,
+			Name: "Jasmine",
+			Years: 2
+		},
+		{
+			Type: TechnologyType.FrontEnd,
+			Name: "Mocha",
+			Years: 0
+		},
+	]
+}
+
+// private GenerateJobs(): Array<Job> {
+function GenerateJobs() {
+	// var Job = require('./scripts/internal/shared/models/Job.js');
+
+	var jobs = new Array<Job>();
+
+	var uni_start = new Date(2005, 8, 1);
+	var uni_headline = "Loughborough University";
+	var uni_title = "Computer Science (BSc)";
+	var uni_imageUrl = "../images/loughborough_university.jpg";
+
+	var fidessa1_start = new Date(2008, 8, 1);
+	var fidessa1_headline = "Fidessa";
+	var fidessa1_title = "Trading Platform Engineer";
+	var fidessa1_imageUrl = "../images/fidessa.jpg";
+
+	var fidessa2_start = new Date(2012, 8, 1);
+	var fidessa2_headline = "Fidessa";
+	var fidessa2_title = "FIX Connectivity Engineer";
+	var fidessa2_imageUrl = "../images/fidessa.jpg";
+
+	var accesso_start = new Date(2013, 5, 1);
+	var accesso_headline = "accesso";
+	var accesso_title = "Software Developer";
+	var accesso_imageUrl = "../images/accesso.png";
+
+	var adc_start = new Date(2014, 8, 1);
+	var adc_headline = "a&dc";
+	var adc_title = "Software Developer";
+	var adc_imageUrl = "../images/adc.png";
+
+	var uni = new Job(uni_headline, uni_title, uni_start, fidessa1_start, false, uni_imageUrl);
+	var fid1 = new Job(fidessa1_headline, fidessa1_title, fidessa1_start, fidessa2_start, false, fidessa1_imageUrl);
+	var fid2 = new Job(fidessa2_headline, fidessa2_title, fidessa2_start, accesso_start, false, fidessa2_imageUrl);
+	var accesso = new Job(accesso_headline, accesso_title, accesso_start, adc_start, false, accesso_imageUrl);
+	var adc = new Job(adc_headline, adc_title, adc_start, new Date(), false, adc_imageUrl);
+
+	jobs.push(uni);
+	jobs.push(fid1);
+	jobs.push(fid2);
+	jobs.push(accesso);
+	jobs.push(adc);
+	
+	return jobs;
 }

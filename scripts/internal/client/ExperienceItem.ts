@@ -1,4 +1,5 @@
 /// <reference path="UiText.ts" />
+/// <reference path="../shared/models/Enums.ts" />
 
 interface IExperienceItem {
 	Name: string;
@@ -11,12 +12,6 @@ interface IExperienceItemClientDto {
 	Years: number;
 	Description: string;
 	Type: TechnologyType;
-}
-
-enum TechnologyType {
-	Server = 1,
-	Database = 2,
-	FrontEnd = 3
 }
 
 class ExperienceItem implements IExperienceItemClientDto {

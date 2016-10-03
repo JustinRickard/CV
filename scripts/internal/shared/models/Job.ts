@@ -1,13 +1,4 @@
 
-interface IJobServerDto {
-	Company: string;
-	Description: string;
-	Start: string;
-	End: string;
-	IsCurrent: boolean;
-	ImageUrl: string;
-}
-
 interface IJob {
 	Company: string;
 	Description: string;

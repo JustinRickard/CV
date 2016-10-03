@@ -1,4 +1,4 @@
-/// <reference path="Enums.ts" />
+/// <reference path="../shared/models/Enums.ts" />
 /// <reference path="en-GB.ts" />
 /// <reference path="../../../../DefinitelyTyped/knockout/knockout.d.ts" />
 

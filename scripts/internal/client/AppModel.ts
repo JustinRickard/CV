@@ -1,6 +1,5 @@
-/// <reference path="API.ts" />
 /// <reference path="Job.ts" />
-/// <reference path="Enums.ts" />
+/// <reference path="../shared/models/Enums.ts" />
 /// <reference path="Utilities.ts" />
 /// <reference path="Logger.ts" />
 /// <reference path="ErrorHandler.ts" />
@@ -8,9 +7,6 @@
 /// <reference path="UiText.ts" />
 /// <reference path="ExperienceItem.ts" />
 /// <reference path="helpers/MenuHelper.ts" />
-/// <reference path="timeline/Timeline.ts" />
-/// <reference path="timeline/TimelineSlide.ts" />
-/// <reference path="timeline/TimelineEra.ts" />
 /// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 /// <reference path="../../../../DefinitelyTyped/timelinejs/timelinejs.d.ts" />
 
@@ -26,14 +22,8 @@ interface Window {
 */
 
 interface IAppModel {
-	Api: IApi;
-	User: IUser;
 	Pages: IPage[];
-	Users: IUser[];
-	Jobs: IJob[];
-	TimelineEras: ITimelineEra[];
-	Assessments: IAssessment[];
-	ChatPosts: IChatPost[];
+	Jobs: IJobServerDto[];
 	MessageStatus: MessageDisplayStatus;
 	CurrentMessage: string;
 	CultureCode: CultureCode;
@@ -49,7 +39,6 @@ declare var window: Window;
 
 class AppModel {
 
-	Api: IApi;
 	ErrorHandler: IErrorHandler;
 	Pages: IPage[];
 	UrlRouter: Router;
@@ -58,25 +47,21 @@ class AppModel {
 	ExperienceDatabase: IExperienceItemClientDto[];
 	ExperienceFrontEnd: IExperienceItemClientDto[];
 	Jobs: Job[];
-	TimelineEras: TimelineEra[];
 	MessageStatus: MessageDisplayStatus;
 	CurrentMessage: string;
 	CultureCode: CultureCode;
 	MenuItems: MenuItem[];
-	Timeline: Timeline;
 	CurrentPage: KnockoutObservable<Page>;
 	MenuVisible: KnockoutObservable<Boolean>;
 	PageContentVisible: KnockoutObservable<Boolean>;
 	MessageMediator: Mediator;
 	MainPageId: string;
 
-	constructor (api: IApi, experience: IExperienceItem[], jobs: IJob[], eras: ITimelineEra[],
-		messageStatus: MessageDisplayStatus, currentMessage: string,
+	constructor (experience: IExperienceItem[], jobs: IJobServerDto[],
 		logger: ILogger, errorHandler: IErrorHandler) {
 
 		var utils = new Utilities(errorHandler);
 
-		this.Api = api;
 		this.ErrorHandler = errorHandler;
 		this.Experience = this.GetExperience(experience, StaticText);
 		this.ExperienceServer = _.filter(this.Experience, (o) => { return o.Type == TechnologyType.Server; });
@@ -86,9 +71,8 @@ class AppModel {
     	this.UrlRouter = new Router(this.Pages);
     	this.MessageMediator = new Mediator(this.UrlRouter);
 		this.SetJobs(jobs, utils);
-		this.SetTimeline(jobs, eras, utils)
-		this.MessageStatus = messageStatus;
-		this.CurrentMessage = currentMessage;
+		this.MessageStatus = MessageDisplayStatus.None;
+		this.CurrentMessage = "";
 		this.SetMenuItems(this.Pages);
 		var startingPage = _.first(this.Pages);
 		this.CurrentPage = ko.observable<Page>(startingPage);
@@ -237,19 +221,9 @@ class AppModel {
 		this.Jobs = _.orderBy(this.Jobs, ['Start'], ['desc']);
 	}
 
-	private SetJobs(jobs: IJob[], utils: Utilities): void {
+	private SetJobs(jobs: IJobServerDto[], utils: Utilities): void {
 		this.Jobs = new Array<Job>();
 		jobs.forEach((x) => this.Jobs.push(utils.CreateJob(x)));
 		this.SortJobs();
-	}
-
-	private SetTimeline (jobs: IJob[], eras: ITimelineEra[], utils: Utilities) {
-		var timelineSlides = new Array<TimelineSlide> ();
-		jobs.forEach((x) => timelineSlides.push(utils.CreateTimelineSlide(x, utils)));
-
-		var timelineEras = new Array<TimelineEra> ();
-		eras.forEach((x) => timelineEras.push(utils.CreateTimelineEra(x)));
-
-		this.Timeline = new Timeline(timelineSlides, timelineEras);
 	}
 }

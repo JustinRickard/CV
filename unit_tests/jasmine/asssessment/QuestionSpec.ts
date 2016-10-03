@@ -1,6 +1,6 @@
 /// <reference path="../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
-/// <reference path="../../../scripts/internal/client/assessment/Question.ts" />
-/// <reference path="../../../scripts/internal/client/assessment/Option.ts" />
+/// <reference path="../../../scripts/internal/shared/models/assessment/Question.ts" />
+/// <reference path="../../../scripts/internal/shared/models/assessment/Option.ts" />
 /// <reference path="../../../scripts/internal/client/ErrorHandler.ts" />
 
 var GenerateOptions =  function(quantity)  {
@@ -38,9 +38,9 @@ describe("Assessment", () => {
 
 			var appModel: any = null;
 			var logger: any = null;
-			var errorHandler = new ErrorHandler(appModel, logger);
+			var assessmentHelper = new AssessmentHelper();
 
-			question = new Question(id, text, displayOrder, options, errorHandler);
+			question = new Question(id, text, displayOrder, options, assessmentHelper);
 		});
 
 		it ("should have the correct number of options", () => { 

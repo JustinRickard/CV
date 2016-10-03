@@ -1,14 +1,11 @@
 ------------------------------------------------------------------
 Priority  |	Type	|	Description
 ------------------------------------------------------------------	
-Medium      Task        Add content to techologies pages - Online CV then presentable
-Medium		Task		Add UX principles
 Medium		Task		Split CV code from rest of application
+Medium		Task		Add UX principles
 Medium      Task        Get Highlightjs / Bootstrap
 Medium      Task        Add unit tests for all client scripts
 Medium      Task        Use mediator for all inter-class communication
-Medium      Bug	        Footer does not stick to bottom of screen
-Low         Task        Allow infinite nesting of menu items
 Low         Task        Set up database on separate server (MongoDB / Mongoose)
 Low         Task        Add Assessments to DB
 Low         Task        Seperate server-side routing out into controller classes

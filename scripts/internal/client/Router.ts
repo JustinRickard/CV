@@ -2,7 +2,7 @@
 /// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 /// <reference path="AppModel.ts" />
 /// <reference path="repositories/PageRepository.ts" />
-/// <reference path="Enums.ts" />
+/// <reference path="../shared/models/Enums.ts" />
 
 declare var Model: AppModel;
 

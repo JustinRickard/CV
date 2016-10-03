@@ -1,5 +1,5 @@
 /// <reference path="../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
-/// <reference path="../../../scripts/internal/client/assessment/Option.ts" />
+/// <reference path="../../../scripts/internal/shared/models/assessment/Option.ts" />
 
 describe("Assessment", () => {
 
