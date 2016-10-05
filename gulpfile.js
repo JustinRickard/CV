@@ -22,7 +22,7 @@ function replaceQuotes(content) {
 // Tasks
 gulp.task('unit_tests', function() {
     gulp.src([
-        './unit_tests/jasmine/**/*.ts'])
+        './src/**/*.test.ts'])
     .pipe(typescript())
     .pipe(concat('UnitTests.js'))
     .pipe(gulp.dest('./public/scripts'))
@@ -30,65 +30,41 @@ gulp.task('unit_tests', function() {
 
 gulp.task('client_ts', function(){
   gulp.src([
-    './scripts/internal/client/*.ts',
-    './partials/generated/*.ts'
+    './src/app_cv/**/*.ts',
     ])
     .pipe(typescript())
-    .pipe(concat('App.js'))
+    .pipe(concat('CV.js'))
     .pipe(gulp.dest('./public/scripts'))
 });
-
-gulp.task('client_ts_login', function() {
-    gulp.src([
-        './scripts/internal/client/Login.ts',
-        './scripts/internal/client/UiText.ts',
-        './scripts/internal/client/en-GB.ts'
-        ])
-      .pipe(typescript())
-      .pipe(concat('Login.js'))
-      .pipe(gulp.dest('./public/scripts'))
-});
-
-gulp.task('client_node_modules', function() {
-    gulp.src(['./node_modules/highlight/lib/highlight.js'])
-    .pipe(gulp.dest('./public/scripts/external/'))
-})
-
-/*
-gulp.task('server_ts', function(){
-  gulp.src(['./scripts/internal/server/*.ts'])
-    .pipe(typescript())
-    .pipe(gulp.dest('./scripts/internal/server'))
-});
-*/
 
 gulp.task('server_app_ts', function() {
     gulp.src([
         './resources/home/HomeUiText.ts',
-        './scripts/internal/server/ServerApp.ts'
+        './src/**/ServerApp.ts'
     ])
     .pipe(typescript())
     .pipe(concat('ServerApp.js'))
     .pipe(gulp.dest('.'))
-
-    //gulp.src([
-     //   './scripts/internal/server/ServerApp.js'
-    //])
-    //.pipe(gulp.dest('./ServerApp.js'))
 });
 
 gulp.task('less', function () {
-    gulp.src('./less/styles.less') // path to your file
+    gulp.src('./src/app_cv/less/styles.less')
     .pipe(less().on('error', function(err) {
         console.log(err);
     }))
-    .pipe(gulp.dest('./public/css'));
+    .pipe(gulp.dest('./src/public/css/cv.css'));
+
+    gulp.src('./src/shared/less/styles.less')
+    .pipe(less().on('error', function(err) {
+        console.log(err);
+    }))
+    .pipe(gulp.dest('./src/public/css/home.css'));
 });
 
-gulp.task('partials', function () {
+gulp.task('templates', function () {
     console.log("Generating partial views for pages:")
 
-    return gulp.src('partials/*.html')
+    return gulp.src('./src/app_cv/templates/*.html')
     .pipe(foreach(function(stream, file){
     
       var filename = path.basename(file.path, ".html");
@@ -99,7 +75,7 @@ gulp.task('partials', function () {
         .pipe(insert.wrap('var ' + filename + '_html: string = \'', '\n\';'))
         .pipe(change(replaceNewLines))
         .pipe(concat(filename + ".ts"))
-        .pipe(gulp.dest('./partials/generated/'));
+        .pipe(gulp.dest('./src/app_cv/templates/generated/'));
     }))
 });
 
@@ -114,13 +90,10 @@ gulp.task('watch', function () {
 
 gulp.task('default', 
     [
-        'less',
-        'partials',
+        'unit_tests',
         'client_ts',
-        'client_node_modules',
-        // 'server_ts',
         'server_app_ts',
-        'client_ts_login',
-        'unit_tests'
+        'less',
+        'templates'
     ]
 );

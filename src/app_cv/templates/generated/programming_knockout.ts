@@ -1,0 +1,7 @@
+var programming_knockout_html: string = '<div id= "programming_knockout"> \
+	<h1 data-bind="text: StaticText.Current.Technologies_Knockout_Title"></h1> \
+	<p data-bind="text: StaticText.Current.Technologies_Knockout_Paragraph1"></p> \
+	<p data-bind="text: StaticText.Current.Technologies_Knockout_Paragraph2"></p> \
+	<p data-bind="text: StaticText.Current.Technologies_Knockout_Paragraph3"></p> \
+</div> \
+';

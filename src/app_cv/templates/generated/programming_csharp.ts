@@ -1,0 +1,6 @@
+var programming_csharp_html: string = '<div id= "programming_csharp"> \
+	<h1 data-bind="text: StaticText.Current.Technologies_CSharp_Title"></h1> \
+	<p data-bind="text: StaticText.Current.Technologies_CSharp_Paragraph1"></p> \
+	<p data-bind="text: StaticText.Current.Technologies_CSharp_Paragraph2"></p> \
+</div> \
+';

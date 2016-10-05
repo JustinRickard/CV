@@ -1,0 +1,61 @@
+@left-margin: 6rem;
+@margin-correction: 8rem;
+@min-height: 16rem;
+
+#container {
+	min-height: calc(~'100% - 3rem');
+}
+
+#main-container {
+	width: 100%;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+}
+
+#page-content-container {
+	margin: 1.2rem;
+    margin-top: 7rem;
+	margin-bottom: @footer-height;
+	width: calc(100% - @margin-correction);
+    display: inline-block;
+    vertical-align: top;
+}
+
+#timeline-embed {
+	min-height: @min-height;
+}
+
+.home-link-container {
+	padding: 5rem;
+}
+
+#career {
+	#career-intro {
+		margin-bottom: 3rem;
+	}
+	.job-container {
+		display: table-row;
+
+		.job-text-container {
+			display: table-cell;
+			padding-right: 4rem;
+			padding-bottom: 2rem;
+			h2 {
+				margin-top: 0;
+			}
+		}	
+		.job-image-container {
+			vertical-align: top;
+			display: table-cell;
+			img {
+				height: 5rem;
+			}
+		}
+
+		.job-text-container:last-child {
+			padding-bottom: 0rem;
+		}
+
+
+	}
+}

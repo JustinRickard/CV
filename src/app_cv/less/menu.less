@@ -1,0 +1,43 @@
+@menu-background-color: @text-color-light;
+@menu-color: @color-2;
+
+#menu {
+	z-index: 100;
+	position: relative;
+	.menu-item, .sub-item {
+		a {
+			text-decoration: initial;
+			display: inline-block;
+			width: 100%;
+			cursor: pointer;
+			box-sizing: border-box;
+		}
+	}
+
+	.menu-item {
+		a {
+			background-color: @menu-background-color;
+			color: @menu-color;
+			padding: 0.4rem;
+
+			.menu-item-text-container {
+				display: inline-block;
+			}
+
+			i {
+				float: right;
+			}
+		}
+
+		a.selected {
+			background: linear-gradient(180deg, darken(@color-2, 5%), @color-2);
+			color: @text-color-light;
+		}
+		
+		.sub-item {
+			a {
+				padding-left: 2rem;
+			}
+		}	
+	}
+}

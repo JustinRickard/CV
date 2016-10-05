@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<% include ../partials/head %>
+    	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.2.1/lodash.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+		<script type="text/javascript" src="scripts/Login.js"></script>
+	</head>
+	<body>
+	
+		<% include ../partials/banner %>
+
+		<div id="login-main">
+			<div id="login-box">
+				<div id="login-box-1" class="float-left login-box-item">
+					<form action="login" method="post">
+						<h1 id="login-title" data-bind="text: StaticText.Current.Login_Title"></h1>
+						<div class="input-container"><input id="username" name="username" type="text" placeholder="username" /></div>
+						<div class="input-container"><input id="password" name="password" type="password" placeholder="password" /></div>
+						<div class="input-container"><button id="login-button" type="submit" data-bind="text: StaticText.Current.Login_LoginButton"></button></div>
+					</form>
+					<h3 id="forgotten-password" data-bind="text: StaticText.Current.Login_ForgottenPassword_Title"></h3>
+					<form action="forgottenPassord" method="post">
+						<div class="input-container">
+							<button type="submit" data-bind="text: StaticText.Current.Login_ForgottenPassword_Button"></button>
+						</div>
+					</form>
+				</div>
+				<div id="login-box-2" class="login-box-item">
+					<h1 id="register-title" data-bind="text: StaticText.Current.Login_Register_Title"></h1>
+					<form action="register" method="post">
+						<div class="input-container"><button type="submit" data-bind="text: StaticText.Current.Login_Register_Button"></button></div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<% include ../partials/footer %>
+
+	</body>
+</html>

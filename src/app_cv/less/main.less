@@ -1,0 +1,36 @@
+.home-link-container {
+	text-align: center;
+}
+
+.home-link-container,.home-sub-item:nth-of-type(odd) {
+background: @color-3;
+color: @text-color-light;
+}
+
+.home-link-container,.home-sub-item:nth-of-type(even) {
+background: @text-color-light;
+color: @color-1;
+}
+
+#experience {
+	.experience-container {
+		
+		display: table-row;
+		.experience-name {
+			display: table-cell;
+			padding: 0.5rem;
+			padding-right: 3rem;
+			margin-top: 0.25rem;
+			margin-bottom: 0.25rem;
+		}
+
+		.experience-years {
+			display: table-cell;
+			padding: 0.5rem;
+		}
+	}
+
+	.experience-container:nth-of-type(odd) {
+		background: @table-odd-color;
+	}
+}

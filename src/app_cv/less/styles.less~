@@ -1,0 +1,49 @@
+/* Base styles: no widths or sizes defined here, just fonts, colours, etc */
+@import "../../shared/less/base-styles";
+@import "banner";
+@import "footer";
+@import "login";
+@import "register";
+@import "forgotten-password";
+@import "home";
+@import "menu";
+@import "main";
+
+/* Phone */
+@media  (max-width: 767px) {
+	@import "../../shared/less/base-styles-xs";
+	@import "login-xs";
+	@import "register-xs";
+	@import "forgotten-password-xs";
+	@import "banner-xs";
+	@import "footer-xs";
+	@import "home-xs";
+	@import "menu-xs";
+	@import "main-xs";
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1199px) {
+	@import "../../shared/less/base-styles-sm";
+	@import "login-sm";
+	@import "register-sm";
+	@import "forgotten-password-sm";
+	@import "banner-sm";
+	@import "footer-sm";
+	@import "home-sm";
+	@import "menu-sm";
+	@import "main-sm";
+}
+
+/* Destop and larger */
+@media (min-width: 1200px) {
+	@import "../../shared/less/base-styles-md";
+	@import "login-md";
+	@import "register-md";
+	@import "forgotten-password-md";
+	@import "banner-md";
+	@import "footer-md";
+	@import "home-md";
+	@import "menu-md";
+	@import "main-md";
+}

@@ -1,0 +1,88 @@
+#home-container {
+	margin-left: auto;
+	margin-right: auto;
+
+	#home-main-container{
+		
+	    border-style: solid;
+	    border-width: 2px;
+	    border-color: @text-color-medium-light;
+
+	    box-shadow: 0px 0px 18px @color-shadow;
+	    background-color: #F6F7FF;
+
+		#title-container {
+			text-align: center;
+			margin-left: auto;
+			margin-right: auto;
+
+			.title {
+				font-family: 'Tangerine', serif;
+				color: @text-color-medium-light;
+			}
+			.subtitle {
+				color: @color-1;
+			}
+		}
+
+		#links-container {
+			vertical-align: top;
+
+			.link {
+				color: @text-color-light;
+				text-align: center;
+			}
+			a {
+				display: inline-block;
+				text-decoration: none;
+	    		vertical-align: top;   		
+	    	}
+
+
+			#link-1 {
+				background-color: @color-1;
+				&:hover {
+					background-color: lighten(@color-1, 10%);
+	    		}
+
+				h1,h2,h3,h4,h5,p {
+					color: @text-color-light;
+				}
+			}
+			#link-2 {
+				background-color: @color-2;
+				&:hover {
+					background-color: lighten(@color-2, 10%);
+	    		}
+
+				h1,h2,h3,h4,h5,p {
+					color: @text-color-light;
+				}
+			}
+			#link-3 {
+				background-color: @color-3;
+				&:hover {
+					background-color: lighten(@color-3, 10%);
+	    		}
+
+				h1,h2,h3,h4,h5,p {
+					color: @text-color-light;
+				}
+			}
+		}
+	}
+
+
+	#logo-container-1 {
+		vertical-align: bottom;
+		img {
+			vertical-align: bottom;
+		}
+	}
+	#logo-container-2 {
+		vertical-align: top;
+		img {
+			vertical-align: top;
+		}
+	}
+}
