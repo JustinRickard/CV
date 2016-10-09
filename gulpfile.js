@@ -19,12 +19,12 @@ function replaceQuotes(content) {
     return content.replace(/\'/g, '\\\'')
 }
 
-/*
+
 var clientTypescriptOptions = {
     target: "ES5",
-    module: "AMD"
+    module: "commonjs"
 };
-*/
+
 
 // Tasks
 gulp.task('unit_tests', function() {
@@ -39,7 +39,7 @@ gulp.task('client_ts', function(){
   gulp.src([
     './src/app_cv/models/App.ts',
     ])
-    .pipe(typescript())
+    .pipe(typescript(clientTypescriptOptions))
     .pipe(concat('cv.js'))
     .pipe(gulp.dest('./src/public/scripts'))
 });

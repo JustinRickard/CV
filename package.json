@@ -18,6 +18,10 @@
     "cookie-parser": "latest",
     "cookie-session": "latest",
     "body-parser": "latest",
+    "path": "latest",
+    "ejs": "latest"
+  },
+  "devDependencies": {
     "gulp": "latest",
     "gulp-tsc": "latest",
     "gulp-less": "latest",
@@ -27,9 +31,6 @@
     "gulp-change": "latest",
     "gulp-foreach": "latest",
     "gulp-tap": "latest",
-    "path": "latest",
-    "ejs": "latest",
-    "highlight": "latest"
-  },
-  "devDependencies": {}
+    "ts-loader": "~0.9.0"
+  }
 }
