@@ -19,32 +19,46 @@ function replaceQuotes(content) {
     return content.replace(/\'/g, '\\\'')
 }
 
+/*
+var clientTypescriptOptions = {
+    target: "ES5",
+    module: "AMD"
+};
+*/
+
 // Tasks
 gulp.task('unit_tests', function() {
     gulp.src([
         './src/**/*.test.ts'])
     .pipe(typescript())
     .pipe(concat('UnitTests.js'))
-    .pipe(gulp.dest('./public/scripts'))
+    .pipe(gulp.dest('./src/public/scripts'))
 });
 
 gulp.task('client_ts', function(){
   gulp.src([
-    './src/app_cv/**/*.ts',
+    './src/app_cv/models/App.ts',
     ])
     .pipe(typescript())
-    .pipe(concat('CV.js'))
-    .pipe(gulp.dest('./public/scripts'))
+    .pipe(concat('cv.js'))
+    .pipe(gulp.dest('./src/public/scripts'))
 });
 
-gulp.task('server_app_ts', function() {
+gulp.task('server_ts', function() {
     gulp.src([
-        './resources/home/HomeUiText.ts',
-        './src/**/ServerApp.ts'
-    ])
+        './src/resources/**/*.ts',
+        './src/shared/**/*.ts',
+        './src/server/**/*.ts'
+    ], { base: "." })
     .pipe(typescript())
-    .pipe(concat('ServerApp.js'))
-    .pipe(gulp.dest('.'))
+    .pipe(gulp.dest('.'));
+
+    gulp.src(
+        ['./ServerApp.ts']
+    )
+    .pipe(typescript())
+    .pipe(gulp.dest('.'));
+
 });
 
 gulp.task('less', function () {
@@ -52,13 +66,15 @@ gulp.task('less', function () {
     .pipe(less().on('error', function(err) {
         console.log(err);
     }))
-    .pipe(gulp.dest('./src/public/css/cv.css'));
+    .pipe(rename('cv.css'))
+    .pipe(gulp.dest('./src/public/css'));
 
-    gulp.src('./src/shared/less/styles.less')
+    gulp.src('./src/server/less/home-styles.less')
     .pipe(less().on('error', function(err) {
         console.log(err);
     }))
-    .pipe(gulp.dest('./src/public/css/home.css'));
+    .pipe(rename('home.css'))
+    .pipe(gulp.dest('./src/public/css'));
 });
 
 gulp.task('templates', function () {
@@ -80,19 +96,17 @@ gulp.task('templates', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch('./less/*.less', ['less']);
-    gulp.watch('./scripts/internal/client/*.ts', ['client_ts']);
-    gulp.watch('./partials/generated/*.ts', ['client_ts']);
-    gulp.watch('./scripts/internal/server/*.ts', ['server_ts']);
-    gulp.watch('./scripts/internal/server/ServerApp.ts', ['server_app_ts']);
-    gulp.watch('./scripts/internal/client/Login.ts', ['client_ts_login']);
+    gulp.watch('./src/**/*.less', ['less']);
+    gulp.watch('./src/app_cv/**/*.ts', ['client_ts']);
+    gulp.watch('./src/app_cv/**/generated/*.ts', ['client_ts']);
+    gulp.watch('./src/server/**/*.ts', ['server_ts']);
 });
 
 gulp.task('default', 
     [
-        'unit_tests',
         'client_ts',
-        'server_app_ts',
+        'server_ts',
+        'unit_tests',
         'less',
         'templates'
     ]

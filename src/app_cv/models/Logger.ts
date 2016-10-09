@@ -1,9 +1,9 @@
-interface ILogger {
+export interface ICvLogger {
 	Error(message: string): void;
 	Warning(message: string): void;
 }
 
-class Logger {
+export class CvLogger {
 	constructor () {
 
 	}

@@ -1,6 +1,8 @@
 /// <reference path="../resources/UiText.ts" />
 
-interface IPage {
+import { IUiTextManager, UiTextManager } from './UiTextManager';
+
+export interface IPage {
 	ID: number;
 	DisplayNameKey: string;
 	ChildrenPages: IPage[];
@@ -13,7 +15,7 @@ interface IPage {
 
 // declare var StaticText: IUiTextManager;
 
-class Page implements IPage {
+export class Page implements IPage {
 	ID: number;
 	DisplayNameKey: string;
 	ChildrenPages: IPage[];

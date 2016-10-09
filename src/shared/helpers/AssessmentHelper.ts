@@ -1,6 +1,12 @@
 /// <reference path="../models/assessment/Assessment.ts" />
 
-interface IAssessmentHelper {
+import { IAssessment, Assessment } from '../models/assessment/Assessment'
+import { ICaseStudy, CaseStudy } from '../models/assessment/CaseStudy';
+import { IQuestionGroup, QuestionGroup } from '../models/assessment/QuestionGroup';
+import { IQuestion, Question } from '../models/assessment/Question';
+
+
+export interface IAssessmentHelper {
 	CreateAssessment(u: IAssessment): IAssessment;
 	CreateCaseStudy(c: ICaseStudy): ICaseStudy;
 	CreateQuestionGroup(qg: IQuestionGroup): IQuestionGroup;
@@ -8,7 +14,7 @@ interface IAssessmentHelper {
 	CreateOption(o: IQuestionOption): IQuestionOption;
 }
 
-class AssessmentHelper implements IAssessmentHelper {
+export class AssessmentHelper implements IAssessmentHelper {
 
 	constructor(){};
 

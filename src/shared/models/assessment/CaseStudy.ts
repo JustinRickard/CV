@@ -2,7 +2,11 @@
 /// <reference path="../../../shared/helpers/AssessmentHelper.ts" />
 /// <reference path="../../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 
-interface ICaseStudy {
+import { IAssessmentHelper } from '../../helpers/AssessmentHelper';
+import { IQuestionGroup, QuestionGroup } from './QuestionGroup';
+import { IQuestion, Question } from './Question';
+
+export interface ICaseStudy {
 	ID: number;
 	DisplayOrder: number;
 	Title: string;  // A section of the assessment, eg At a call centre, at the olympics.
@@ -15,7 +19,7 @@ interface ICaseStudy {
 	NextQuestionGroup(): void;
 }
 
-class CaseStudy implements ICaseStudy {
+export class CaseStudy implements ICaseStudy {
 	ID: number;
 	DisplayOrder: number;
 	Title: string;

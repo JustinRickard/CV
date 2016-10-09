@@ -3,7 +3,13 @@
 /// <reference path="../../helpers/AssessmentHelper.ts" />
 /// <reference path="../../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 
-interface IAssessment {
+import { AssessmentType } from '../../models/Enums';
+import { IAssessmentHelper } from '../../helpers/AssessmentHelper';
+import { ICaseStudy, CaseStudy } from './CaseStudy';
+import { IQuestionGroup, QuestionGroup } from './QuestionGroup';
+import { IQuestion, Question } from './Question';
+
+export interface IAssessment {
 	ID: number;
 	AssessmentType: AssessmentType;
 	Name: string;
@@ -14,7 +20,7 @@ interface IAssessment {
 	Submitting: boolean;
 }
 
-class Assessment implements IAssessment {
+export class Assessment implements IAssessment {
 	ID: number;
 	AssessmentType: AssessmentType;
 	Name: string;

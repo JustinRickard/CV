@@ -1,8 +1,9 @@
 /// <reference path="Logger.ts" />
+/// <reference path="../../shared/models/Enums.ts" />
 
 interface IErrorHandler {
 	Logger: ILogger;
-	Handle(messageStatus: MessageDisplayStatus, message: string): void;
+	Handle(message: string): void;
 }
 
 class ErrorHandler implements IErrorHandler {
@@ -12,14 +13,7 @@ class ErrorHandler implements IErrorHandler {
 		this.Logger = logger;
 	}
 
-	public Handle(messageStatus: MessageDisplayStatus, message: string): void {
-		switch (messageStatus) {
-			case MessageDisplayStatus.Error:
-				this.Logger.Error(message)
-				break;
-			case MessageDisplayStatus.Warning:
-				this.Logger.Warning(message);
-				break;
-		}
+	public Handle(message: string): void {
+		this.Logger.Error(message)
 	}
 }

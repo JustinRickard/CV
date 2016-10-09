@@ -2,7 +2,11 @@
 /// <reference path="../../../shared/helpers/AssessmentHelper.ts" />
 /// <reference path="../../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 
-interface IQuestionGroup {
+import { IQuestion, Question } from './Question';
+
+import { IAssessmentHelper } from '../../helpers/AssessmentHelper';
+
+export interface IQuestionGroup {
 	ID: number;
 	DisplayOrder: number;
 	Title: string;
@@ -14,7 +18,7 @@ interface IQuestionGroup {
 	NextQuestion(): void;
 }
 
-class QuestionGroup implements IQuestionGroup {
+export class QuestionGroup implements IQuestionGroup {
 
 	ID: number;
 	DisplayOrder: number;

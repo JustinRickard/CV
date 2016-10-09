@@ -6,22 +6,28 @@
 /// <reference path="MenuItem.ts" />
 /// <reference path="../resources/UiText.ts" />
 /// <reference path="ExperienceItem.ts" />
+/// <reference path="UiTextManager.ts" />
 /// <reference path="../helpers/MenuHelper.ts" />
+/// <reference path="../custom_typings/KnockoutBindingHandlers.d.ts" />
 /// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 /// <reference path="../../../../DefinitelyTyped/timelinejs/timelinejs.d.ts" />
 
-interface KnockoutBindingHandlers {
-    slideHorizontal: KnockoutBindingHandler;
-    slideVertical: KnockoutBindingHandler;
-}
+import { CultureCode, MessageDisplayStatus, TechnologyType, MenuItemLevel } from '../../shared/models/Enums'
+import { IExperienceItemClientDto, IExperienceItem, ExperienceItem } from './ExperienceItem';
+import { IUiTextManager, UiTextManager } from './UiTextManager';
+// import { KnockoutBindingHandlers } from '../custom_typings/KnockoutBindingHandlers';
+import { IPage, Page } from './Page';
+import { IJobServerDto, IJob, Job } from './Job';
+import { ICvErrorHandler, CvErrorHandler } from './ErrorHandler';
+import { Router } from './Router';
+import { IMenuItem, MenuItem } from './MenuItem';
+import { Utilities } from './Utilities';
+import { ICvLogger, CvLogger } from './Logger';
+import { IMediator, Mediator } from '../mediator/Mediator';
+import { IMenuHelper, MenuHelper } from '../helpers/MenuHelper';
+import { IPageRepository, PageRepository } from '../repositories/PageRepository';
 
-/*
-interface Window {
-	timeline: any;
-}
-*/
-
-interface IAppModel {
+export interface IAppModel {
 	Pages: IPage[];
 	Jobs: IJobServerDto[];
 	MessageStatus: MessageDisplayStatus;
@@ -37,9 +43,9 @@ declare var TL: any;  // TimelineJS
 declare var Model: AppModel;
 declare var window: Window;
 
-class AppModel {
+export class AppModel {
 
-	ErrorHandler: IErrorHandler;
+	ErrorHandler: ICvErrorHandler;
 	Pages: IPage[];
 	UrlRouter: Router;
 	Experience: IExperienceItemClientDto[];
@@ -58,7 +64,7 @@ class AppModel {
 	MainPageId: string;
 
 	constructor (experience: IExperienceItem[], jobs: IJobServerDto[],
-		logger: ILogger, errorHandler: IErrorHandler) {
+		logger: ICvLogger, errorHandler: ICvErrorHandler) {
 
 		var utils = new Utilities(errorHandler);
 

@@ -1,242 +1,114 @@
-/// <reference path="../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
-/// <reference path="../../scripts/internal/client/UiText.ts" />
-/// <reference path="../../scripts/internal/shared/models/ChatPost.ts" />
-/// <reference path="../../scripts/internal/shared/models/User.ts" />
-/// <reference path="../../scripts/internal/client/Logger.ts" />
-/// <reference path="../../scripts/internal/client/ErrorHandler.ts" />
-/// <reference path="../../scripts/internal/client/Utilities.ts" />
-describe("Chat Posts", function () {
-    var user;
-    var userID;
-    var username;
-    var firstName;
-    var lastName;
-    var email;
-    var telephone;
-    var errorHandler; // Avoid dependencies
-    var text;
-    var time;
-    var chatPost;
-    beforeEach(function () {
-        errorHandler = {
-            AppModel: "test",
-            Logger: new Logger(),
-            Handle: (function (messageStatus, message) { })
-        };
-        userID = 1;
-        username = "TestUserName";
-        firstName = "Test";
-        lastName = "User";
-        email = "TestUser@example.org";
-        telephone = "07812345671";
-        user = new User(userID, username, firstName, lastName, email, telephone);
-        text = "Test chat message";
-        time = new Date();
-        chatPost = new ChatPost(user, text, time, errorHandler);
-    });
-    it("should contain text", function () {
-        expect(chatPost.Text).toEqual(text);
-    });
-    it("should contain a date and time", function () {
-        expect(chatPost.Time).toEqual(time);
-    });
-    it("should contain a user", function () {
-        expect(chatPost.User).toBeTruthy();
-    });
-    describe("User", function () {
-        it("should contain an ID", function () {
-            expect(chatPost.User.ID).toEqual(userID);
-        });
-        it("should contain a Username", function () {
-            expect(chatPost.User.Username).toEqual(username);
-        });
-        it("should contain a first name", function () {
-            expect(chatPost.User.FirstName).toEqual(firstName);
-        });
-        it("should contain a last name", function () {
-            expect(chatPost.User.LastName).toEqual(lastName);
-        });
-        it("should contain an email", function () {
-            expect(chatPost.User.Email).toEqual(email);
-        });
-        it("should contain a Username", function () {
-            expect(chatPost.User.Telephone).toEqual(telephone);
-        });
-    });
-});
-
-/// <reference path="../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
-/// <reference path="../../scripts/internal/client/ErrorHandler.ts" />
-/// <reference path="../../scripts/internal/client/Logger.ts" />
-describe("Error Handler", function () {
-    var errorHandler;
-    var logger;
-    var appModel; // To avoid dependencies
-    var errorMsg;
-    var warnMsg;
-    beforeEach(function () {
-        logger = new Logger();
-        appModel = {
-            SetMessage: function (messageStatus, message) {
-            }
-        };
-        errorHandler = new ErrorHandler(appModel, logger);
-        errorMsg = "Test error message";
-        warnMsg = "Test warning message";
-    });
-    it("should contain a logger", function () {
-        expect(errorHandler.Logger).toBeTruthy();
-    });
-    it("should contain an AppModel", function () {
-        expect(errorHandler.AppModel).toBeTruthy();
-    });
-    describe("Handle method", function () {
-        it("should call AppModel.SetMessage on error", function () {
-            spyOn(appModel, "SetMessage");
-            errorHandler.Handle(MessageDisplayStatus.Error, errorMsg);
-            expect(appModel.SetMessage).toHaveBeenCalled();
-        });
-        it("should call AppModel.SetMessage on warning", function () {
-            spyOn(appModel, "SetMessage");
-            errorHandler.Handle(MessageDisplayStatus.Warning, warnMsg);
-            expect(appModel.SetMessage).toHaveBeenCalled();
-        });
-        it("should log error", function () {
-            spyOn(logger, "Error");
-            errorHandler.Handle(MessageDisplayStatus.Error, errorMsg);
-            expect(logger.Error).toHaveBeenCalled();
-        });
-        it("should log warning", function () {
-            spyOn(logger, "Warning");
-            errorHandler.Handle(MessageDisplayStatus.Warning, warnMsg);
-            expect(logger.Warning).toHaveBeenCalled();
-        });
-    });
-});
-
-/// <reference path="../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
-/// <reference path="../../scripts/internal/client/Job.ts" />
-describe("Job", function () {
-    var job;
-    var company;
-    var description;
-    var start;
-    var end;
-    var isCurrent;
-    var imageUrl;
-    beforeEach(function () {
-        company = "Test company";
-        description;
-        start = new Date(2012, 12, 1);
-        end = null;
-        isCurrent = true;
-        imageUrl = "images/adc.jpg";
-        job = new Job(company, description, start, end, isCurrent, imageUrl);
-    });
-    it("should contain company", function () {
-        expect(job.Company).toEqual(company);
-    });
-    it("should contain description", function () {
-        expect(job.Description).toEqual(description);
-    });
-    it("should contain start date", function () {
-        expect(job.Start).toBeTruthy();
-        expect(job.Start).toEqual(start);
-    });
-    it("should contain end date equal to set", function () {
-        expect(job.End).toEqual(end);
-    });
-    it("should contain company", function () {
-        expect(job.Company).toEqual(company);
-    });
-    it("should contain is current flag", function () {
-        expect(job.IsCurrent).toEqual(isCurrent);
-    });
-    it("should contain image URL", function () {
-        expect(job.ImageUrl).toEqual(imageUrl);
-    });
-});
-
-/// <reference path="../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
-/// <reference path="../../scripts/internal/client/Logger.ts" />
-describe("Logger", function () {
-    var logger;
-    beforeEach(function () {
-        logger = new Logger();
-    });
-    it("should log errors", function () {
-        spyOn(logger, "Error");
-        logger.Error("Error text");
-        expect(logger.Error).toHaveBeenCalled();
-    });
-    it("should log warnings", function () {
-        spyOn(logger, "Warning");
-        logger.Warning("Warning text");
-        expect(logger.Warning).toHaveBeenCalled();
-    });
-});
-
-/// <reference path="../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
-/// <reference path="../../scripts/internal/client/UiText.ts" />
-/// <reference path="../../scripts/internal/client/repositories/PageRepository.ts" />
-/// <reference path="../../scripts/internal/client/Page.ts" />
-describe("Page Repository", function () {
-    var uiText;
-    var repo;
-    var pages;
-    beforeEach(function () {
-        uiText = new UiTextManager(CultureCode.en_GB);
-        repo = new PageRepository(uiText);
-        pages = repo.Get();
-    });
-    it("should return some pages", function () {
-        expect(pages).toBeTruthy();
-        expect(pages.length).toBeGreaterThan(0);
-    });
-    it("should return pages with property values set", function () {
-        pages.forEach(function (page) {
-            expect(page.ID).toBeTruthy();
-            expect(page.DisplayNameKey).toBeTruthy();
-            expect(page.DisplayName).toBeTruthy();
-            expect(page.StaticText).toBeTruthy();
-            if (page.ChildrenPages && page.ChildrenPages.length > 0) {
-                expect(page.PartialFileName).not.toBeTruthy();
-                expect(page.Url).not.toBeTruthy();
-            }
-            else {
-                if (page.UsesClientSideRouting) {
-                    expect(page.PartialFileName).toBeTruthy();
-                }
-                expect(page.Url).toBeTruthy();
+/// <reference path="../models/ErrorHandler.ts" />
+/// <reference path="../models/MenuItem.ts" />
+/// <reference path="../models/Page.ts" />
+"use strict";
+var MenuHelper = (function () {
+    function MenuHelper(errorHandler) {
+        this.ErrorHandler = errorHandler;
+    }
+    MenuHelper.prototype.SetSelectedPage = function (menuItems, page) {
+        var _this = this;
+        menuItems.forEach(function (x) {
+            _this.SetSelectedMenuItem(x, page);
+            if (x.SubItems && x.SubItems.length > 0) {
+                x.SubItems.forEach(function (sub) {
+                    _this.SetSelectedMenuItem(sub, page);
+                });
             }
         });
-    });
-});
+    };
+    MenuHelper.prototype.SetSelectedMenuItem = function (menuItem, page) {
+        if (menuItem.Page === page) {
+            menuItem.Selected(true);
+        }
+        else {
+            menuItem.Selected(false);
+        }
+    };
+    return MenuHelper;
+}());
+exports.MenuHelper = MenuHelper;
+
+/// <reference path="Subscription.ts" />
+/// <reference path="../models/Router.ts" />
+"use strict";
+var Subscription_1 = require('./Subscription');
+var Mediator = (function () {
+    function Mediator(urlRouter) {
+        this.Channels = {};
+        this.UrlRouter = urlRouter;
+        this.Subscribe("ChangePage", this.UrlRouter, this.UrlRouter.NavigateTo);
+    }
+    Mediator.prototype.PublishChangePage = function (args) {
+        this.Publish("ChangePage", args);
+    };
+    Mediator.prototype.Publish = function (channelName, args) {
+        if (!this.Channels[channelName]) {
+            // TODO: Log error on error handler via mediator
+            return;
+        }
+        var channel = this.Channels[channelName];
+        var args = Array.prototype.slice.call(arguments, 1);
+        channel.forEach(function (subscription) {
+            subscription.Func.apply(subscription.Context, args);
+        });
+    };
+    Mediator.prototype.Subscribe = function (channelName, context, func) {
+        if (!this.Channels[channelName]) {
+            this.Channels[channelName] = new Array();
+        }
+        var channel = this.Channels[channelName];
+        channel.push(new Subscription_1.Subscription(context, func));
+    };
+    return Mediator;
+}());
+exports.Mediator = Mediator;
+
+"use strict";
+var Subscription = (function () {
+    function Subscription(context, func) {
+        this.Context = context;
+        this.Func = func;
+    }
+    return Subscription;
+}());
+exports.Subscription = Subscription;
 
 /// <reference path="Job.ts" />
-/// <reference path="../shared/models/Enums.ts" />
+/// <reference path="../../shared/models/Enums.ts" />
 /// <reference path="Utilities.ts" />
 /// <reference path="Logger.ts" />
 /// <reference path="ErrorHandler.ts" />
 /// <reference path="MenuItem.ts" />
-/// <reference path="UiText.ts" />
+/// <reference path="../resources/UiText.ts" />
 /// <reference path="ExperienceItem.ts" />
-/// <reference path="helpers/MenuHelper.ts" />
+/// <reference path="UiTextManager.ts" />
+/// <reference path="../helpers/MenuHelper.ts" />
+/// <reference path="../custom_typings/KnockoutBindingHandlers.d.ts" />
 /// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 /// <reference path="../../../../DefinitelyTyped/timelinejs/timelinejs.d.ts" />
+"use strict";
+var Enums_1 = require('../../shared/models/Enums');
+var ExperienceItem_1 = require('./ExperienceItem');
+var Router_1 = require('./Router');
+var MenuItem_1 = require('./MenuItem');
+var Utilities_1 = require('./Utilities');
+var Mediator_1 = require('../mediator/Mediator');
+var MenuHelper_1 = require('../helpers/MenuHelper');
+var PageRepository_1 = require('../repositories/PageRepository');
 var AppModel = (function () {
     function AppModel(experience, jobs, logger, errorHandler) {
-        var utils = new Utilities(errorHandler);
+        var utils = new Utilities_1.Utilities(errorHandler);
         this.ErrorHandler = errorHandler;
         this.Experience = this.GetExperience(experience, StaticText);
-        this.ExperienceServer = _.filter(this.Experience, function (o) { return o.Type == TechnologyType.Server; });
-        this.ExperienceDatabase = _.filter(this.Experience, function (o) { return o.Type == TechnologyType.Database; });
-        this.ExperienceFrontEnd = _.filter(this.Experience, function (o) { return o.Type == TechnologyType.FrontEnd; });
-        this.Pages = new PageRepository(StaticText).Get();
-        this.UrlRouter = new Router(this.Pages);
-        this.MessageMediator = new Mediator(this.UrlRouter);
+        this.ExperienceServer = _.filter(this.Experience, function (o) { return o.Type == Enums_1.TechnologyType.Server; });
+        this.ExperienceDatabase = _.filter(this.Experience, function (o) { return o.Type == Enums_1.TechnologyType.Database; });
+        this.ExperienceFrontEnd = _.filter(this.Experience, function (o) { return o.Type == Enums_1.TechnologyType.FrontEnd; });
+        this.Pages = new PageRepository_1.PageRepository(StaticText).Get();
+        this.UrlRouter = new Router_1.Router(this.Pages);
+        this.MessageMediator = new Mediator_1.Mediator(this.UrlRouter);
         this.SetJobs(jobs, utils);
-        this.MessageStatus = MessageDisplayStatus.None;
+        this.MessageStatus = Enums_1.MessageDisplayStatus.None;
         this.CurrentMessage = "";
         this.SetMenuItems(this.Pages);
         var startingPage = _.first(this.Pages);
@@ -256,14 +128,14 @@ var AppModel = (function () {
     };
     AppModel.prototype.ClearMessage = function () {
         this.CurrentMessage = "";
-        this.MessageStatus = MessageDisplayStatus.None;
+        this.MessageStatus = Enums_1.MessageDisplayStatus.None;
     };
     AppModel.prototype.SetPage = function (pageId, pageLoad) {
         var _this = this;
         if (pageLoad === void 0) { pageLoad = false; }
         $('html,body').scrollTop(0);
         var page = this.GetPageById(this.Pages, pageId);
-        var menuHelper = new MenuHelper(this.ErrorHandler);
+        var menuHelper = new MenuHelper_1.MenuHelper(this.ErrorHandler);
         this.MenuItems.forEach(function (x) {
             _this.SetSelectedMenuItem(x, page);
             if (x.SubItems && x.SubItems.length > 0) {
@@ -299,7 +171,7 @@ var AppModel = (function () {
     AppModel.prototype.GetExperience = function (experienceRecords, staticText) {
         var experience = new Array();
         experienceRecords.forEach(function (x) {
-            experience.push(new ExperienceItem(x.Name, x.Years, x.Type, staticText));
+            experience.push(new ExperienceItem_1.ExperienceItem(x.Name, x.Years, x.Type, staticText));
         });
         return experience;
     };
@@ -349,10 +221,10 @@ var AppModel = (function () {
             var subitems = new Array();
             if (page.ChildrenPages && page.ChildrenPages.length > 0) {
                 page.ChildrenPages.forEach(function (child) {
-                    subitems.push(new MenuItem(child, MenuItemLevel.Two, null, _this.MessageMediator));
+                    subitems.push(new MenuItem_1.MenuItem(child, Enums_1.MenuItemLevel.Two, null, _this.MessageMediator));
                 });
             }
-            menuItems.push(new MenuItem(page, MenuItemLevel.One, subitems, _this.MessageMediator));
+            menuItems.push(new MenuItem_1.MenuItem(page, Enums_1.MenuItemLevel.One, subitems, _this.MessageMediator));
         });
         this.MenuItems = menuItems;
     };
@@ -367,35 +239,93 @@ var AppModel = (function () {
     };
     return AppModel;
 }());
+exports.AppModel = AppModel;
 
 /// <reference path="Logger.ts" />
 /// <reference path="AppModel.ts" />
-var ErrorHandler = (function () {
-    function ErrorHandler(appModel, logger) {
+"use strict";
+var Enums_1 = require('../../shared/models/Enums');
+var CvErrorHandler = (function () {
+    function CvErrorHandler(appModel, logger) {
         this.AppModel = appModel;
-        this.Logger = logger;
+        this.CvLogger = logger;
     }
-    ErrorHandler.prototype.Handle = function (messageStatus, message) {
+    CvErrorHandler.prototype.Handle = function (messageStatus, message) {
         // Display error message
         this.AppModel.SetMessage(messageStatus, message);
         // Log message
         switch (messageStatus) {
-            case MessageDisplayStatus.Error:
-                this.Logger.Error(message);
+            case Enums_1.MessageDisplayStatus.Error:
+                this.CvLogger.Error(message);
                 break;
-            case MessageDisplayStatus.Warning:
-                this.Logger.Warning(message);
+            case Enums_1.MessageDisplayStatus.Warning:
+                this.CvLogger.Warning(message);
                 break;
         }
     };
-    ErrorHandler.prototype.Clear = function () {
+    CvErrorHandler.prototype.Clear = function () {
         this.AppModel.ClearMessage();
     };
-    return ErrorHandler;
+    return CvErrorHandler;
 }());
+exports.CvErrorHandler = CvErrorHandler;
 
-/// <reference path="UiText.ts" />
-/// <reference path="../shared/models/Enums.ts" />
+/// <reference path="../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
+/// <reference path="ErrorHandler.ts" />
+/// <reference path="Logger.ts" />
+"use strict";
+var Enums_1 = require('../../shared/models/Enums');
+var ErrorHandler_1 = require('./ErrorHandler');
+var Logger_1 = require('./Logger');
+describe("Error Handler", function () {
+    var errorHandler;
+    var logger;
+    var appModel; // To avoid dependencies
+    var errorMsg;
+    var warnMsg;
+    beforeEach(function () {
+        logger = new Logger_1.CvLogger();
+        appModel = {
+            SetMessage: function (messageStatus, message) {
+            }
+        };
+        errorHandler = new ErrorHandler_1.CvErrorHandler(appModel, logger);
+        errorMsg = "Test error message";
+        warnMsg = "Test warning message";
+    });
+    it("should contain a logger", function () {
+        expect(errorHandler.CvLogger).toBeTruthy();
+    });
+    it("should contain an AppModel", function () {
+        expect(errorHandler.AppModel).toBeTruthy();
+    });
+    describe("Handle method", function () {
+        it("should call AppModel.SetMessage on error", function () {
+            spyOn(appModel, "SetMessage");
+            errorHandler.Handle(Enums_1.MessageDisplayStatus.Error, errorMsg);
+            expect(appModel.SetMessage).toHaveBeenCalled();
+        });
+        it("should call AppModel.SetMessage on warning", function () {
+            spyOn(appModel, "SetMessage");
+            errorHandler.Handle(Enums_1.MessageDisplayStatus.Warning, warnMsg);
+            expect(appModel.SetMessage).toHaveBeenCalled();
+        });
+        it("should log error", function () {
+            spyOn(logger, "Error");
+            errorHandler.Handle(Enums_1.MessageDisplayStatus.Error, errorMsg);
+            expect(logger.Error).toHaveBeenCalled();
+        });
+        it("should log warning", function () {
+            spyOn(logger, "Warning");
+            errorHandler.Handle(Enums_1.MessageDisplayStatus.Warning, warnMsg);
+            expect(logger.Warning).toHaveBeenCalled();
+        });
+    });
+});
+
+/// <reference path="../resources/UiText.ts" />
+/// <reference path="../../shared/models/Enums.ts" />
+"use strict";
 var ExperienceItem = (function () {
     function ExperienceItem(name, years, type, staticText) {
         this.Name = name;
@@ -406,7 +336,9 @@ var ExperienceItem = (function () {
     }
     return ExperienceItem;
 }());
+exports.ExperienceItem = ExperienceItem;
 
+"use strict";
 var Job = (function () {
     function Job(company, description, start, end, isCurrent, imageUrl) {
         this.Company = company;
@@ -428,26 +360,94 @@ var Job = (function () {
     };
     return Job;
 }());
+exports.Job = Job;
 
-var Logger = (function () {
-    function Logger() {
+/// <reference path="../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
+/// <reference path="Job.ts" />
+"use strict";
+var Job_1 = require('./Job');
+describe("Job", function () {
+    var job;
+    var company;
+    var description;
+    var start;
+    var end;
+    var isCurrent;
+    var imageUrl;
+    beforeEach(function () {
+        company = "Test company";
+        description;
+        start = new Date(2012, 12, 1);
+        end = null;
+        isCurrent = true;
+        imageUrl = "images/adc.jpg";
+        job = new Job_1.Job(company, description, start, end, isCurrent, imageUrl);
+    });
+    it("should contain company", function () {
+        expect(job.Company).toEqual(company);
+    });
+    it("should contain description", function () {
+        expect(job.Description).toEqual(description);
+    });
+    it("should contain start date", function () {
+        expect(job.Start).toBeTruthy();
+        expect(job.Start).toEqual(start);
+    });
+    it("should contain end date equal to set", function () {
+        expect(job.End).toEqual(end);
+    });
+    it("should contain company", function () {
+        expect(job.Company).toEqual(company);
+    });
+    it("should contain is current flag", function () {
+        expect(job.IsCurrent).toEqual(isCurrent);
+    });
+    it("should contain image URL", function () {
+        expect(job.ImageUrl).toEqual(imageUrl);
+    });
+});
+
+"use strict";
+var CvLogger = (function () {
+    function CvLogger() {
     }
-    Logger.prototype.Error = function (message) {
+    CvLogger.prototype.Error = function (message) {
         console.log("Error: " + message);
     };
-    Logger.prototype.Warning = function (message) {
+    CvLogger.prototype.Warning = function (message) {
         console.log("Warning: " + message);
     };
-    return Logger;
+    return CvLogger;
 }());
+exports.CvLogger = CvLogger;
+
+/// <reference path="../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
+/// <reference path="Logger.ts" />
+"use strict";
+var Logger_1 = require('./Logger');
+describe("Logger", function () {
+    var logger;
+    beforeEach(function () {
+        logger = new Logger_1.CvLogger();
+    });
+    it("should log errors", function () {
+        spyOn(logger, "Error");
+        logger.Error("Error text");
+        expect(logger.Error).toHaveBeenCalled();
+    });
+    it("should log warnings", function () {
+        spyOn(logger, "Warning");
+        logger.Warning("Warning text");
+        expect(logger.Warning).toHaveBeenCalled();
+    });
+});
 
 /// <reference path="Page.ts" />
 /// <reference path="Router.ts" />
-/// <reference path="mediator/Mediator.ts" />
+/// <reference path="../mediator/Mediator.ts" />
 /// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 /// <reference path="../../../../DefinitelyTyped/knockout/knockout.d.ts" />
-// Let MenuItem know about the router
-// declare var UrlRouter: Router;
+"use strict";
 var MenuItem = (function () {
     function MenuItem(page, level, subItems, mediator) {
         this.Page = page;
@@ -468,8 +468,10 @@ var MenuItem = (function () {
     };
     return MenuItem;
 }());
+exports.MenuItem = MenuItem;
 
-/// <reference path="UiText.ts" />
+/// <reference path="../resources/UiText.ts" />
+"use strict";
 // declare var StaticText: IUiTextManager;
 var Page = (function () {
     function Page(id, displayNameKey, childrenPages, partialFileName, url, staticText, UsesClientSideRouting) {
@@ -491,12 +493,15 @@ var Page = (function () {
     }
     return Page;
 }());
+exports.Page = Page;
 
 /// <reference path="../../../../DefinitelyTyped/routie/routie.d.ts" />
 /// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 /// <reference path="AppModel.ts" />
-/// <reference path="repositories/PageRepository.ts" />
-/// <reference path="../shared/models/Enums.ts" />
+/// <reference path="Page.ts" />
+/// <reference path="../repositories/PageRepository.ts" />
+/// <reference path="../../shared/models/Enums.ts" />
+"use strict";
 var Router = (function () {
     function Router(pages) {
         this.Pages = pages;
@@ -530,10 +535,12 @@ var Router = (function () {
     };
     return Router;
 }());
+exports.Router = Router;
 
-/// <reference path="../shared/models/Enums.ts" />
-/// <reference path="en-GB.ts" />
-/// <reference path="../../../../DefinitelyTyped/knockout/knockout.d.ts" />
+/// <reference path="../../shared/models/Enums.ts" />
+/// <reference path="../resources/UiText.ts" />
+"use strict";
+var Enums_1 = require('../../shared/models/Enums');
 var UiTextManager = (function () {
     // Other languages here
     function UiTextManager(cultureCode) {
@@ -544,46 +551,48 @@ var UiTextManager = (function () {
     }
     UiTextManager.prototype.SelectLanguage = function (cultureCode) {
         switch (cultureCode) {
-            case CultureCode.en_GB:
+            case Enums_1.CultureCode.en_GB:
                 this.Current = this.enGB;
                 break;
-            case CultureCode.fr_FR:
+            case Enums_1.CultureCode.fr_FR:
                 break;
-            case CultureCode.de_DE:
+            case Enums_1.CultureCode.de_DE:
                 break;
-            case CultureCode.pt_BR:
+            case Enums_1.CultureCode.pt_BR:
                 break;
-            case CultureCode.es_ES:
+            case Enums_1.CultureCode.es_ES:
                 break;
         }
     };
-    UiTextManager.prototype.ReapplyBindings = function () {
-        ko.applyBindings(this);
-    };
     return UiTextManager;
 }());
+exports.UiTextManager = UiTextManager;
 
 /// <reference path="Job.ts" />
 /// <reference path="ErrorHandler.ts" />
-/// <reference path="../shared/models/Enums.ts" />
+/// <reference path="../../shared/models/Enums.ts" />
 /// <reference path="../../../../DefinitelyTyped/jquery/jquery.d.ts" />
 /// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+"use strict";
+var Enums_1 = require('../../shared/models/Enums');
+var Enums_2 = require('../../shared/models/Enums');
+var Job_1 = require('./Job');
 var Utilities = (function () {
     function Utilities(errorHandler) {
         this.ErrorHandler = errorHandler;
     }
     // DATA ACCESS METHODS
     Utilities.prototype.Get = function (url) {
-        return this.CallServer(HttpVerb.GET, url, null);
+        return this.CallServer(Enums_1.HttpVerb.GET, url, null);
     };
     Utilities.prototype.Post = function (url, postData) {
-        return this.CallServer(HttpVerb.POST, url, postData);
+        return this.CallServer(Enums_1.HttpVerb.POST, url, postData);
     };
     Utilities.prototype.CallServer = function (httpVerb, url, postData) {
         var _this = this;
         var verb;
         switch (httpVerb) {
-            case HttpVerb.GET:
+            case Enums_1.HttpVerb.GET:
                 $.ajax({
                     url: url,
                     type: 'GET',
@@ -591,7 +600,7 @@ var Utilities = (function () {
                         return data;
                     }),
                     error: (function (jq, status, message) {
-                        _this.ErrorHandler.Handle(MessageDisplayStatus.Error, "An error has occurred while getting data from the server. Status: " + status + ' - Message: ' + message);
+                        _this.ErrorHandler.Handle(Enums_2.MessageDisplayStatus.Error, "An error has occurred while getting data from the server. Status: " + status + ' - Message: ' + message);
                         return null;
                     }),
                     dataType: 'json'
@@ -605,7 +614,7 @@ var Utilities = (function () {
                         return data;
                     }),
                     error: (function (jq, status, message) {
-                        _this.ErrorHandler.Handle(MessageDisplayStatus.Error, "An error has occurred while posting data to the server. Status: " + status + ' - Message: ' + message);
+                        _this.ErrorHandler.Handle(Enums_2.MessageDisplayStatus.Error, "An error has occurred while posting data to the server. Status: " + status + ' - Message: ' + message);
                         return null;
                     }),
                     dataType: 'json'
@@ -624,7 +633,7 @@ var Utilities = (function () {
     };
     // CREATE METHODS (FROM INTERFACE)
     Utilities.prototype.CreateJob = function (j) {
-        return new Job(j.Company, j.Description, new Date(j.Start), new Date(j.End), j.IsCurrent, j.ImageUrl);
+        return new Job_1.Job(j.Company, j.Description, new Date(j.Start), new Date(j.End), j.IsCurrent, j.ImageUrl);
     };
     // Data manipulation
     Utilities.prototype.DateToString = function (date) {
@@ -640,6 +649,155 @@ var Utilities = (function () {
     };
     return Utilities;
 }());
+exports.Utilities = Utilities;
+
+/// <reference path="../models/Page.ts" />
+"use strict";
+var Page_1 = require('../models/Page');
+var PageRepository = (function () {
+    function PageRepository(staticText) {
+        this.StaticText = staticText;
+        this.NextPageNumber = 1;
+    }
+    PageRepository.prototype.NewPage = function (displayNameKey, childrenPages, partialFileName, url, usesClientSideRouting) {
+        if (usesClientSideRouting === void 0) { usesClientSideRouting = true; }
+        var id = this.NextPageNumber;
+        this.NextPageNumber++;
+        return new Page_1.Page(id, displayNameKey, childrenPages, partialFileName, url, this.StaticText, usesClientSideRouting);
+    };
+    PageRepository.prototype.Get = function () {
+        var pages = new Array();
+        pages.push(this.NewPage("Menu_Home", null, "home.html", "/"));
+        pages.push(this.NewPage("Menu_Experience", null, "experience.html", "/experience"));
+        pages.push(this.NewPage("Menu_About", null, "about.html", "/about"));
+        pages.push(this.NewPage("Menu_Career", null, "career.html", "/career"));
+        this.AddObjectOrientedPrinciplePages(pages);
+        this.AddSolidPrinciplePages(pages);
+        this.AddOtherPrinciplePages(pages);
+        this.AddDesignPatternPages(pages);
+        this.AddServerTechnologyPages(pages);
+        this.AddDatabaseTechnologyPages(pages);
+        this.AddJavascriptTechnologyPages(pages);
+        return pages;
+    };
+    PageRepository.prototype.AddObjectOrientedPrinciplePages = function (pages) {
+        var ooPrinciplesChildrenPages = new Array();
+        ooPrinciplesChildrenPages.push(this.NewPage("Principles_Encapsulation_Title", null, "principles_encapsulation.html", "/principles_encapsulation"));
+        ooPrinciplesChildrenPages.push(this.NewPage("Principles_Inheritance_Title", null, "principles_inheritance.html", "/principles_inheritance"));
+        ooPrinciplesChildrenPages.push(this.NewPage("Principles_Abstraction_Title", null, "principles_abstraction.html", "/principles_abstraction"));
+        ooPrinciplesChildrenPages.push(this.NewPage("Principles_Polymorphism_Title", null, "principles_polymorphism.html", "/principles_polymorphism"));
+        ooPrinciplesChildrenPages.push(this.NewPage("Principles_Composition_Title", null, "principles_composition.html", "/principles_compositionoverinheritance"));
+        var ooPrinciplesPage = this.NewPage("Menu_OOPrinciples", ooPrinciplesChildrenPages, "", "");
+        pages.push(ooPrinciplesPage);
+    };
+    PageRepository.prototype.AddSolidPrinciplePages = function (pages) {
+        var solidPrinciplesChildrenPages = new Array();
+        solidPrinciplesChildrenPages.push(this.NewPage("Principles_SR_Title", null, "principles_sr.html", "/principles_singleresponsibility"));
+        solidPrinciplesChildrenPages.push(this.NewPage("Principles_OC_Title", null, "principles_oc.html", "/principles_openclosed"));
+        solidPrinciplesChildrenPages.push(this.NewPage("Principles_Liskov_Title", null, "principles_liskov.html", "/principles_liskov"));
+        solidPrinciplesChildrenPages.push(this.NewPage("Principles_IS_Title", null, "principles_is.html", "/principles_interfacesegregation"));
+        solidPrinciplesChildrenPages.push(this.NewPage("Principles_DI_Title", null, "principles_di.html", "/principles_dependencyinversion"));
+        var solidPrinciplesPage = this.NewPage("Menu_SolidPrinciples", solidPrinciplesChildrenPages, "", "");
+        pages.push(solidPrinciplesPage);
+    };
+    PageRepository.prototype.AddOtherPrinciplePages = function (pages) {
+        var principlesChildrenPages = new Array();
+        principlesChildrenPages.push(this.NewPage("Principles_DRY_Title", null, "principles_dry.html", "/principles_dry"));
+        principlesChildrenPages.push(this.NewPage("Principles_Automation_Title", null, "principles_automation.html", "/principles_automation"));
+        principlesChildrenPages.push(this.NewPage("Principles_CD_Title", null, "principles_cd.html", "/principles_continuousdelivery"));
+        var principlesPage = this.NewPage("Menu_Principles", principlesChildrenPages, "", "");
+        pages.push(principlesPage);
+    };
+    PageRepository.prototype.AddDesignPatternPages = function (pages) {
+        var designPatternPages = new Array();
+        designPatternPages.push(this.NewPage("DesignPatterns_Observer_Title", null, "design_pattern_observer.html", "/design_pattern_observer"));
+        designPatternPages.push(this.NewPage("DesignPatterns_Mediator_Title", null, "design_pattern_mediator.html", "/design_pattern_mediator"));
+        designPatternPages.push(this.NewPage("DesignPatterns_ChainOfResponsibility_Title", null, "design_pattern_chain_of_responsibility.html", "/design_pattern_chain_of_responsibility"));
+        designPatternPages.push(this.NewPage("DesignPatterns_Factory_Title", null, "design_pattern_factory.html", "/design_pattern_factory"));
+        designPatternPages.push(this.NewPage("DesignPatterns_Facade_Title", null, "design_pattern_facade.html", "/design_pattern_facade"));
+        var designPatternPage = this.NewPage("Menu_DesignPatterns", designPatternPages, "", "");
+        pages.push(designPatternPage);
+    };
+    PageRepository.prototype.AddServerTechnologyPages = function (pages) {
+        var technologiesChildrenPages = new Array();
+        technologiesChildrenPages.push(this.NewPage("Technologies_CSharp_Title", null, "programming_csharp.html", "/programming_csharp"));
+        technologiesChildrenPages.push(this.NewPage("Technologies_MVC_Title", null, "programming_mvc.html", "/programming_mvc"));
+        technologiesChildrenPages.push(this.NewPage("Technologies_WebForms_Title", null, "programming_webforms.html", "/programming_webforms"));
+        technologiesChildrenPages.push(this.NewPage("Technologies_NodeJS_Title", null, "programming_nodejs.html", "/programming_nodejs"));
+        technologiesChildrenPages.push(this.NewPage("Technologies_iText_Title", null, "programming_itext.html", "/programming_itext"));
+        technologiesChildrenPages.push(this.NewPage("Technologies_NUnit_Title", null, "programming_nunit.html", "/programming_nunit"));
+        technologiesChildrenPages.push(this.NewPage("Technologies_PowerShell_Title", null, "programming_powershell.html", "/programming_powershell"));
+        var technologiesPage = this.NewPage("Menu_ServerTechnologies", technologiesChildrenPages, "", "");
+        pages.push(technologiesPage);
+    };
+    PageRepository.prototype.AddDatabaseTechnologyPages = function (pages) {
+        var dbTechnologiesChildrenPages = new Array();
+        dbTechnologiesChildrenPages.push(this.NewPage("Technologies_SqlServer_Title", null, "programming_sqlserver.html", "/programming_sqlserver"));
+        dbTechnologiesChildrenPages.push(this.NewPage("Technologies_MySql_Title", null, "programming_mysql.html", "/programming_mysql"));
+        dbTechnologiesChildrenPages.push(this.NewPage("Technologies_MongoDB_Title", null, "programming_mongodb.html", "/programming_mongodb"));
+        var dbTechnologiesPage = this.NewPage("Menu_DatabaseTechnologies", dbTechnologiesChildrenPages, "", "");
+        pages.push(dbTechnologiesPage);
+    };
+    PageRepository.prototype.AddJavascriptTechnologyPages = function (pages) {
+        var jsTechnologiesChildrenPages = new Array();
+        jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Typescript_Title", null, "programming_typescript.html", "/programming_typescript"));
+        jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Knockout_Title", null, "programming_knockout.html", "/programming_knockout"));
+        jsTechnologiesChildrenPages.push(this.NewPage("Technologies_React_Title", null, "programming_react.html", "/programming_react"));
+        jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Angular1_Title", null, "programming_angular1.html", "/programming_angular1"));
+        jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Angular2_Title", null, "programming_angular2.html", "/programming_angular2"));
+        jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Jasmine_Title", null, "programming_jasmine.html", "/programming_jasmine"));
+        jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Mocha_Title", null, "programming_mocha.html", "/programming_mocha"));
+        var jsTechnologiesPage = this.NewPage("Menu_JavascriptTechnologies", jsTechnologiesChildrenPages, "", "");
+        pages.push(jsTechnologiesPage);
+    };
+    return PageRepository;
+}());
+exports.PageRepository = PageRepository;
+
+/// <reference path="../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
+/// <reference path="../resources/UiText.ts" />
+/// <reference path="../repositories/PageRepository.ts" />
+/// <reference path="../models/Page.ts" />
+"use strict";
+var UiTextManager_1 = require('../models/UiTextManager');
+var Enums_1 = require('../../shared/models/Enums');
+var PageRepository_1 = require('./PageRepository');
+describe("Page Repository", function () {
+    var uiText;
+    var repo;
+    var pages;
+    beforeEach(function () {
+        uiText = new UiTextManager_1.UiTextManager(Enums_1.CultureCode.en_GB);
+        repo = new PageRepository_1.PageRepository(uiText);
+        pages = repo.Get();
+    });
+    it("should return some pages", function () {
+        expect(pages).toBeTruthy();
+        expect(pages.length).toBeGreaterThan(0);
+    });
+    it("should return pages with property values set", function () {
+        pages.forEach(function (page) {
+            expect(page.ID).toBeTruthy();
+            expect(page.DisplayNameKey).toBeTruthy();
+            expect(page.DisplayName).toBeTruthy();
+            expect(page.StaticText).toBeTruthy();
+            if (page.ChildrenPages && page.ChildrenPages.length > 0) {
+                expect(page.PartialFileName).not.toBeTruthy();
+                expect(page.Url).not.toBeTruthy();
+            }
+            else {
+                if (page.UsesClientSideRouting) {
+                    expect(page.PartialFileName).toBeTruthy();
+                }
+                expect(page.Url).toBeTruthy();
+            }
+        });
+    });
+});
+
+/// <reference path="../../shared/models/Enums.ts" />
+/// <reference path="en-GB.ts" />
+/// <reference path="../../../../DefinitelyTyped/knockout/knockout.d.ts" />
 
 /// <reference path="UiText.ts" />
 var en_gb = (function () {
@@ -857,245 +1015,6 @@ var en_gb = (function () {
     return en_gb;
 }());
 
-/// <reference path="../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
-/// <reference path="../../../scripts/internal/shared/models/assessment/Option.ts" />
-describe("Assessment", function () {
-    describe("Question Option", function () {
-        var option;
-        var id;
-        var displayOrder;
-        var text;
-        var value;
-        var isSelected;
-        beforeEach(function () {
-            id = 1;
-            displayOrder = 3;
-            text = "Test Option";
-            value = 666;
-            isSelected = false;
-            option = new QuestionOption(id, displayOrder, text, value, isSelected);
-        });
-        it("should contain properties with correct values", function () {
-            expect(option.ID).toEqual(id);
-            expect(option.DisplayOrder).toEqual(displayOrder);
-            expect(option.Text).toEqual(text);
-            expect(option.Value).toEqual(value);
-            expect(option.IsSelected).toEqual(isSelected);
-        });
-    });
-});
-
-/// <reference path="../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
-/// <reference path="../../../scripts/internal/shared/models/assessment/Question.ts" />
-/// <reference path="../../../scripts/internal/shared/models/assessment/Option.ts" />
-/// <reference path="../../../scripts/internal/client/ErrorHandler.ts" />
-var GenerateOptions = function (quantity) {
-    var options = new Array();
-    for (var i = 0; i < quantity; i++) {
-        var option = new QuestionOption(i, i, "Option " + i, i, false);
-        options.push(option);
-    }
-    ;
-    return options;
-};
-describe("Assessment", function () {
-    describe("Question", function () {
-        var numberOfOptions;
-        var question;
-        var id;
-        var text;
-        var displayOrder;
-        var options;
-        beforeEach(function () {
-            id = 19328;
-            text = "React is better than Angular. How much do you agree?";
-            displayOrder = 1;
-            numberOfOptions = 6;
-            options = GenerateOptions(numberOfOptions);
-            var appModel = null;
-            var logger = null;
-            var assessmentHelper = new AssessmentHelper();
-            question = new Question(id, text, displayOrder, options, assessmentHelper);
-        });
-        it("should have the correct number of options", function () {
-            expect(question.Options.length).toEqual(numberOfOptions);
-        });
-        it("should have properties correctly set by constructor", function () {
-            expect(question.ID).toEqual(id);
-            expect(question.DisplayOrder).toEqual(displayOrder);
-            expect(question.Text).toEqual(text);
-        });
-    });
-});
-
-/// <reference path="../ErrorHandler.ts" />
-/// <reference path="../Page.ts" />
-var MenuHelper = (function () {
-    function MenuHelper(errorHandler) {
-        this.ErrorHandler = errorHandler;
-    }
-    MenuHelper.prototype.SetSelectedPage = function (menuItems, page) {
-        var _this = this;
-        menuItems.forEach(function (x) {
-            _this.SetSelectedMenuItem(x, page);
-            if (x.SubItems && x.SubItems.length > 0) {
-                x.SubItems.forEach(function (sub) {
-                    _this.SetSelectedMenuItem(sub, page);
-                });
-            }
-        });
-    };
-    MenuHelper.prototype.SetSelectedMenuItem = function (menuItem, page) {
-        if (menuItem.Page === page) {
-            menuItem.Selected(true);
-        }
-        else {
-            menuItem.Selected(false);
-        }
-    };
-    return MenuHelper;
-}());
-
-/// <reference path="Subscription.ts" />
-/// <reference path="../Router.ts" />
-var Mediator = (function () {
-    function Mediator(urlRouter) {
-        this.Channels = {};
-        this.UrlRouter = urlRouter;
-        this.Subscribe("ChangePage", this.UrlRouter, this.UrlRouter.NavigateTo);
-    }
-    Mediator.prototype.PublishChangePage = function (args) {
-        this.Publish("ChangePage", args);
-    };
-    Mediator.prototype.Publish = function (channelName, args) {
-        if (!this.Channels[channelName]) {
-            // TODO: Log error on error handler via mediator
-            return;
-        }
-        var channel = this.Channels[channelName];
-        var args = Array.prototype.slice.call(arguments, 1);
-        channel.forEach(function (subscription) {
-            subscription.Func.apply(subscription.Context, args);
-        });
-    };
-    Mediator.prototype.Subscribe = function (channelName, context, func) {
-        if (!this.Channels[channelName]) {
-            this.Channels[channelName] = new Array();
-        }
-        var channel = this.Channels[channelName];
-        channel.push(new Subscription(context, func));
-    };
-    return Mediator;
-}());
-
-var Subscription = (function () {
-    function Subscription(context, func) {
-        this.Context = context;
-        this.Func = func;
-    }
-    return Subscription;
-}());
-
-/// <reference path="../Page.ts" />
-var PageRepository = (function () {
-    function PageRepository(staticText) {
-        this.StaticText = staticText;
-        this.NextPageNumber = 1;
-    }
-    PageRepository.prototype.NewPage = function (displayNameKey, childrenPages, partialFileName, url, usesClientSideRouting) {
-        if (usesClientSideRouting === void 0) { usesClientSideRouting = true; }
-        var id = this.NextPageNumber;
-        this.NextPageNumber++;
-        return new Page(id, displayNameKey, childrenPages, partialFileName, url, this.StaticText, usesClientSideRouting);
-    };
-    PageRepository.prototype.Get = function () {
-        var pages = new Array();
-        pages.push(this.NewPage("Menu_Home", null, "home.html", "/"));
-        pages.push(this.NewPage("Menu_Experience", null, "experience.html", "/experience"));
-        pages.push(this.NewPage("Menu_About", null, "about.html", "/about"));
-        pages.push(this.NewPage("Menu_Career", null, "career.html", "/career"));
-        this.AddObjectOrientedPrinciplePages(pages);
-        this.AddSolidPrinciplePages(pages);
-        this.AddOtherPrinciplePages(pages);
-        this.AddDesignPatternPages(pages);
-        this.AddServerTechnologyPages(pages);
-        this.AddDatabaseTechnologyPages(pages);
-        this.AddJavascriptTechnologyPages(pages);
-        return pages;
-    };
-    PageRepository.prototype.AddObjectOrientedPrinciplePages = function (pages) {
-        var ooPrinciplesChildrenPages = new Array();
-        ooPrinciplesChildrenPages.push(this.NewPage("Principles_Encapsulation_Title", null, "principles_encapsulation.html", "/principles_encapsulation"));
-        ooPrinciplesChildrenPages.push(this.NewPage("Principles_Inheritance_Title", null, "principles_inheritance.html", "/principles_inheritance"));
-        ooPrinciplesChildrenPages.push(this.NewPage("Principles_Abstraction_Title", null, "principles_abstraction.html", "/principles_abstraction"));
-        ooPrinciplesChildrenPages.push(this.NewPage("Principles_Polymorphism_Title", null, "principles_polymorphism.html", "/principles_polymorphism"));
-        ooPrinciplesChildrenPages.push(this.NewPage("Principles_Composition_Title", null, "principles_composition.html", "/principles_compositionoverinheritance"));
-        var ooPrinciplesPage = this.NewPage("Menu_OOPrinciples", ooPrinciplesChildrenPages, "", "");
-        pages.push(ooPrinciplesPage);
-    };
-    PageRepository.prototype.AddSolidPrinciplePages = function (pages) {
-        var solidPrinciplesChildrenPages = new Array();
-        solidPrinciplesChildrenPages.push(this.NewPage("Principles_SR_Title", null, "principles_sr.html", "/principles_singleresponsibility"));
-        solidPrinciplesChildrenPages.push(this.NewPage("Principles_OC_Title", null, "principles_oc.html", "/principles_openclosed"));
-        solidPrinciplesChildrenPages.push(this.NewPage("Principles_Liskov_Title", null, "principles_liskov.html", "/principles_liskov"));
-        solidPrinciplesChildrenPages.push(this.NewPage("Principles_IS_Title", null, "principles_is.html", "/principles_interfacesegregation"));
-        solidPrinciplesChildrenPages.push(this.NewPage("Principles_DI_Title", null, "principles_di.html", "/principles_dependencyinversion"));
-        var solidPrinciplesPage = this.NewPage("Menu_SolidPrinciples", solidPrinciplesChildrenPages, "", "");
-        pages.push(solidPrinciplesPage);
-    };
-    PageRepository.prototype.AddOtherPrinciplePages = function (pages) {
-        var principlesChildrenPages = new Array();
-        principlesChildrenPages.push(this.NewPage("Principles_DRY_Title", null, "principles_dry.html", "/principles_dry"));
-        principlesChildrenPages.push(this.NewPage("Principles_Automation_Title", null, "principles_automation.html", "/principles_automation"));
-        principlesChildrenPages.push(this.NewPage("Principles_CD_Title", null, "principles_cd.html", "/principles_continuousdelivery"));
-        var principlesPage = this.NewPage("Menu_Principles", principlesChildrenPages, "", "");
-        pages.push(principlesPage);
-    };
-    PageRepository.prototype.AddDesignPatternPages = function (pages) {
-        var designPatternPages = new Array();
-        designPatternPages.push(this.NewPage("DesignPatterns_Observer_Title", null, "design_pattern_observer.html", "/design_pattern_observer"));
-        designPatternPages.push(this.NewPage("DesignPatterns_Mediator_Title", null, "design_pattern_mediator.html", "/design_pattern_mediator"));
-        designPatternPages.push(this.NewPage("DesignPatterns_ChainOfResponsibility_Title", null, "design_pattern_chain_of_responsibility.html", "/design_pattern_chain_of_responsibility"));
-        designPatternPages.push(this.NewPage("DesignPatterns_Factory_Title", null, "design_pattern_factory.html", "/design_pattern_factory"));
-        designPatternPages.push(this.NewPage("DesignPatterns_Facade_Title", null, "design_pattern_facade.html", "/design_pattern_facade"));
-        var designPatternPage = this.NewPage("Menu_DesignPatterns", designPatternPages, "", "");
-        pages.push(designPatternPage);
-    };
-    PageRepository.prototype.AddServerTechnologyPages = function (pages) {
-        var technologiesChildrenPages = new Array();
-        technologiesChildrenPages.push(this.NewPage("Technologies_CSharp_Title", null, "programming_csharp.html", "/programming_csharp"));
-        technologiesChildrenPages.push(this.NewPage("Technologies_MVC_Title", null, "programming_mvc.html", "/programming_mvc"));
-        technologiesChildrenPages.push(this.NewPage("Technologies_WebForms_Title", null, "programming_webforms.html", "/programming_webforms"));
-        technologiesChildrenPages.push(this.NewPage("Technologies_NodeJS_Title", null, "programming_nodejs.html", "/programming_nodejs"));
-        technologiesChildrenPages.push(this.NewPage("Technologies_iText_Title", null, "programming_itext.html", "/programming_itext"));
-        technologiesChildrenPages.push(this.NewPage("Technologies_NUnit_Title", null, "programming_nunit.html", "/programming_nunit"));
-        technologiesChildrenPages.push(this.NewPage("Technologies_PowerShell_Title", null, "programming_powershell.html", "/programming_powershell"));
-        var technologiesPage = this.NewPage("Menu_ServerTechnologies", technologiesChildrenPages, "", "");
-        pages.push(technologiesPage);
-    };
-    PageRepository.prototype.AddDatabaseTechnologyPages = function (pages) {
-        var dbTechnologiesChildrenPages = new Array();
-        dbTechnologiesChildrenPages.push(this.NewPage("Technologies_SqlServer_Title", null, "programming_sqlserver.html", "/programming_sqlserver"));
-        dbTechnologiesChildrenPages.push(this.NewPage("Technologies_MySql_Title", null, "programming_mysql.html", "/programming_mysql"));
-        dbTechnologiesChildrenPages.push(this.NewPage("Technologies_MongoDB_Title", null, "programming_mongodb.html", "/programming_mongodb"));
-        var dbTechnologiesPage = this.NewPage("Menu_DatabaseTechnologies", dbTechnologiesChildrenPages, "", "");
-        pages.push(dbTechnologiesPage);
-    };
-    PageRepository.prototype.AddJavascriptTechnologyPages = function (pages) {
-        var jsTechnologiesChildrenPages = new Array();
-        jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Typescript_Title", null, "programming_typescript.html", "/programming_typescript"));
-        jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Knockout_Title", null, "programming_knockout.html", "/programming_knockout"));
-        jsTechnologiesChildrenPages.push(this.NewPage("Technologies_React_Title", null, "programming_react.html", "/programming_react"));
-        jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Angular1_Title", null, "programming_angular1.html", "/programming_angular1"));
-        jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Angular2_Title", null, "programming_angular2.html", "/programming_angular2"));
-        jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Jasmine_Title", null, "programming_jasmine.html", "/programming_jasmine"));
-        jsTechnologiesChildrenPages.push(this.NewPage("Technologies_Mocha_Title", null, "programming_mocha.html", "/programming_mocha"));
-        var jsTechnologiesPage = this.NewPage("Menu_JavascriptTechnologies", jsTechnologiesChildrenPages, "", "");
-        pages.push(jsTechnologiesPage);
-    };
-    return PageRepository;
-}());
-
 /// <reference path="../models/User.ts" />
 /// <reference path="../helpers/UserHelper.ts" />
 var UserFactory = (function () {
@@ -1112,27 +1031,33 @@ var UserFactory = (function () {
 }());
 
 /// <reference path="../models/assessment/Assessment.ts" />
+"use strict";
+var Assessment_1 = require('../models/assessment/Assessment');
+var CaseStudy_1 = require('../models/assessment/CaseStudy');
+var QuestionGroup_1 = require('../models/assessment/QuestionGroup');
+var Question_1 = require('../models/assessment/Question');
 var AssessmentHelper = (function () {
     function AssessmentHelper() {
     }
     ;
     AssessmentHelper.prototype.CreateAssessment = function (a) {
-        return new Assessment(a.ID, a.AssessmentType, a.Name, a.CaseStudies, this);
+        return new Assessment_1.Assessment(a.ID, a.AssessmentType, a.Name, a.CaseStudies, this);
     };
     AssessmentHelper.prototype.CreateCaseStudy = function (c) {
-        return new CaseStudy(c.ID, c.DisplayOrder, c.Title, c.Description, c.QuestionGroups, this);
+        return new CaseStudy_1.CaseStudy(c.ID, c.DisplayOrder, c.Title, c.Description, c.QuestionGroups, this);
     };
     AssessmentHelper.prototype.CreateQuestionGroup = function (qg) {
-        return new QuestionGroup(qg.ID, qg.DisplayOrder, qg.Title, qg.Description, qg.Questions, this);
+        return new QuestionGroup_1.QuestionGroup(qg.ID, qg.DisplayOrder, qg.Title, qg.Description, qg.Questions, this);
     };
     AssessmentHelper.prototype.CreateQuestion = function (q) {
-        return new Question(q.ID, q.Text, q.DisplayOrder, q.Options, this);
+        return new Question_1.Question(q.ID, q.Text, q.DisplayOrder, q.Options, this);
     };
     AssessmentHelper.prototype.CreateOption = function (o) {
         return new QuestionOption(o.ID, o.DisplayOrder, o.Text, o.Value, o.IsSelected);
     };
     return AssessmentHelper;
 }());
+exports.AssessmentHelper = AssessmentHelper;
 
 /// <reference path="../models/User.ts" />
 var UserHelper = (function () {
@@ -1149,52 +1074,142 @@ var UserHelper = (function () {
 /// <reference path="../helpers/UserHelper.ts" />
 /// <reference path="../factories/UserFactory.ts" />
 var ChatPost = (function () {
-    function ChatPost(user, text, time, userFactory) {
-        this.User = userFactory.GetUserHelper().CreateUser(user);
+    function ChatPost(user, text, time) {
+        this.User = user;
         this.Text = text;
         this.Time = time;
     }
     return ChatPost;
 }());
 
-var AssessmentType;
+/// <reference path="../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
+/// <reference path="ChatPost.ts" />
+/// <reference path="User.ts" />
+/// <reference path="Logger.ts" />
+/// <reference path="ErrorHandler.ts" />
+describe("Chat Posts", function () {
+    var user;
+    var userID;
+    var username;
+    var firstName;
+    var lastName;
+    var email;
+    var telephone;
+    var errorHandler; // Avoid dependencies
+    var text;
+    var time;
+    var chatPost;
+    beforeEach(function () {
+        errorHandler = {
+            AppModel: "test",
+            Logger: new Logger(),
+            Handle: (function (message) { })
+        };
+        userID = 1;
+        username = "TestUserName";
+        firstName = "Test";
+        lastName = "User";
+        email = "TestUser@example.org";
+        telephone = "07812345671";
+        user = new User(userID, username, firstName, lastName, email, telephone);
+        text = "Test chat message";
+        time = new Date();
+        chatPost = new ChatPost(user, text, time);
+    });
+    it("should contain text", function () {
+        expect(chatPost.Text).toEqual(text);
+    });
+    it("should contain a date and time", function () {
+        expect(chatPost.Time).toEqual(time);
+    });
+    it("should contain a user", function () {
+        expect(chatPost.User).toBeTruthy();
+    });
+    describe("User", function () {
+        it("should contain an ID", function () {
+            expect(chatPost.User.ID).toEqual(userID);
+        });
+        it("should contain a Username", function () {
+            expect(chatPost.User.Username).toEqual(username);
+        });
+        it("should contain a first name", function () {
+            expect(chatPost.User.FirstName).toEqual(firstName);
+        });
+        it("should contain a last name", function () {
+            expect(chatPost.User.LastName).toEqual(lastName);
+        });
+        it("should contain an email", function () {
+            expect(chatPost.User.Email).toEqual(email);
+        });
+        it("should contain a Username", function () {
+            expect(chatPost.User.Telephone).toEqual(telephone);
+        });
+    });
+});
+
+"use strict";
 (function (AssessmentType) {
     AssessmentType[AssessmentType["SJT"] = 1] = "SJT";
     AssessmentType[AssessmentType["BSQ"] = 2] = "BSQ";
-})(AssessmentType || (AssessmentType = {}));
-var CultureCode;
+})(exports.AssessmentType || (exports.AssessmentType = {}));
+var AssessmentType = exports.AssessmentType;
 (function (CultureCode) {
     CultureCode[CultureCode["en_GB"] = 1] = "en_GB";
     CultureCode[CultureCode["fr_FR"] = 2] = "fr_FR";
     CultureCode[CultureCode["de_DE"] = 3] = "de_DE";
     CultureCode[CultureCode["pt_BR"] = 4] = "pt_BR";
     CultureCode[CultureCode["es_ES"] = 5] = "es_ES";
-})(CultureCode || (CultureCode = {}));
-var HttpVerb;
+})(exports.CultureCode || (exports.CultureCode = {}));
+var CultureCode = exports.CultureCode;
 (function (HttpVerb) {
     HttpVerb[HttpVerb["GET"] = 1] = "GET";
     HttpVerb[HttpVerb["POST"] = 2] = "POST";
-})(HttpVerb || (HttpVerb = {}));
-var MenuItemLevel;
+})(exports.HttpVerb || (exports.HttpVerb = {}));
+var HttpVerb = exports.HttpVerb;
 (function (MenuItemLevel) {
     MenuItemLevel[MenuItemLevel["One"] = 1] = "One";
     MenuItemLevel[MenuItemLevel["Two"] = 2] = "Two";
-})(MenuItemLevel || (MenuItemLevel = {}));
-var MessageDisplayStatus;
+})(exports.MenuItemLevel || (exports.MenuItemLevel = {}));
+var MenuItemLevel = exports.MenuItemLevel;
 (function (MessageDisplayStatus) {
     MessageDisplayStatus[MessageDisplayStatus["None"] = 1] = "None";
     MessageDisplayStatus[MessageDisplayStatus["Warning"] = 2] = "Warning";
     MessageDisplayStatus[MessageDisplayStatus["Error"] = 3] = "Error";
-})(MessageDisplayStatus || (MessageDisplayStatus = {}));
-var TechnologyType;
+})(exports.MessageDisplayStatus || (exports.MessageDisplayStatus = {}));
+var MessageDisplayStatus = exports.MessageDisplayStatus;
 (function (TechnologyType) {
     TechnologyType[TechnologyType["Server"] = 1] = "Server";
     TechnologyType[TechnologyType["Database"] = 2] = "Database";
     TechnologyType[TechnologyType["FrontEnd"] = 3] = "FrontEnd";
-})(TechnologyType || (TechnologyType = {}));
+})(exports.TechnologyType || (exports.TechnologyType = {}));
+var TechnologyType = exports.TechnologyType;
+
+/// <reference path="Logger.ts" />
+/// <reference path="../../shared/models/Enums.ts" />
+var ErrorHandler = (function () {
+    function ErrorHandler(logger) {
+        this.Logger = logger;
+    }
+    ErrorHandler.prototype.Handle = function (message) {
+        this.Logger.Error(message);
+    };
+    return ErrorHandler;
+}());
+
+var Logger = (function () {
+    function Logger() {
+    }
+    Logger.prototype.Error = function (message) {
+        console.log("Error: " + message);
+    };
+    Logger.prototype.Warning = function (message) {
+        console.log("Warning: " + message);
+    };
+    return Logger;
+}());
 
 /// <reference path="Enums.ts" />
-/// <reference path="../../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 var User = (function () {
     function User(id, username, firstName, lastName, email, telephone) {
         this.ID = id;
@@ -1223,7 +1238,8 @@ var User = (function () {
 /// <reference path="CaseStudy.ts" />
 /// <reference path="../../models/Enums.ts" />
 /// <reference path="../../helpers/AssessmentHelper.ts" />
-/// <reference path="../../../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+"use strict";
 var Assessment = (function () {
     function Assessment(id, assessmentType, name, caseStudies, assessmentHelper) {
         var _this = this;
@@ -1322,10 +1338,12 @@ var Assessment = (function () {
     };
     return Assessment;
 }());
+exports.Assessment = Assessment;
 
 /// <reference path="QuestionGroup.ts" />
 /// <reference path="../../../shared/helpers/AssessmentHelper.ts" />
-/// <reference path="../../../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+"use strict";
 var CaseStudy = (function () {
     function CaseStudy(id, displayOrder, title, description, questionGroups, assessmentHelper) {
         this.ID = id;
@@ -1364,6 +1382,7 @@ var CaseStudy = (function () {
     };
     return CaseStudy;
 }());
+exports.CaseStudy = CaseStudy;
 
 var QuestionOption = (function () {
     function QuestionOption(id, order, text, value, selected) {
@@ -1378,7 +1397,8 @@ var QuestionOption = (function () {
 
 /// <reference path="Option.ts" />
 /// <reference path="../../../shared/helpers/AssessmentHelper.ts" />
-/// <reference path="../../../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+"use strict";
 var Question = (function () {
     function Question(id, text, order, options, assessmentHelper) {
         var _this = this;
@@ -1402,10 +1422,58 @@ var Question = (function () {
     };
     return Question;
 }());
+exports.Question = Question;
+
+/// <reference path="../../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
+/// <reference path="../../../shared/models/assessment/Question.ts" />
+/// <reference path="../../../shared/models/assessment/Option.ts" />
+/// <reference path="../ErrorHandler.ts" />
+"use strict";
+var AssessmentHelper_1 = require('../../helpers/AssessmentHelper');
+var Question_1 = require('./Question');
+var GenerateOptions = function (quantity) {
+    var options = new Array();
+    for (var i = 0; i < quantity; i++) {
+        var option = new QuestionOption(i, i, "Option " + i, i, false);
+        options.push(option);
+    }
+    ;
+    return options;
+};
+describe("Assessment", function () {
+    describe("Question", function () {
+        var numberOfOptions;
+        var question;
+        var id;
+        var text;
+        var displayOrder;
+        var options;
+        beforeEach(function () {
+            id = 19328;
+            text = "React is better than Angular. How much do you agree?";
+            displayOrder = 1;
+            numberOfOptions = 6;
+            options = GenerateOptions(numberOfOptions);
+            var appModel = null;
+            var logger = null;
+            var assessmentHelper = new AssessmentHelper_1.AssessmentHelper();
+            question = new Question_1.Question(id, text, displayOrder, options, assessmentHelper);
+        });
+        it("should have the correct number of options", function () {
+            expect(question.Options.length).toEqual(numberOfOptions);
+        });
+        it("should have properties correctly set by constructor", function () {
+            expect(question.ID).toEqual(id);
+            expect(question.DisplayOrder).toEqual(displayOrder);
+            expect(question.Text).toEqual(text);
+        });
+    });
+});
 
 /// <reference path="Question.ts" />
 /// <reference path="../../../shared/helpers/AssessmentHelper.ts" />
-/// <reference path="../../../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+"use strict";
 var QuestionGroup = (function () {
     function QuestionGroup(id, order, title, description, questions, assessmentHelper) {
         var _this = this;
@@ -1443,3 +1511,32 @@ var QuestionGroup = (function () {
     };
     return QuestionGroup;
 }());
+exports.QuestionGroup = QuestionGroup;
+
+/// <reference path="../../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
+/// <reference path="Option.ts" />
+describe("Assessment", function () {
+    describe("Question Option", function () {
+        var option;
+        var id;
+        var displayOrder;
+        var text;
+        var value;
+        var isSelected;
+        beforeEach(function () {
+            id = 1;
+            displayOrder = 3;
+            text = "Test Option";
+            value = 666;
+            isSelected = false;
+            option = new QuestionOption(id, displayOrder, text, value, isSelected);
+        });
+        it("should contain properties with correct values", function () {
+            expect(option.ID).toEqual(id);
+            expect(option.DisplayOrder).toEqual(displayOrder);
+            expect(option.Text).toEqual(text);
+            expect(option.Value).toEqual(value);
+            expect(option.IsSelected).toEqual(isSelected);
+        });
+    });
+});

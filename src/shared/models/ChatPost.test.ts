@@ -23,7 +23,7 @@ describe("Chat Posts", () => {
 		errorHandler = { 
 			AppModel: "test",
 			Logger: new Logger(),
-			Handle: ((messageStatus: MessageDisplayStatus, message: string): void => {})
+			Handle: ((message: string): void => {})
 		};
 
 		userID = 1;
@@ -37,7 +37,7 @@ describe("Chat Posts", () => {
 		text = "Test chat message";
 		time = new Date();
 
-		chatPost = new ChatPost(user, text, time, errorHandler)
+		chatPost = new ChatPost(user, text, time)
 	});
 
 	it("should contain text", () => {

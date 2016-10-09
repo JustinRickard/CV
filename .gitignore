@@ -1,7 +1,5 @@
-public/scripts/*
-!public/scripts/external/
-!public/scripts/external/*
-public/css/*
-partials/generated/*
+src/public/css/*
+src/app_cv/**/generated/*
+src/**/*.js
 node_modules/
 ServerApp.js

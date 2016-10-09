@@ -1,11 +1,13 @@
 /// <reference path="../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
 /// <reference path="Logger.ts" />
 
+import { ICvLogger, CvLogger } from './Logger';
+
 describe("Logger", () => {
-	var logger: ILogger;
+	var logger: ICvLogger;
 
 	beforeEach(() => {
-		logger = new Logger();
+		logger = new CvLogger();
 	});
 
 	it("should log errors", () => {

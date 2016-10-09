@@ -1,9 +1,9 @@
-interface ISubscription {
+export interface ISubscription {
 	Context: {};
 	Func: Function;
 }
 
-class Subscription {
+export class Subscription {
 
 	Context: {};
 	Func: Function;

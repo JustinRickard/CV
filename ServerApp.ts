@@ -1,16 +1,23 @@
-/// <reference path="../../../DefinitelyTyped/requirejs/require.d.ts" />
-/// <reference path="../resources/home/HomeUiText.ts" />
-/// <reference path="../shared/models/Enums.ts" />
-/// <reference path="../shared/models/Job.ts" />
+/// <reference path="../DefinitelyTyped/requirejs/require.d.ts" />
+/// <reference path="./src/resources/home/HomeUiText.ts" />
+/// <reference path="./src/shared/models/Enums.ts" />
+/// <reference path="./src/shared/models/ExperienceItem.ts" />
+/// <reference path="./src/shared/models/Job.ts" />
 
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var bodyParser: any = require('body-parser');
 var express: any = require('express');
 
-var app: any = express();
+import {HomeUiText, IHomeUiText} from './src/resources/home/HomeUiText';
+import {Job, IJob} from './src/shared/models/Job';
+import {ExperienceItem, IExperienceItem} from './src/shared/models/ExperienceItem';
+import {TechnologyType} from './src/shared/models/Enums'
 
-app.use(express.static('public'));
+var app: any = express();
+var homeUiText = new HomeUiText();
+
+app.use(express.static('./src/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.text({ type: 'text/html'}));
@@ -21,6 +28,7 @@ app.use(cookieSession({
 }))
 
 app.set('view engine', 'ejs');
+app.set('views', './src/server/views/pages');
 
 var Routes = {
 	Home: 		'/',
@@ -35,23 +43,20 @@ var Routes = {
 }
 
 var Pages = {
-	Home:		'pages/home',
-	CV:			'pages/main',
-	UnitTests:	'pages/tests',
-	Login:		'pages/login',
-	Register:	'pages/register',
-	SetPassword:	'pages/set_password',
-	ForgottenPassword: 'pages/forgotten_password',
-
+	Home:		'home',
+	CV:			'cv',
+	UnitTests:	'tests',
+	Login:		'login',
+	Register:	'register',
+	SetPassword: 'set_password',
+	ForgottenPassword: 'forgotten_password',
 }
-
-var HomeUiText: IHomeUiText = new  HomeUiText2();
 
 var sess;
 
 app.get(Routes.Home, function(req, res) {
 	res.render(Pages.Home, {
-		UiText: HomeUiText,
+		UiText: homeUiText,
 		Routes: Routes
 	});
 });
@@ -121,11 +126,6 @@ app.post(Routes.ForgottenPassword, function(req, res) {
 	// res.render('main');
 });
 
-// API
-app.get('/GetAll', function(req, res) {
-	res.send('Hello World!');
-});
-
 app.listen(3000, function() {
 	console.log('JustinRickard app listening on port 3000!');
 });
@@ -147,8 +147,7 @@ function redirectToLogin(res) {
 	res.render(Pages.Login);
 }
 
-// private GetExperience(): IExperienceItem[] {
-function GetExperience() {
+function GetExperience(): IExperienceItem[] {
 	return 	[
 		{
 			Type: TechnologyType.Server,
@@ -243,11 +242,9 @@ function GetExperience() {
 	]
 }
 
-// private GenerateJobs(): Array<Job> {
-function GenerateJobs() {
-	// var Job = require('./scripts/internal/shared/models/Job.js');
+function GenerateJobs(): Array<IJob> {
 
-	var jobs = new Array<Job>();
+	var jobs = new Array<IJob>();
 
 	var uni_start = new Date(2005, 8, 1);
 	var uni_headline = "Loughborough University";

@@ -4,11 +4,18 @@
 /// <reference path="../../../../DefinitelyTyped/jquery/jquery.d.ts" />
 /// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 
-class Utilities {
+import { HttpVerb } from '../../shared/models/Enums';
+import { ICvErrorHandler, CvErrorHandler } from './ErrorHandler';
+import { IMediator } from '../mediator/Mediator';
+import { CultureCode, MessageDisplayStatus, TechnologyType, MenuItemLevel } from '../../shared/models/Enums'
+import { IJobServerDto, IJob, Job } from './Job';
 
-	ErrorHandler: IErrorHandler;
 
-	constructor(errorHandler: IErrorHandler)
+export class Utilities {
+
+	ErrorHandler: ICvErrorHandler;
+
+	constructor(errorHandler: ICvErrorHandler)
 	{
 		this.ErrorHandler = errorHandler;
 	}

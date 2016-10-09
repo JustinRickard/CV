@@ -13,8 +13,8 @@ class ChatPost {
 	User: IUser;
 	Text: string;
 
-	constructor(user: IUser, text: string, time: Date, userFactory: IUserFactory) {
-		this.User = userFactory.GetUserHelper().CreateUser(user);
+	constructor(user: IUser, text: string, time: Date) {
+		this.User = user;
 		this.Text = text;
 		this.Time = time;
 	}

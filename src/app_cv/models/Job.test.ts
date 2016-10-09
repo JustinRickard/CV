@@ -1,6 +1,8 @@
 /// <reference path="../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
 /// <reference path="Job.ts" />
 
+import { IJobServerDto, IJob, Job } from './Job';
+
 describe("Job", () => {
 
 	var job: IJob;

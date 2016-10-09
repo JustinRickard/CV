@@ -3,6 +3,9 @@
 /// <reference path="../../../shared/models/assessment/Option.ts" />
 /// <reference path="../ErrorHandler.ts" />
 
+import { IAssessmentHelper, AssessmentHelper } from '../../helpers/AssessmentHelper';
+import { IQuestion, Question } from './Question';
+
 var GenerateOptions =  function(quantity)  {
 		var options = new Array<QuestionOption>();
 

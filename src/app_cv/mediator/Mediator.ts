@@ -1,13 +1,16 @@
 /// <reference path="Subscription.ts" />
 /// <reference path="../models/Router.ts" />
 
-interface IMediator {
+import { Router } from '../models/Router';
+import { ISubscription, Subscription } from './Subscription';
+
+export interface IMediator {
 	Publish(channelName: string, args: any): void;
 	PublishChangePage(args: any);
 	Subscribe(channelName: string, context: {}, func: Function): void
 }
 
-class Mediator {
+export class Mediator {
 
 	Channels: { [name: string]: ISubscription[]; }
 	ChannelKeys: { [name: string]: string; }

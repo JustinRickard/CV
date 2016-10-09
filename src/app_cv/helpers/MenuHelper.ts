@@ -1,15 +1,21 @@
 /// <reference path="../models/ErrorHandler.ts" />
+/// <reference path="../models/MenuItem.ts" />
 /// <reference path="../models/Page.ts" />
 
-interface IMenuHelper {
+import { IMenuItem } from '../models/MenuItem';
+import { IPage } from '../models/Page';
+import { ICvErrorHandler } from '../models/ErrorHandler';
+
+
+export interface IMenuHelper {
 	SetSelectedPage(menuItems: IMenuItem[], page: IPage);
 }
 
-class MenuHelper {
+export class MenuHelper {
 
-	ErrorHandler: IErrorHandler;
+	ErrorHandler: ICvErrorHandler;
 
-	constructor(errorHandler: IErrorHandler) {
+	constructor(errorHandler: ICvErrorHandler) {
 		this.ErrorHandler = errorHandler;
 	}
 

@@ -3,6 +3,11 @@
 /// <reference path="../repositories/PageRepository.ts" />
 /// <reference path="../models/Page.ts" />
 
+import { IUiTextManager , UiTextManager} from '../models/UiTextManager';
+import { CultureCode } from '../../shared/models/Enums';
+import { IPage, Page } from '../models/Page';
+import { IPageRepository, PageRepository } from './PageRepository';
+
 describe("Page Repository", () => {
 	var uiText: IUiTextManager;
 	var repo: IPageRepository;

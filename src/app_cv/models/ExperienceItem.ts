@@ -1,20 +1,23 @@
 /// <reference path="../resources/UiText.ts" />
 /// <reference path="../../shared/models/Enums.ts" />
 
-interface IExperienceItem {
+import { TechnologyType } from '../../shared/models/Enums';
+import { IUiTextManager, UiTextManager } from './UiTextManager';
+
+export interface IExperienceItem {
 	Name: string;
 	Years: number;
 	Type: TechnologyType;
 }
 
-interface IExperienceItemClientDto {
+export interface IExperienceItemClientDto {
 	Name: string;
 	Years: number;
 	Description: string;
 	Type: TechnologyType;
 }
 
-class ExperienceItem implements IExperienceItemClientDto {
+export class ExperienceItem implements IExperienceItemClientDto {
 	Type: TechnologyType;
 	Name: string;
 	Description: string;

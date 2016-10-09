@@ -1,4 +1,4 @@
-interface IHomeUiText {
+export interface IHomeUiText {
 	Home_Title: string;
 	Home_Subtitle: string;
 	Link_CV_Title: string;
@@ -9,7 +9,7 @@ interface IHomeUiText {
 	Link_Assessment_Description: string;
 }
 
-class HomeUiText2 implements IHomeUiText {
+export class HomeUiText implements IHomeUiText {
 
 	constructor() {
 	}

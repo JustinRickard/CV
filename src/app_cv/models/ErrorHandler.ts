@@ -1,19 +1,25 @@
 /// <reference path="Logger.ts" />
 /// <reference path="AppModel.ts" />
 
-interface IErrorHandler {
+import { MessageDisplayStatus } from '../../shared/models/Enums';
+import { IAppModel, AppModel } from './AppModel';
+import { ICvLogger, CvLogger } from './Logger';
+
+export interface ICvErrorHandler {
 	AppModel: IAppModel;
-	Logger: ILogger;
+	CvLogger: ICvLogger;
 	Handle(messageStatus: MessageDisplayStatus, message: string): void;
 }
 
-class ErrorHandler implements IErrorHandler {
-	AppModel: IAppModel;
-	Logger: ILogger;
 
-	constructor(appModel: IAppModel, logger: ILogger) {
+
+export class CvErrorHandler implements ICvErrorHandler {
+	AppModel: IAppModel;
+	CvLogger: ICvLogger;
+
+	constructor(appModel: IAppModel, logger: ICvLogger) {
 		this.AppModel = appModel;
-		this.Logger = logger;
+		this.CvLogger = logger;
 	}
 
 	public Handle(messageStatus: MessageDisplayStatus, message: string): void {
@@ -23,10 +29,10 @@ class ErrorHandler implements IErrorHandler {
 		// Log message
 		switch (messageStatus) {
 			case MessageDisplayStatus.Error:
-				this.Logger.Error(message)
+				this.CvLogger.Error(message)
 				break;
 			case MessageDisplayStatus.Warning:
-				this.Logger.Warning(message);
+				this.CvLogger.Warning(message);
 				break;
 		}
 	}

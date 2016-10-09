@@ -4,7 +4,11 @@
 /// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 /// <reference path="../../../../DefinitelyTyped/knockout/knockout.d.ts" />
 
-interface IMenuItem {
+import { MenuItemLevel } from '../../shared/models/Enums';
+import { IPage, Page } from './Page';
+import { IMediator } from '../mediator/Mediator';
+
+export interface IMenuItem {
 	Page: Page;
 	Level: MenuItemLevel;
 	SubItems: IMenuItem[];
@@ -13,10 +17,7 @@ interface IMenuItem {
 	Select(): void;
 }
 
-// Let MenuItem know about the router
-// declare var UrlRouter: Router;
-
-class MenuItem implements IMenuItem {
+export class MenuItem implements IMenuItem {
 
 	Page: Page;
 	SubItems: MenuItem[];

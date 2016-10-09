@@ -1,12 +1,16 @@
 /// <reference path="../../../../DefinitelyTyped/routie/routie.d.ts" />
 /// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 /// <reference path="AppModel.ts" />
+/// <reference path="Page.ts" />
 /// <reference path="../repositories/PageRepository.ts" />
 /// <reference path="../../shared/models/Enums.ts" />
 
+import { IAppModel, AppModel } from './AppModel';
+import { IPage, Page } from './Page';
+
 declare var Model: AppModel;
 
-class Router {
+export class Router {
 
 	Pages: Page[];
 

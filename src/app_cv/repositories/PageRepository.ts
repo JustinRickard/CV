@@ -1,10 +1,14 @@
 /// <reference path="../models/Page.ts" />
 
-interface IPageRepository {
+import { IUiTextManager , UiTextManager} from '../models/UiTextManager';
+import { CultureCode } from '../../shared/models/Enums';
+import { IPage, Page } from '../models/Page';
+
+export interface IPageRepository {
 	Get(): Page[];
 }
 
-class PageRepository implements IPageRepository {
+export class PageRepository implements IPageRepository {
 
 	StaticText: IUiTextManager
 	NextPageNumber: number;

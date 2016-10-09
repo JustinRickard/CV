@@ -2,7 +2,9 @@
 /// <reference path="../../../shared/helpers/AssessmentHelper.ts" />
 /// <reference path="../../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 
-interface IQuestion {
+import { IAssessmentHelper } from '../../helpers/AssessmentHelper';
+
+export interface IQuestion {
 	ID: number;
 	Text: string;
 	DisplayOrder: number;
@@ -10,7 +12,7 @@ interface IQuestion {
 	SelectOption(id: number): void;
 }
 
-class Question implements IQuestion {
+export class Question implements IQuestion {
 	ID: number;
 	Text: string;
 	DisplayOrder: number;

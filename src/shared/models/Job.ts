@@ -1,5 +1,5 @@
 
-interface IJob {
+export interface IJob {
 	Company: string;
 	Description: string;
 	Start: Date;
@@ -8,7 +8,7 @@ interface IJob {
 	ImageUrl: string;
 }
 
-class Job implements IJob {
+export class Job implements IJob {
 	Company: string;
 	Description: string;
 	Start: Date;
