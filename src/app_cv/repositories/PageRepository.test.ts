@@ -3,18 +3,18 @@
 /// <reference path="../repositories/PageRepository.ts" />
 /// <reference path="../models/Page.ts" />
 
-import { IUiTextManager , UiTextManager} from '../models/UiTextManager';
+import { IStaticText , StaticText} from '../models/StaticText';
 import { CultureCode } from '../../shared/models/Enums';
 import { IPage, Page } from '../models/Page';
 import { IPageRepository, PageRepository } from './PageRepository';
 
 describe("Page Repository", () => {
-	var uiText: IUiTextManager;
+	var uiText: IStaticText;
 	var repo: IPageRepository;
 	var pages: IPage[];
 
 	beforeEach(() => {
-		uiText = new UiTextManager(CultureCode.en_GB)
+		uiText = new StaticText(CultureCode.en_GB)
 		repo = new PageRepository(uiText);
 		pages = repo.Get();
 	})

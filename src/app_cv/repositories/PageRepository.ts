@@ -1,6 +1,7 @@
 /// <reference path="../models/Page.ts" />
+/// <reference path="../resources/UiText.ts" />
 
-import { IUiTextManager , UiTextManager} from '../models/UiTextManager';
+import { IStaticText , StaticText} from '../models/StaticText';
 import { CultureCode } from '../../shared/models/Enums';
 import { IPage, Page } from '../models/Page';
 
@@ -10,13 +11,13 @@ export interface IPageRepository {
 
 export class PageRepository implements IPageRepository {
 
-	StaticText: IUiTextManager
+	Text: IUiText
 	NextPageNumber: number;
 
 	constructor(
-		staticText: IUiTextManager
+		text: IUiText
 		) {
-		this.StaticText = staticText;
+		this.Text = text;
 		this.NextPageNumber = 1;
 	}
 
@@ -29,7 +30,7 @@ export class PageRepository implements IPageRepository {
 
 		var id = this.NextPageNumber;
 		this.NextPageNumber++;
-		return new Page(id, displayNameKey, childrenPages, partialFileName, url, this.StaticText, usesClientSideRouting);
+		return new Page(id, displayNameKey, childrenPages, partialFileName, url, this.Text, usesClientSideRouting);
 	}
 
 	public Get(): Page[] {

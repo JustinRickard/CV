@@ -2,4 +2,5 @@ src/public/css/*
 src/app_cv/**/generated/*
 src/**/*.js
 node_modules/
+typings/
 ServerApp.js

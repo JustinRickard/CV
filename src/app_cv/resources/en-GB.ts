@@ -1,6 +1,6 @@
 /// <reference path="UiText.ts" />
 
-class en_gb implements IUiText {
+export default class en_gb implements IUiText {
 
 	constructor() {
 	}

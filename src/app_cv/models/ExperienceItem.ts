@@ -2,7 +2,7 @@
 /// <reference path="../../shared/models/Enums.ts" />
 
 import { TechnologyType } from '../../shared/models/Enums';
-import { IUiTextManager, UiTextManager } from './UiTextManager';
+import { IStaticText, StaticText } from './StaticText';
 
 export interface IExperienceItem {
 	Name: string;
@@ -22,19 +22,17 @@ export class ExperienceItem implements IExperienceItemClientDto {
 	Name: string;
 	Description: string;
 	Years: number;
-	StaticText: IUiTextManager;
 
 	constructor(
 		name: string,
 		years: number,
 		type: TechnologyType,
-		staticText: IUiTextManager
+		description: string
 		) 
 	{
 		this.Name = name;
 		this.Years = years;
 		this.Type = type;
-		this.StaticText = staticText;
-		this.Description = years === 1 ? years + " " + this.StaticText.Current.Experience_Year : years + " " + this.StaticText.Current.Experience_Years;
+		this.Description = description;
 	}
 }

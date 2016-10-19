@@ -6,7 +6,7 @@
 /// <reference path="MenuItem.ts" />
 /// <reference path="../resources/UiText.ts" />
 /// <reference path="ExperienceItem.ts" />
-/// <reference path="UiTextManager.ts" />
+/// <reference path="StaticText.ts" />
 /// <reference path="../helpers/MenuHelper.ts" />
 /// <reference path="../custom_typings/KnockoutBindingHandlers.d.ts" />
 /// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
@@ -14,7 +14,7 @@
 
 import { CultureCode, MessageDisplayStatus, TechnologyType, MenuItemLevel } from '../../shared/models/Enums'
 import { IExperienceItemClientDto, IExperienceItem, ExperienceItem } from './ExperienceItem';
-import { IUiTextManager, UiTextManager } from './UiTextManager';
+import { IStaticText, StaticText } from './StaticText';
 // import { KnockoutBindingHandlers } from '../custom_typings/KnockoutBindingHandlers';
 import { IPage, Page } from './Page';
 import { IJobServerDto, IJob, Job } from './Job';
@@ -38,98 +38,105 @@ export interface IAppModel {
 	ClearMessage(): void;
 }
 
-declare var StaticText: IUiTextManager;
+/*
+declare var StaticText: IStaticText;
 declare var TL: any;  // TimelineJS
 declare var Model: AppModel;
 declare var window: Window;
+*/
 
-export class AppModel {
+export module AppModel {
 
-	ErrorHandler: ICvErrorHandler;
-	Pages: IPage[];
-	UrlRouter: Router;
-	Experience: IExperienceItemClientDto[];
-	ExperienceServer: IExperienceItemClientDto[];
-	ExperienceDatabase: IExperienceItemClientDto[];
-	ExperienceFrontEnd: IExperienceItemClientDto[];
-	Jobs: Job[];
-	MessageStatus: MessageDisplayStatus;
-	CurrentMessage: string;
-	CultureCode: CultureCode;
-	MenuItems: MenuItem[];
-	CurrentPage: KnockoutObservable<Page>;
-	MenuVisible: KnockoutObservable<Boolean>;
-	PageContentVisible: KnockoutObservable<Boolean>;
-	MessageMediator: Mediator;
-	MainPageId: string;
+	var MainPageContentId: string;
+	var ErrorHandler: ICvErrorHandler;
+	var Pages: IPage[];
+	var UrlRouter: Router;
+	var Experience: IExperienceItemClientDto[];
+	var ExperienceServer: IExperienceItemClientDto[];
+	var ExperienceDatabase: IExperienceItemClientDto[];
+	var ExperienceFrontEnd: IExperienceItemClientDto[];
+	var Jobs: Job[];
+	var MessageStatus: MessageDisplayStatus;
+	var CurrentMessage: string;
+	var CultureCode: CultureCode;
+	var MenuItems: MenuItem[];
+	var CurrentPage: KnockoutObservable<Page>;
+	var MenuVisible: KnockoutObservable<Boolean>;
+	var PageContentVisible: KnockoutObservable<Boolean>;
+	var MessageMediator: Mediator;
 
-	constructor (experience: IExperienceItem[], jobs: IJobServerDto[],
-		logger: ICvLogger, errorHandler: ICvErrorHandler) {
+	export function Init(experience: IExperienceItem[], jobs: IJobServerDto[],
+		logger: ICvLogger, errorHandler: ICvErrorHandler, mainPageContainerId: string) {
 
 		var utils = new Utilities(errorHandler);
+		var uiText = StaticText.Current;
 
-		this.ErrorHandler = errorHandler;
-		this.Experience = this.GetExperience(experience, StaticText);
-		this.ExperienceServer = _.filter(this.Experience, (o) => { return o.Type == TechnologyType.Server; });
-		this.ExperienceDatabase = _.filter(this.Experience, (o) => { return o.Type == TechnologyType.Database; });
-		this.ExperienceFrontEnd = _.filter(this.Experience, (o) => { return o.Type == TechnologyType.FrontEnd; });
-		this.Pages = new PageRepository(StaticText).Get();
-    	this.UrlRouter = new Router(this.Pages);
-    	this.MessageMediator = new Mediator(this.UrlRouter);
-		this.SetJobs(jobs, utils);
-		this.MessageStatus = MessageDisplayStatus.None;
-		this.CurrentMessage = "";
-		this.SetMenuItems(this.Pages);
-		var startingPage = _.first(this.Pages);
-		this.CurrentPage = ko.observable<Page>(startingPage);
-		this.MenuVisible = ko.observable<Boolean>(false);
-		this.PageContentVisible = ko.observable<Boolean>(true);
-		this.MainPageId = "page-content-container";
+		MainPageContentId = mainPageContainerId;
+		ErrorHandler = errorHandler;
+		Experience = GetExperience(experience, uiText);
+		ExperienceServer = _.filter(Experience, (o) => { return o.Type == TechnologyType.Server; });
+		ExperienceDatabase = _.filter(Experience, (o) => { return o.Type == TechnologyType.Database; });
+		ExperienceFrontEnd = _.filter(Experience, (o) => { return o.Type == TechnologyType.FrontEnd; });
+		Pages = new PageRepository(uiText).Get();
+    	UrlRouter = new Router(Pages);
+    	MessageMediator = new Mediator(UrlRouter);
+		SetJobs(jobs, utils);
+		MessageStatus = MessageDisplayStatus.None;
+		CurrentMessage = "";
+		SetMenuItems(Pages);
+		var startingPage = _.first(Pages);
+		CurrentPage = ko.observable<Page>(startingPage);
+		MenuVisible = ko.observable<Boolean>(false);
+		PageContentVisible = ko.observable<Boolean>(true);
+		ApplyBindings(mainPageContainerId);
+		UrlRouter.Initialise();
 	}
 
 	// PUBLIC METHODS
 
-	public ToggleMenu() {
-		Model.MenuVisible(!Model.MenuVisible());
-		Model.PageContentVisible(!Model.MenuVisible())
+	export function ToggleMenu() {
+		MenuVisible(!this.MenuVisible());
+		PageContentVisible(!this.MenuVisible())
 	}
 
-	public SetMessage(messageStatus: MessageDisplayStatus, message: string): void {
-		this.CurrentMessage = message;
-		this.MessageStatus = messageStatus;
+	export function SetMessage(messageStatus: MessageDisplayStatus, message: string): void {
+		CurrentMessage = message;
+		MessageStatus = messageStatus;
 	}
 
-	public ClearMessage (): void {
-		this.CurrentMessage = "";
-		this.MessageStatus = MessageDisplayStatus.None;
+	export function ClearMessage (): void {
+		CurrentMessage = "";
+		MessageStatus = MessageDisplayStatus.None;
 	}
 
-	public SetPage(pageId: number, pageLoad: boolean = false) {
+	export function SetPage(pageId: number, pageLoad: boolean = false) {
 		$('html,body').scrollTop(0);
 		var page: Page = this.GetPageById(this.Pages, pageId);
 		var menuHelper: IMenuHelper = new MenuHelper(this.ErrorHandler);
 
-		this.MenuItems.forEach((x) => {
-			this.SetSelectedMenuItem(x, page);
+		MenuItems.forEach((x) => {
+			SetSelectedMenuItem(x, page);
 			if (x.SubItems && x.SubItems.length > 0)
 			{
 				x.SubItems.forEach((sub) => {
-					this.SetSelectedMenuItem(sub, page);
+					SetSelectedMenuItem(sub, page);
 				});
 			}
 		});
 
-		this.PageContentVisible(true);
-		this.MenuVisible(false);
+		PageContentVisible(true);
+		MenuVisible(false);
 
-		this.CurrentPage(page);
-		this.InsertTemplate(page, this.MainPageId);
+		CurrentPage(page);
+		InsertTemplate(page, MainPageContentId);
 		if (!pageLoad) {
-			this.ApplyBindings(this.MainPageId);
+			ApplyBindings(MainPageContentId);
 		}
 	}
 
-	public ApplyBindings(mainPageId: string) {
+	// PRIVATE METHODS
+
+	function ApplyBindings(mainPageId: string) {
 		var element = document.getElementById(mainPageId);
 		ko.cleanNode(element);
 
@@ -147,19 +154,21 @@ export class AppModel {
 		ko.applyBindings(StaticText, document.getElementById(mainPageId));
 	}
 
-	// PRIVATE METHODS
+	
 
-	private GetExperience(experienceRecords: IExperienceItem[], staticText: IUiTextManager): IExperienceItemClientDto[] {
+	function GetExperience(experienceRecords: IExperienceItem[], text: IUiText): IExperienceItemClientDto[] {
 		var experience = new Array<IExperienceItemClientDto> ();
 
 		experienceRecords.forEach((x) => {
-			experience.push(new ExperienceItem(x.Name, x.Years, x.Type, staticText))
+			var yearsText = x.Years === 1 ? text.Experience_Year : text.Experience_Years;
+			var description = x.Years + " " + yearsText;
+			experience.push(new ExperienceItem(x.Name, x.Years, x.Type, description))
 		});
 
 		return experience;
 	}
 
-	private GetPageById(pages: Page[], pageId: number): Page {
+	function GetPageById(pages: Page[], pageId: number): Page {
 		var page:   Page;
 
 		page = this.GetPageInCollectionById(pageId, pages);
@@ -180,11 +189,11 @@ export class AppModel {
 		return page;
 	}
 
-	private GetPageInCollectionById(pageId: number, pages: Page[]): Page {
+	function GetPageInCollectionById(pageId: number, pages: Page[]): Page {
 		 return _.find(pages, (p) => { return p.ID === pageId; });
 	}
 
-	private InsertTemplate(page: Page, mainPageId: string): void {
+	function InsertTemplate(page: Page, mainPageId: string): void {
 		var container = $("#" + mainPageId);
 		var pageVariable: string = page.PartialFileName.replace(".html", "_html");
 		container.html(eval(pageVariable));
@@ -196,7 +205,7 @@ export class AppModel {
 		*/	
 	}
 
-	private SetSelectedMenuItem(menuItem: MenuItem, page: IPage): void {
+	function SetSelectedMenuItem(menuItem: MenuItem, page: IPage): void {
 		if (menuItem.Page === page) {
 			menuItem.Selected(true);
 		} else {
@@ -204,7 +213,7 @@ export class AppModel {
 		}
 	}
 
-	private SetMenuItems(pages: IPage[]): void {
+	function SetMenuItems(pages: IPage[]): void {
 		var menuItems = new Array<MenuItem>();
 
 		pages.forEach((page) => {
@@ -220,16 +229,16 @@ export class AppModel {
 			menuItems.push(new MenuItem(page, MenuItemLevel.One, subitems, this.MessageMediator));
 		});
 
-		this.MenuItems = menuItems;
+		MenuItems = menuItems;
 	}
 
-	private SortJobs(): void {
-		this.Jobs = _.orderBy(this.Jobs, ['Start'], ['desc']);
+	function SortJobs(): void {
+		Jobs = _.orderBy(Jobs, ['Start'], ['desc']);
 	}
 
-	private SetJobs(jobs: IJobServerDto[], utils: Utilities): void {
-		this.Jobs = new Array<Job>();
-		jobs.forEach((x) => this.Jobs.push(utils.CreateJob(x)));
-		this.SortJobs();
+	function SetJobs(jobs: IJobServerDto[], utils: Utilities): void {
+		Jobs = new Array<Job>();
+		jobs.forEach((x) => Jobs.push(utils.CreateJob(x)));
+		SortJobs();
 	}
 }

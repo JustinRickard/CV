@@ -1,6 +1,6 @@
 /// <reference path="../resources/UiText.ts" />
 
-import { IUiTextManager, UiTextManager } from './UiTextManager';
+import { IStaticText, StaticText } from './StaticText';
 
 export interface IPage {
 	ID: number;
@@ -9,11 +9,11 @@ export interface IPage {
 	PartialFileName: string;
 	Url: string;
 	DisplayName: string;
-	StaticText: IUiTextManager;
+	Text: IUiText;
 	UsesClientSideRouting: boolean;
 }
 
-// declare var StaticText: IUiTextManager;
+// declare var StaticText: IStaticText;
 
 export class Page implements IPage {
 	ID: number;
@@ -22,7 +22,7 @@ export class Page implements IPage {
 	PartialFileName: string;
 	Url: string;
 	DisplayName: string;
-	StaticText: IUiTextManager;
+	Text: IUiText;
 	UsesClientSideRouting: boolean;
 
 	constructor (
@@ -31,14 +31,14 @@ export class Page implements IPage {
 		childrenPages: IPage[],
 		partialFileName: string,
 		url: string,
-		staticText: IUiTextManager,
+		text: IUiText,
 		UsesClientSideRouting: boolean = true
 	)
 	{
-		this.StaticText = staticText;
+		this.Text = text;
 		this.ID = id;
 		this.DisplayNameKey = displayNameKey;
-		this.DisplayName = this.StaticText.Current[displayNameKey];
+		this.DisplayName = this.Text[displayNameKey];
 		this.UsesClientSideRouting = UsesClientSideRouting;
 
 		if (childrenPages && childrenPages.length > 0) {

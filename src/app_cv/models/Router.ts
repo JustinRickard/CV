@@ -8,8 +8,6 @@
 import { IAppModel, AppModel } from './AppModel';
 import { IPage, Page } from './Page';
 
-declare var Model: AppModel;
-
 export class Router {
 
 	Pages: Page[];
