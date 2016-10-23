@@ -1,13 +1,17 @@
-/// <reference path="../DefinitelyTyped/requirejs/require.d.ts" />
 /// <reference path="./src/resources/home/HomeUiText.ts" />
 /// <reference path="./src/shared/models/Enums.ts" />
 /// <reference path="./src/shared/models/ExperienceItem.ts" />
 /// <reference path="./src/shared/models/Job.ts" />
+/// <reference path="./typings/index.d.ts" />
+
 
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var bodyParser: any = require('body-parser');
 var express: any = require('express');
+
+
+// import express from './express';
 
 import {HomeUiText, IHomeUiText} from './src/resources/home/HomeUiText';
 import {Job, IJob} from './src/shared/models/Job';

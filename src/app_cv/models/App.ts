@@ -1,10 +1,3 @@
-/// <reference path="AppModel.ts" />
-/// <reference path="Utilities.ts" />
-/// <reference path="../resources/UiText.ts" />
-/// <reference path="Router.ts" />
-/// <reference path="../mediator/Mediator.ts" />
-/// <reference path="../../shared/models/Enums.ts" />
-
 import { CultureCode } from '../../shared/models/Enums'
 import { IAppModel, AppModel } from './AppModel';
 import { IStaticText, StaticText } from './StaticText';

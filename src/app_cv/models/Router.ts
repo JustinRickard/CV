@@ -1,5 +1,4 @@
-/// <reference path="../../../../DefinitelyTyped/routie/routie.d.ts" />
-/// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../typings/index.d.ts" />
 /// <reference path="AppModel.ts" />
 /// <reference path="Page.ts" />
 /// <reference path="../repositories/PageRepository.ts" />

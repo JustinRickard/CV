@@ -1,7 +1,8 @@
-/// <reference path="../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
+
 /// <reference path="../resources/UiText.ts" />
 /// <reference path="../repositories/PageRepository.ts" />
 /// <reference path="../models/Page.ts" />
+/// <reference path="../../../typings/index.d.ts" />
 
 import { IStaticText , StaticText} from '../models/StaticText';
 import { CultureCode } from '../../shared/models/Enums';
@@ -9,12 +10,13 @@ import { IPage, Page } from '../models/Page';
 import { IPageRepository, PageRepository } from './PageRepository';
 
 describe("Page Repository", () => {
-	var uiText: IStaticText;
+	var uiText: IUiText;
 	var repo: IPageRepository;
 	var pages: IPage[];
 
 	beforeEach(() => {
-		uiText = new StaticText(CultureCode.en_GB)
+		StaticText.Init();
+		uiText = StaticText.Current;
 		repo = new PageRepository(uiText);
 		pages = repo.Get();
 	})
@@ -29,7 +31,6 @@ describe("Page Repository", () => {
   			expect(page.ID).toBeTruthy();
 			expect(page.DisplayNameKey).toBeTruthy();		
 			expect(page.DisplayName).toBeTruthy();
-			expect(page.StaticText).toBeTruthy();
 
 			if (page.ChildrenPages && page.ChildrenPages.length > 0) {
 				expect(page.PartialFileName).not.toBeTruthy();

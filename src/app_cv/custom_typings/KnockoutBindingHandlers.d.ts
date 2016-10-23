@@ -1,7 +1,6 @@
-/// <reference path="../../../../DefinitelyTyped/knockout/knockout.d.ts" />
+import ko = require('knockout');
 
-
-interface KnockoutBindingHandlers {
-    slideHorizontal: KnockoutBindingHandler;
-    slideVertical: KnockoutBindingHandler;
+interface BindingHandlers {
+    slideHorizontal: ko.BindingHandler;
+    slideVertical: ko.BindingHandler;
 }

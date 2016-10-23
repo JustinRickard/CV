@@ -9,8 +9,6 @@
 /// <reference path="StaticText.ts" />
 /// <reference path="../helpers/MenuHelper.ts" />
 /// <reference path="../custom_typings/KnockoutBindingHandlers.d.ts" />
-/// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
-/// <reference path="../../../../DefinitelyTyped/timelinejs/timelinejs.d.ts" />
 
 import { CultureCode, MessageDisplayStatus, TechnologyType, MenuItemLevel } from '../../shared/models/Enums'
 import { IExperienceItemClientDto, IExperienceItem, ExperienceItem } from './ExperienceItem';
@@ -26,6 +24,9 @@ import { ICvLogger, CvLogger } from './Logger';
 import { IMediator, Mediator } from '../mediator/Mediator';
 import { IMenuHelper, MenuHelper } from '../helpers/MenuHelper';
 import { IPageRepository, PageRepository } from '../repositories/PageRepository';
+import ko = require('knockout');
+import _ = require('lodash');
+// import BindingHandlers from '../custom_typings/KnockoutBindingHandlers';
 
 export interface IAppModel {
 	Pages: IPage[];
@@ -60,9 +61,9 @@ export module AppModel {
 	var CurrentMessage: string;
 	var CultureCode: CultureCode;
 	var MenuItems: MenuItem[];
-	var CurrentPage: KnockoutObservable<Page>;
-	var MenuVisible: KnockoutObservable<Boolean>;
-	var PageContentVisible: KnockoutObservable<Boolean>;
+	var CurrentPage: ko.Observable<Page>;
+	var MenuVisible: ko.Observable<Boolean>;
+	var PageContentVisible: ko.Observable<Boolean>;
 	var MessageMediator: Mediator;
 
 	export function Init(experience: IExperienceItem[], jobs: IJobServerDto[],
@@ -135,12 +136,11 @@ export module AppModel {
 	}
 
 	// PRIVATE METHODS
-
 	function ApplyBindings(mainPageId: string) {
 		var element = document.getElementById(mainPageId);
 		ko.cleanNode(element);
 
-		ko.bindingHandlers.slideVertical = {
+		ko.bindingHandlers["slideVertical"] = {
 		    init: function (element, valueAccessor) {
 		        var value = ko.utils.unwrapObservable(valueAccessor());
 		        $(element).toggle(value);

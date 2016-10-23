@@ -1,8 +1,6 @@
 /// <reference path="Job.ts" />
 /// <reference path="ErrorHandler.ts" />
 /// <reference path="../../shared/models/Enums.ts" />
-/// <reference path="../../../../DefinitelyTyped/jquery/jquery.d.ts" />
-/// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 
 import { HttpVerb } from '../../shared/models/Enums';
 import { ICvErrorHandler, CvErrorHandler } from './ErrorHandler';

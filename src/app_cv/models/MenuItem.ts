@@ -1,9 +1,4 @@
-/// <reference path="Page.ts" />
-/// <reference path="Router.ts" />
-/// <reference path="../mediator/Mediator.ts" />
-/// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
-/// <reference path="../../../../DefinitelyTyped/knockout/knockout.d.ts" />
-
+import ko = require('knockout')
 import { MenuItemLevel } from '../../shared/models/Enums';
 import { IPage, Page } from './Page';
 import { IMediator } from '../mediator/Mediator';
@@ -12,8 +7,8 @@ export interface IMenuItem {
 	Page: Page;
 	Level: MenuItemLevel;
 	SubItems: IMenuItem[];
-	Selected: KnockoutObservable<boolean>;
-	Expanded: KnockoutObservable<boolean>;
+	Selected: ko.Observable<boolean>;
+	Expanded: ko.Observable<boolean>;
 	Select(): void;
 }
 
@@ -23,8 +18,8 @@ export class MenuItem implements IMenuItem {
 	SubItems: MenuItem[];
 	Level: MenuItemLevel;
 	Mediator: IMediator;
-	Selected: KnockoutObservable<boolean>;
-	Expanded: KnockoutObservable<boolean>;
+	Selected: ko.Observable<boolean>;
+	Expanded: ko.Observable<boolean>;
 	ChannelName: string;
 
 	constructor (page: Page, level: MenuItemLevel, subItems: MenuItem[], mediator: IMediator) {
