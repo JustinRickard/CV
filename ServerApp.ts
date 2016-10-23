@@ -4,7 +4,6 @@
 /// <reference path="./src/shared/models/Job.ts" />
 /// <reference path="./typings/index.d.ts" />
 
-
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var bodyParser: any = require('body-parser');

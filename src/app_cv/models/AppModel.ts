@@ -1,19 +1,6 @@
-/// <reference path="Job.ts" />
-/// <reference path="../../shared/models/Enums.ts" />
-/// <reference path="Utilities.ts" />
-/// <reference path="Logger.ts" />
-/// <reference path="ErrorHandler.ts" />
-/// <reference path="MenuItem.ts" />
-/// <reference path="../resources/UiText.ts" />
-/// <reference path="ExperienceItem.ts" />
-/// <reference path="StaticText.ts" />
-/// <reference path="../helpers/MenuHelper.ts" />
-/// <reference path="../custom_typings/KnockoutBindingHandlers.d.ts" />
-
 import { CultureCode, MessageDisplayStatus, TechnologyType, MenuItemLevel } from '../../shared/models/Enums'
 import { IExperienceItemClientDto, IExperienceItem, ExperienceItem } from './ExperienceItem';
 import { IStaticText, StaticText } from './StaticText';
-// import { KnockoutBindingHandlers } from '../custom_typings/KnockoutBindingHandlers';
 import { IPage, Page } from './Page';
 import { IJobServerDto, IJob, Job } from './Job';
 import { ICvErrorHandler, CvErrorHandler } from './ErrorHandler';
@@ -24,9 +11,9 @@ import { ICvLogger, CvLogger } from './Logger';
 import { IMediator, Mediator } from '../mediator/Mediator';
 import { IMenuHelper, MenuHelper } from '../helpers/MenuHelper';
 import { IPageRepository, PageRepository } from '../repositories/PageRepository';
+// import ko = require('knockout');
 import ko = require('knockout');
 import _ = require('lodash');
-// import BindingHandlers from '../custom_typings/KnockoutBindingHandlers';
 
 export interface IAppModel {
 	Pages: IPage[];

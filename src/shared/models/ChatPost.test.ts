@@ -1,8 +1,8 @@
-/// <reference path="../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
 /// <reference path="ChatPost.ts" />
 /// <reference path="User.ts" />
 /// <reference path="Logger.ts" />
 /// <reference path="ErrorHandler.ts" />
+/// <reference path="../../../typings/index.d.ts" />
 
 describe("Chat Posts", () => {
 	var user: IUser;

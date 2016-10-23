@@ -1,10 +1,11 @@
 /// <reference path="QuestionGroup.ts" />
 /// <reference path="../../../shared/helpers/AssessmentHelper.ts" />
-/// <reference path="../../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../../typings/index.d.ts" />
 
 import { IAssessmentHelper } from '../../helpers/AssessmentHelper';
 import { IQuestionGroup, QuestionGroup } from './QuestionGroup';
 import { IQuestion, Question } from './Question';
+import _ = require('lodash');
 
 export interface ICaseStudy {
 	ID: number;

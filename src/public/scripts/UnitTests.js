@@ -74,88 +74,111 @@ var Subscription = (function () {
 }());
 exports.Subscription = Subscription;
 
-/// <reference path="Job.ts" />
-/// <reference path="../../shared/models/Enums.ts" />
-/// <reference path="Utilities.ts" />
-/// <reference path="Logger.ts" />
-/// <reference path="ErrorHandler.ts" />
-/// <reference path="MenuItem.ts" />
-/// <reference path="../resources/UiText.ts" />
-/// <reference path="ExperienceItem.ts" />
-/// <reference path="UiTextManager.ts" />
-/// <reference path="../helpers/MenuHelper.ts" />
-/// <reference path="../custom_typings/KnockoutBindingHandlers.d.ts" />
-/// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
-/// <reference path="../../../../DefinitelyTyped/timelinejs/timelinejs.d.ts" />
 "use strict";
 var Enums_1 = require('../../shared/models/Enums');
 var ExperienceItem_1 = require('./ExperienceItem');
+var StaticText_1 = require('./StaticText');
 var Router_1 = require('./Router');
 var MenuItem_1 = require('./MenuItem');
 var Utilities_1 = require('./Utilities');
 var Mediator_1 = require('../mediator/Mediator');
 var MenuHelper_1 = require('../helpers/MenuHelper');
 var PageRepository_1 = require('../repositories/PageRepository');
-var AppModel = (function () {
-    function AppModel(experience, jobs, logger, errorHandler) {
+// import ko = require('knockout');
+var ko = require('knockout');
+var _ = require('lodash');
+/*
+declare var StaticText: IStaticText;
+declare var TL: any;  // TimelineJS
+declare var Model: AppModel;
+declare var window: Window;
+*/
+var AppModel;
+(function (AppModel) {
+    var MainPageContentId;
+    var ErrorHandler;
+    var Pages;
+    var UrlRouter;
+    var Experience;
+    var ExperienceServer;
+    var ExperienceDatabase;
+    var ExperienceFrontEnd;
+    var Jobs;
+    var MessageStatus;
+    var CurrentMessage;
+    var CultureCode;
+    var MenuItems;
+    var CurrentPage;
+    var MenuVisible;
+    var PageContentVisible;
+    var MessageMediator;
+    function Init(experience, jobs, logger, errorHandler, mainPageContainerId) {
         var utils = new Utilities_1.Utilities(errorHandler);
-        this.ErrorHandler = errorHandler;
-        this.Experience = this.GetExperience(experience, StaticText);
-        this.ExperienceServer = _.filter(this.Experience, function (o) { return o.Type == Enums_1.TechnologyType.Server; });
-        this.ExperienceDatabase = _.filter(this.Experience, function (o) { return o.Type == Enums_1.TechnologyType.Database; });
-        this.ExperienceFrontEnd = _.filter(this.Experience, function (o) { return o.Type == Enums_1.TechnologyType.FrontEnd; });
-        this.Pages = new PageRepository_1.PageRepository(StaticText).Get();
-        this.UrlRouter = new Router_1.Router(this.Pages);
-        this.MessageMediator = new Mediator_1.Mediator(this.UrlRouter);
-        this.SetJobs(jobs, utils);
-        this.MessageStatus = Enums_1.MessageDisplayStatus.None;
-        this.CurrentMessage = "";
-        this.SetMenuItems(this.Pages);
-        var startingPage = _.first(this.Pages);
-        this.CurrentPage = ko.observable(startingPage);
-        this.MenuVisible = ko.observable(false);
-        this.PageContentVisible = ko.observable(true);
-        this.MainPageId = "page-content-container";
+        var uiText = StaticText_1.StaticText.Current;
+        MainPageContentId = mainPageContainerId;
+        ErrorHandler = errorHandler;
+        Experience = GetExperience(experience, uiText);
+        ExperienceServer = _.filter(Experience, function (o) { return o.Type == Enums_1.TechnologyType.Server; });
+        ExperienceDatabase = _.filter(Experience, function (o) { return o.Type == Enums_1.TechnologyType.Database; });
+        ExperienceFrontEnd = _.filter(Experience, function (o) { return o.Type == Enums_1.TechnologyType.FrontEnd; });
+        Pages = new PageRepository_1.PageRepository(uiText).Get();
+        UrlRouter = new Router_1.Router(Pages);
+        MessageMediator = new Mediator_1.Mediator(UrlRouter);
+        SetJobs(jobs, utils);
+        MessageStatus = Enums_1.MessageDisplayStatus.None;
+        CurrentMessage = "";
+        SetMenuItems(Pages);
+        var startingPage = _.first(Pages);
+        CurrentPage = ko.observable(startingPage);
+        MenuVisible = ko.observable(false);
+        PageContentVisible = ko.observable(true);
+        ApplyBindings(mainPageContainerId);
+        UrlRouter.Initialise();
     }
+    AppModel.Init = Init;
     // PUBLIC METHODS
-    AppModel.prototype.ToggleMenu = function () {
-        Model.MenuVisible(!Model.MenuVisible());
-        Model.PageContentVisible(!Model.MenuVisible());
-    };
-    AppModel.prototype.SetMessage = function (messageStatus, message) {
-        this.CurrentMessage = message;
-        this.MessageStatus = messageStatus;
-    };
-    AppModel.prototype.ClearMessage = function () {
-        this.CurrentMessage = "";
-        this.MessageStatus = Enums_1.MessageDisplayStatus.None;
-    };
-    AppModel.prototype.SetPage = function (pageId, pageLoad) {
-        var _this = this;
+    function ToggleMenu() {
+        MenuVisible(!this.MenuVisible());
+        PageContentVisible(!this.MenuVisible());
+    }
+    AppModel.ToggleMenu = ToggleMenu;
+    function SetMessage(messageStatus, message) {
+        CurrentMessage = message;
+        MessageStatus = messageStatus;
+    }
+    AppModel.SetMessage = SetMessage;
+    function ClearMessage() {
+        CurrentMessage = "";
+        MessageStatus = Enums_1.MessageDisplayStatus.None;
+    }
+    AppModel.ClearMessage = ClearMessage;
+    function SetPage(pageId, pageLoad) {
         if (pageLoad === void 0) { pageLoad = false; }
         $('html,body').scrollTop(0);
         var page = this.GetPageById(this.Pages, pageId);
         var menuHelper = new MenuHelper_1.MenuHelper(this.ErrorHandler);
-        this.MenuItems.forEach(function (x) {
-            _this.SetSelectedMenuItem(x, page);
+        MenuItems.forEach(function (x) {
+            SetSelectedMenuItem(x, page);
             if (x.SubItems && x.SubItems.length > 0) {
                 x.SubItems.forEach(function (sub) {
-                    _this.SetSelectedMenuItem(sub, page);
+                    SetSelectedMenuItem(sub, page);
                 });
             }
         });
-        this.PageContentVisible(true);
-        this.MenuVisible(false);
-        this.CurrentPage(page);
-        this.InsertTemplate(page, this.MainPageId);
+        PageContentVisible(true);
+        MenuVisible(false);
+        CurrentPage(page);
+        InsertTemplate(page, MainPageContentId);
         if (!pageLoad) {
-            this.ApplyBindings(this.MainPageId);
+            ApplyBindings(MainPageContentId);
         }
-    };
-    AppModel.prototype.ApplyBindings = function (mainPageId) {
+    }
+    AppModel.SetPage = SetPage;
+    // PRIVATE METHODS
+    function ApplyBindings(mainPageId) {
         var element = document.getElementById(mainPageId);
         ko.cleanNode(element);
-        ko.bindingHandlers.slideVertical = {
+        ko.bindingHandlers["slideVertical"] = {
             init: function (element, valueAccessor) {
                 var value = ko.utils.unwrapObservable(valueAccessor());
                 $(element).toggle(value);
@@ -165,17 +188,18 @@ var AppModel = (function () {
                 value ? $(element).slideDown() : $(element).slideUp();
             }
         };
-        ko.applyBindings(StaticText, document.getElementById(mainPageId));
-    };
-    // PRIVATE METHODS
-    AppModel.prototype.GetExperience = function (experienceRecords, staticText) {
+        ko.applyBindings(StaticText_1.StaticText, document.getElementById(mainPageId));
+    }
+    function GetExperience(experienceRecords, text) {
         var experience = new Array();
         experienceRecords.forEach(function (x) {
-            experience.push(new ExperienceItem_1.ExperienceItem(x.Name, x.Years, x.Type, staticText));
+            var yearsText = x.Years === 1 ? text.Experience_Year : text.Experience_Years;
+            var description = x.Years + " " + yearsText;
+            experience.push(new ExperienceItem_1.ExperienceItem(x.Name, x.Years, x.Type, description));
         });
         return experience;
-    };
-    AppModel.prototype.GetPageById = function (pages, pageId) {
+    }
+    function GetPageById(pages, pageId) {
         var _this = this;
         var page;
         page = this.GetPageInCollectionById(pageId, pages);
@@ -192,11 +216,11 @@ var AppModel = (function () {
             });
         }
         return page;
-    };
-    AppModel.prototype.GetPageInCollectionById = function (pageId, pages) {
+    }
+    function GetPageInCollectionById(pageId, pages) {
         return _.find(pages, function (p) { return p.ID === pageId; });
-    };
-    AppModel.prototype.InsertTemplate = function (page, mainPageId) {
+    }
+    function InsertTemplate(page, mainPageId) {
         var container = $("#" + mainPageId);
         var pageVariable = page.PartialFileName.replace(".html", "_html");
         container.html(eval(pageVariable));
@@ -205,16 +229,16 @@ var AppModel = (function () {
             window.timeline = new TL.Timeline('timeline-embed', this.Timeline);
         }
         */
-    };
-    AppModel.prototype.SetSelectedMenuItem = function (menuItem, page) {
+    }
+    function SetSelectedMenuItem(menuItem, page) {
         if (menuItem.Page === page) {
             menuItem.Selected(true);
         }
         else {
             menuItem.Selected(false);
         }
-    };
-    AppModel.prototype.SetMenuItems = function (pages) {
+    }
+    function SetMenuItems(pages) {
         var _this = this;
         var menuItems = new Array();
         pages.forEach(function (page) {
@@ -226,20 +250,17 @@ var AppModel = (function () {
             }
             menuItems.push(new MenuItem_1.MenuItem(page, Enums_1.MenuItemLevel.One, subitems, _this.MessageMediator));
         });
-        this.MenuItems = menuItems;
-    };
-    AppModel.prototype.SortJobs = function () {
-        this.Jobs = _.orderBy(this.Jobs, ['Start'], ['desc']);
-    };
-    AppModel.prototype.SetJobs = function (jobs, utils) {
-        var _this = this;
-        this.Jobs = new Array();
-        jobs.forEach(function (x) { return _this.Jobs.push(utils.CreateJob(x)); });
-        this.SortJobs();
-    };
-    return AppModel;
-}());
-exports.AppModel = AppModel;
+        MenuItems = menuItems;
+    }
+    function SortJobs() {
+        Jobs = _.orderBy(Jobs, ['Start'], ['desc']);
+    }
+    function SetJobs(jobs, utils) {
+        Jobs = new Array();
+        jobs.forEach(function (x) { return Jobs.push(utils.CreateJob(x)); });
+        SortJobs();
+    }
+})(AppModel = exports.AppModel || (exports.AppModel = {}));
 
 /// <reference path="Logger.ts" />
 /// <reference path="AppModel.ts" />
@@ -270,7 +291,7 @@ var CvErrorHandler = (function () {
 }());
 exports.CvErrorHandler = CvErrorHandler;
 
-/// <reference path="../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
+/// <reference path="../../../typings/index.d.ts" />
 /// <reference path="ErrorHandler.ts" />
 /// <reference path="Logger.ts" />
 "use strict";
@@ -327,12 +348,11 @@ describe("Error Handler", function () {
 /// <reference path="../../shared/models/Enums.ts" />
 "use strict";
 var ExperienceItem = (function () {
-    function ExperienceItem(name, years, type, staticText) {
+    function ExperienceItem(name, years, type, description) {
         this.Name = name;
         this.Years = years;
         this.Type = type;
-        this.StaticText = staticText;
-        this.Description = years === 1 ? years + " " + this.StaticText.Current.Experience_Year : years + " " + this.StaticText.Current.Experience_Years;
+        this.Description = description;
     }
     return ExperienceItem;
 }());
@@ -362,7 +382,7 @@ var Job = (function () {
 }());
 exports.Job = Job;
 
-/// <reference path="../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
+/// <reference path="../../../typings/index.d.ts" />
 /// <reference path="Job.ts" />
 "use strict";
 var Job_1 = require('./Job');
@@ -421,7 +441,7 @@ var CvLogger = (function () {
 }());
 exports.CvLogger = CvLogger;
 
-/// <reference path="../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
+/// <reference path="../../../typings/index.d.ts" />
 /// <reference path="Logger.ts" />
 "use strict";
 var Logger_1 = require('./Logger');
@@ -442,12 +462,8 @@ describe("Logger", function () {
     });
 });
 
-/// <reference path="Page.ts" />
-/// <reference path="Router.ts" />
-/// <reference path="../mediator/Mediator.ts" />
-/// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
-/// <reference path="../../../../DefinitelyTyped/knockout/knockout.d.ts" />
 "use strict";
+var ko = require('knockout');
 var MenuItem = (function () {
     function MenuItem(page, level, subItems, mediator) {
         this.Page = page;
@@ -472,14 +488,14 @@ exports.MenuItem = MenuItem;
 
 /// <reference path="../resources/UiText.ts" />
 "use strict";
-// declare var StaticText: IUiTextManager;
+// declare var StaticText: IStaticText;
 var Page = (function () {
-    function Page(id, displayNameKey, childrenPages, partialFileName, url, staticText, UsesClientSideRouting) {
+    function Page(id, displayNameKey, childrenPages, partialFileName, url, text, UsesClientSideRouting) {
         if (UsesClientSideRouting === void 0) { UsesClientSideRouting = true; }
-        this.StaticText = staticText;
+        this.Text = text;
         this.ID = id;
         this.DisplayNameKey = displayNameKey;
-        this.DisplayName = this.StaticText.Current[displayNameKey];
+        this.DisplayName = this.Text[displayNameKey];
         this.UsesClientSideRouting = UsesClientSideRouting;
         if (childrenPages && childrenPages.length > 0) {
             this.ChildrenPages = childrenPages;
@@ -495,8 +511,7 @@ var Page = (function () {
 }());
 exports.Page = Page;
 
-/// <reference path="../../../../DefinitelyTyped/routie/routie.d.ts" />
-/// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../typings/index.d.ts" />
 /// <reference path="AppModel.ts" />
 /// <reference path="Page.ts" />
 /// <reference path="../repositories/PageRepository.ts" />
@@ -541,15 +556,33 @@ exports.Router = Router;
 /// <reference path="../resources/UiText.ts" />
 "use strict";
 var Enums_1 = require('../../shared/models/Enums');
-var UiTextManager = (function () {
-    // Other languages here
-    function UiTextManager(cultureCode) {
+var en_GB_1 = require('../resources/en-GB');
+var StaticText;
+(function (StaticText) {
+    var enGB;
+    /*
+
+    class Instance implements IStaticText {
+        Current: IUiText;
+
+        constructor() {
+            this.Current = Current;
+        }
+    }
+
+    export function GetInstance(): Instance {
+        return new Instance();
+    }
+*/
+    function Init(cultureCode) {
+        if (cultureCode === void 0) { cultureCode = Enums_1.CultureCode.en_GB; }
         // Define languages
-        this.enGB = new en_gb();
+        this.enGB = new en_GB_1["default"]();
         // Set current language
         this.SelectLanguage(cultureCode);
     }
-    UiTextManager.prototype.SelectLanguage = function (cultureCode) {
+    StaticText.Init = Init;
+    function SelectLanguage(cultureCode) {
         switch (cultureCode) {
             case Enums_1.CultureCode.en_GB:
                 this.Current = this.enGB;
@@ -563,16 +596,13 @@ var UiTextManager = (function () {
             case Enums_1.CultureCode.es_ES:
                 break;
         }
-    };
-    return UiTextManager;
-}());
-exports.UiTextManager = UiTextManager;
+    }
+    StaticText.SelectLanguage = SelectLanguage;
+})(StaticText = exports.StaticText || (exports.StaticText = {}));
 
 /// <reference path="Job.ts" />
 /// <reference path="ErrorHandler.ts" />
 /// <reference path="../../shared/models/Enums.ts" />
-/// <reference path="../../../../DefinitelyTyped/jquery/jquery.d.ts" />
-/// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
 "use strict";
 var Enums_1 = require('../../shared/models/Enums');
 var Enums_2 = require('../../shared/models/Enums');
@@ -652,18 +682,19 @@ var Utilities = (function () {
 exports.Utilities = Utilities;
 
 /// <reference path="../models/Page.ts" />
+/// <reference path="../resources/UiText.ts" />
 "use strict";
 var Page_1 = require('../models/Page');
 var PageRepository = (function () {
-    function PageRepository(staticText) {
-        this.StaticText = staticText;
+    function PageRepository(text) {
+        this.Text = text;
         this.NextPageNumber = 1;
     }
     PageRepository.prototype.NewPage = function (displayNameKey, childrenPages, partialFileName, url, usesClientSideRouting) {
         if (usesClientSideRouting === void 0) { usesClientSideRouting = true; }
         var id = this.NextPageNumber;
         this.NextPageNumber++;
-        return new Page_1.Page(id, displayNameKey, childrenPages, partialFileName, url, this.StaticText, usesClientSideRouting);
+        return new Page_1.Page(id, displayNameKey, childrenPages, partialFileName, url, this.Text, usesClientSideRouting);
     };
     PageRepository.prototype.Get = function () {
         var pages = new Array();
@@ -754,20 +785,20 @@ var PageRepository = (function () {
 }());
 exports.PageRepository = PageRepository;
 
-/// <reference path="../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
 /// <reference path="../resources/UiText.ts" />
 /// <reference path="../repositories/PageRepository.ts" />
 /// <reference path="../models/Page.ts" />
+/// <reference path="../../../typings/index.d.ts" />
 "use strict";
-var UiTextManager_1 = require('../models/UiTextManager');
-var Enums_1 = require('../../shared/models/Enums');
+var StaticText_1 = require('../models/StaticText');
 var PageRepository_1 = require('./PageRepository');
 describe("Page Repository", function () {
     var uiText;
     var repo;
     var pages;
     beforeEach(function () {
-        uiText = new UiTextManager_1.UiTextManager(Enums_1.CultureCode.en_GB);
+        StaticText_1.StaticText.Init();
+        uiText = StaticText_1.StaticText.Current;
         repo = new PageRepository_1.PageRepository(uiText);
         pages = repo.Get();
     });
@@ -780,7 +811,6 @@ describe("Page Repository", function () {
             expect(page.ID).toBeTruthy();
             expect(page.DisplayNameKey).toBeTruthy();
             expect(page.DisplayName).toBeTruthy();
-            expect(page.StaticText).toBeTruthy();
             if (page.ChildrenPages && page.ChildrenPages.length > 0) {
                 expect(page.PartialFileName).not.toBeTruthy();
                 expect(page.Url).not.toBeTruthy();
@@ -797,9 +827,9 @@ describe("Page Repository", function () {
 
 /// <reference path="../../shared/models/Enums.ts" />
 /// <reference path="en-GB.ts" />
-/// <reference path="../../../../DefinitelyTyped/knockout/knockout.d.ts" />
 
 /// <reference path="UiText.ts" />
+"use strict";
 var en_gb = (function () {
     function en_gb() {
         this.Banner_Logo = "Justin R";
@@ -1014,6 +1044,8 @@ var en_gb = (function () {
     }
     return en_gb;
 }());
+exports.__esModule = true;
+exports["default"] = en_gb;
 
 /// <reference path="../models/User.ts" />
 /// <reference path="../helpers/UserHelper.ts" />
@@ -1082,11 +1114,11 @@ var ChatPost = (function () {
     return ChatPost;
 }());
 
-/// <reference path="../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
 /// <reference path="ChatPost.ts" />
 /// <reference path="User.ts" />
 /// <reference path="Logger.ts" />
 /// <reference path="ErrorHandler.ts" />
+/// <reference path="../../../typings/index.d.ts" />
 describe("Chat Posts", function () {
     var user;
     var userID;
@@ -1209,7 +1241,7 @@ var Logger = (function () {
 }());
 
 /// <reference path="Enums.ts" />
-/// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../typings/index.d.ts" />
 var User = (function () {
     function User(id, username, firstName, lastName, email, telephone) {
         this.ID = id;
@@ -1238,8 +1270,9 @@ var User = (function () {
 /// <reference path="CaseStudy.ts" />
 /// <reference path="../../models/Enums.ts" />
 /// <reference path="../../helpers/AssessmentHelper.ts" />
-/// <reference path="../../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../../typings/index.d.ts" />
 "use strict";
+var _ = require('lodash');
 var Assessment = (function () {
     function Assessment(id, assessmentType, name, caseStudies, assessmentHelper) {
         var _this = this;
@@ -1342,8 +1375,9 @@ exports.Assessment = Assessment;
 
 /// <reference path="QuestionGroup.ts" />
 /// <reference path="../../../shared/helpers/AssessmentHelper.ts" />
-/// <reference path="../../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../../typings/index.d.ts" />
 "use strict";
+var _ = require('lodash');
 var CaseStudy = (function () {
     function CaseStudy(id, displayOrder, title, description, questionGroups, assessmentHelper) {
         this.ID = id;
@@ -1397,8 +1431,9 @@ var QuestionOption = (function () {
 
 /// <reference path="Option.ts" />
 /// <reference path="../../../shared/helpers/AssessmentHelper.ts" />
-/// <reference path="../../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../../typings/index.d.ts" />
 "use strict";
+var _ = require('lodash');
 var Question = (function () {
     function Question(id, text, order, options, assessmentHelper) {
         var _this = this;
@@ -1424,7 +1459,7 @@ var Question = (function () {
 }());
 exports.Question = Question;
 
-/// <reference path="../../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
+/// <reference path="../../../../typings/index.d.ts" />
 /// <reference path="../../../shared/models/assessment/Question.ts" />
 /// <reference path="../../../shared/models/assessment/Option.ts" />
 /// <reference path="../ErrorHandler.ts" />
@@ -1472,8 +1507,9 @@ describe("Assessment", function () {
 
 /// <reference path="Question.ts" />
 /// <reference path="../../../shared/helpers/AssessmentHelper.ts" />
-/// <reference path="../../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../../typings/index.d.ts" />
 "use strict";
+var _ = require('lodash');
 var QuestionGroup = (function () {
     function QuestionGroup(id, order, title, description, questions, assessmentHelper) {
         var _this = this;
@@ -1513,7 +1549,7 @@ var QuestionGroup = (function () {
 }());
 exports.QuestionGroup = QuestionGroup;
 
-/// <reference path="../../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
+/// <reference path="../../../../typings/index.d.ts" />
 /// <reference path="Option.ts" />
 describe("Assessment", function () {
     describe("Question Option", function () {

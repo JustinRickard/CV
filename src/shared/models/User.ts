@@ -1,5 +1,5 @@
 /// <reference path="Enums.ts" />
-/// <reference path="../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../typings/index.d.ts" />
 
 interface IUser {
 	ID: number;

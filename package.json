@@ -18,10 +18,13 @@
     "cookie-session": "latest",
     "ejs": "latest",
     "express": "latest",
+    "jquery": "^3.1.1",
+    "knockout": "^3.4.0",
     "path": "latest",
     "webpack": "^1.13.2"
   },
   "devDependencies": {
+    "@types/node": "^6.0.45",
     "gulp": "latest",
     "gulp-change": "latest",
     "gulp-concat": "latest",

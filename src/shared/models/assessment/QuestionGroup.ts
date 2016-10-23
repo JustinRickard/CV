@@ -1,9 +1,9 @@
 /// <reference path="Question.ts" />
 /// <reference path="../../../shared/helpers/AssessmentHelper.ts" />
-/// <reference path="../../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../../typings/index.d.ts" />
 
+import _ = require('lodash');
 import { IQuestion, Question } from './Question';
-
 import { IAssessmentHelper } from '../../helpers/AssessmentHelper';
 
 export interface IQuestionGroup {

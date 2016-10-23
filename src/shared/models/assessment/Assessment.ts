@@ -1,8 +1,9 @@
 /// <reference path="CaseStudy.ts" />
 /// <reference path="../../models/Enums.ts" />
 /// <reference path="../../helpers/AssessmentHelper.ts" />
-/// <reference path="../../../../../DefinitelyTyped/lodash/lodash.d.ts" />
+/// <reference path="../../../../typings/index.d.ts" />
 
+import _ = require('lodash');
 import { AssessmentType } from '../../models/Enums';
 import { IAssessmentHelper } from '../../helpers/AssessmentHelper';
 import { ICaseStudy, CaseStudy } from './CaseStudy';

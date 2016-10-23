@@ -1,4 +1,4 @@
-/// <reference path="../../../../../DefinitelyTyped/jasmine/jasmine.d.ts" />
+/// <reference path="../../../../typings/index.d.ts" />
 /// <reference path="Option.ts" />
 
 describe("Assessment", () => {
